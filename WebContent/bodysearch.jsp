@@ -317,9 +317,14 @@
 																	});
 																	if(data.count==0)
 																	{
+																		
 																		$("#products_to_compare").hide();
 																		$("#emptyComparediv").show();
 																	}
+																	if(data.count==1)
+																		{
+																		$("#compare_button").attr("disabled",true);
+																		}
 																				} // Success end
 													});
 										});
