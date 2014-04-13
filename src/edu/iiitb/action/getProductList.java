@@ -100,7 +100,12 @@ public class getProductList  extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilter(brandnames,category,count);
+			System.out.println("Category id is : " +category);
+			categoryName = dbHandlerForUser.getnameonid(category);
+			System.out.println("Category Name is : " +categoryName);
+			System.out.println("Count id is : " +count);
+			System.out.println("Comapany to filter is : " +brandnames[count-1]);
+			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilter(brandnames,categoryName,count);
 		}
 		catch(Exception e)
 		{

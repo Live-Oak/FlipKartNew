@@ -15,10 +15,11 @@
 	<br>
 	<br><br><br>
 	<img src="asset/Images/apppage.JPG" alt="anytime anywhere"/> 
-	<br><br><br>
-	<h2>- or - <br>
+	<br>
+	<h2>
 	You can Download your app from the Play store<br>
 	</h2>
+	<br><br>
 	</center>
 </body>
 </html>

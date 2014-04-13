@@ -14,7 +14,6 @@
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/drophover.js"></script>

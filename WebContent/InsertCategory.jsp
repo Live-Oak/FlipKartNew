@@ -13,7 +13,7 @@
 <h4>
 	
 	<div>
-	<form action="inserCategory" method="post">
+	<form action="inserCategory" method="post" enctype="multipart/form-data">
 		<div class="col-md-4"></div>
 		
 		

@@ -77,7 +77,7 @@
    		
    		<definition name="Personal-infoTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
-   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
    		</definition>
 
@@ -90,31 +90,31 @@
    		
    		<definition name="ChangePasswordTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: ChangePassword"/>
-   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/ChangePassword.jsp"/>
    		</definition>
    		
    		<definition name="AddressesTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Addresses"/>
-   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/Addresses.jsp"/>
    		</definition>
    		
    		<definition name="UpdateEmailTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: UpdateEmails"/>
-   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/UpdateEmail.jsp"/>
    		</definition>
    		
    		<definition name="DeactivateAccountTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: DeactivateAccount"/>
-   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/DeactivateAccount.jsp"/>
    		</definition>
    		
    		<definition name="MyOrdersTile" extends="start">
    		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
-   		<put-attribute name="menu" value="/MenuHomePage.jsp"/>
+   		<put-attribute name="menu" value="/menu.jsp"/>
    		<put-attribute name="body" value="/RecentOrders.jsp"/>
    		</definition>
    

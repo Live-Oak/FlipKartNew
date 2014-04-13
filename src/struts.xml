@@ -353,6 +353,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
+			
+			<action name="getSubCatagories" class="edu.iiitb.action.StartAction"
+				method="getSubMenuCatagory">
+				<result name="success" type="json" />
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
 
 			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
 				<interceptor-ref name="secureStack"></interceptor-ref>
@@ -423,8 +430,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 
-
-
 			
 			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
 				<result name="success" type="redirectAction">
@@ -434,13 +439,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 
-			<!-- <action name="placeOrder">
-				<result>/place.jsp</result>
-			</action> -->
-			
-			<action name="placeOrderActionViaCOD" class="edu.iiitb.action.placeOrderAction" method="placeOrderActionViaCOD">
-				<!-- <result name="success" type="json" /> -->
-			</action>
+			<action name="placeOrder"  class="edu.iiitb.action.placeOrderAction" >
+				<result name="success" type="json" />
+			</action> 	
 			
 			<action name="getUserAddressDetails" class="edu.iiitb.action.getUserAddressDetails">
 				<result name="success" type="json" />

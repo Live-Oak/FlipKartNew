@@ -5,20 +5,24 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="Blueprint: Horizontal Drop-Down Menu" />
+	<meta name="keywords" content="horizontal menu, microsoft menu, drop-down menu, mega menu, javascript, jquery, simple menu" />
 	<title>Menu</title>
+	
 	<link rel="icon" type="/favicon.png" href="asset/Images/flipkartlogo.png">
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link rel="stylesheet" href="asset/CSS/jquery-ui.css">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-<!-- 	<link rel="stylesheet" href="asset/CSS/login.css"> -->
-<link rel="stylesheet" href="asset/CSS/reveal.css">	
+	<link rel="stylesheet" href="asset/CSS/reveal.css">	
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="asset/CSS/cart.css" rel="stylesheet">
+	<link href="asset/CSS/dropdown.css" rel="stylesheet">
+	
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -142,17 +146,43 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=1;
-		var temp;
+		var temp="",temp1="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
 			    	$.each(data.categoryModel1, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    		
+			    		temp1 = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp1 += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp1 += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li>';
+						    	});
+						    	 $("#electronics").append(temp1 + '</ul></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#electronics").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
 </script> 
 
@@ -271,10 +301,11 @@ $(document).ready(function(){
 <!-- The first layer with logo and search -->
 
 	<div class="navbar-fixed-top">
-	<div class="col-md-2"></div>
+	<div class="col-md-1"></div>
 		<div class="col-md-2">
-			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px"> 
-				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="40px" width="160px"> 
+				<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
 		</div>
 
 			<div class="container">
@@ -283,18 +314,18 @@ $(document).ready(function(){
 						<br>
 						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 						</div>
-					<div class="col-md-1">
+					<div class="col-md-2">
 						<%
 						if(session.getAttribute("user") == null)
 						{
 						%>
-							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a>
 						<%
 						}else
 						{
 						%>
 							<%Login l = new Login();%>
-							
+						
 				<li style="list-style-type:none" class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Hi <%= session.getValue("fname")%>!<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									
@@ -309,7 +340,8 @@ $(document).ready(function(){
 						<%
 						}
 						%>
-						<button type="submit" class="btn btn-warning" >SEARCH</button>
+						&nbsp;&nbsp;<a href="#">Track Order</a><br>
+						<button type="submit" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>
 				</form>
 				
@@ -329,7 +361,7 @@ $(document).ready(function(){
 					<%
 						}
 					%>
-					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;"> CART (0) </div> </button></a>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" style="width:130px;"> <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;">&nbsp; CART (0) </div> </button></a>
 				</div>
 				
 			</div>
@@ -351,7 +383,7 @@ $(document).ready(function(){
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
-							<ul id="electronics" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+							<ul id="electronics" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
@@ -384,8 +416,7 @@ $(document).ready(function(){
 				</form>
 			</div>
 		</div>
-	</div>
-	
+	</div> 
 
 <div id="myModal" class="reveal-modal">
 		
@@ -501,7 +532,7 @@ $(document).ready(function(){
 		>PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
-
+		
 <script type="text/javascript">
 $.ajax({
     type: 'GET',
@@ -516,5 +547,7 @@ $.ajax({
 
 </script>
 
+
+		
 </body>
 </html>

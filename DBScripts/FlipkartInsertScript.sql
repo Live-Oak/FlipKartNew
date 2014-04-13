@@ -4,6 +4,7 @@ INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gend
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Ankit', 'Narang', 'Male', 'ankit', 'User', '1989-03-05', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'ankit.narang@iiitb.org', '9739185485', '2014-04-03');
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Nikhil', 'Agrawal', 'Male', 'nikhil', 'User', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'nikhil.agrawal@iiitb.org', '7829607021', '2014-04-03');
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Prashant', 'Ruwali', 'Male', 'prashant', 'Seller', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'prashant.ruwali@iiitb.org', '9481133281', '2014-04-03');
+INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Venkatesh', 'Vishwarup', 'Male', 'venki', 'User', '1991-05-02', 'IIITB', 'EC ', 'Bangalore', 'India', 560100, 'venkatesh.vishwarup@iiitb.org', '8951139300', '2014-04-03');
 
 INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (1, 4, 'Good');
 
@@ -18,7 +19,7 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('08', 'Mobile accessories','asset/Images/mobileaccessories.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('09', 'Laptop accessories','asset/Images/laptopaccessories.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('10', 'Gaming Consoles','asset/Images/gamingconsoles.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('11', 'Home audio & Mp3 players','asset/Images/audio&video.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('11', 'Home audio and Mp3 players','asset/Images/audio&video.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('12', 'Men','asset/Images/man.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('13', 'Women','asset/Images/woman.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('14', 'Baby and Kids','asset/Images/kids.png');
@@ -70,6 +71,20 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('60', 'Women Fragrances', 'asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('61', 'Men Bag,Belt and Wallets', 'asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('62', 'Women Bag,Belt and Wallets', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('63', 'Budget Laptop', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('64', 'Touch Laptop', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('65', 'SLR', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('66', 'DSLR', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('67', 'Budget Phone', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('68', 'SmartPhone', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('69', 'Ipads', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('70', 'Budget Tablet', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('71', 'Earphones', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('72', 'Memory card', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('73', 'Headphones', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('74', 'Pendrives', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('75', 'PSP', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('76', 'Woofer', 'asset/Images/kids.png');
 
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '04');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '05');
@@ -134,6 +149,21 @@ INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('19', '60');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '61');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '62');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('04', '63');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('04', '64');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('05', '65');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('05', '66');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('07', '67');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('07', '68');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('06', '69');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('06', '70');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('08', '71');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('08', '72');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('09', '73');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('09', '74');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('10', '75');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('11', '76');
+
 
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('01', 'Lava Iris Pro 30', '15399', 'asset/Images/lava.jpg', '0', '07', 'Mobile, Electronics, Smart phone, Dual Sim', '4.7-inch Touchscreen, Dual SIM (GSM + GSM), 3 MP Secondary Camera, Android v4.2.1 (Jelly Bean) OS, 1.2 GHz Quad Core Processor, Wi-Fi Enabled, 8 MP Primary Camera, Expandable Storage Capacity of 32 GB', 'LAVA', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('02', 'Micromax Bolt A068', '6490', 'asset/Images/mb.jpg', '0', '07', 'Mobile, Electronics, Smart phone, Dual Sim', '5 MP Primary Camera, Wi-Fi Enabled,1 GHz MT 6572M Dual Core Processor, Android v4.2.2 (Jelly Bean) OS, Dual SIM (GSM + GSM), 0.3 MP Secondary Camera, 5-inch Touchscreen, 32 GB Expandable ', 'Micromax', '1');
@@ -169,8 +199,8 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('32', 'Transcend MicroSD Card 8 GB Class 4', '355', 'asset/Images/transcend.jpg', '120', '08', 'Mobile accessories, Electronics, Laptop accessories, Mobile, ', 'Class 4 Memory Card, Easy to use','Transcend' ,'5');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('33', 'SanDisk Cruzer Blade 16 GB Pen Drive', '399', 'asset/Images/sandisk.jpg', '0', '09', 'Electronics, Laptop accessories, Laptop, ', 'USB 2.0, Easy to use','SanDisk' ,'3');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('34', 'Moto G (Black, with 8 GB)', '12499', 'asset/Images/motog1.jpg', '2000', '07', 'Mobile, Electronics, Smart phone, Dual Sim', '5 MP Primary Camera and 1.3 MP Secondary Camera,4.5-inch HD Display,HD Recording,Wi-Fi Enabled,1.2 GHz Qualcomm Snapdragon 400 Quad Core Processor and 1 GB RAM,Dual SIM (GSM + GSM)', 'Motorola', '1');
-INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('35', 'HP Compaq 15-a002TU Laptop (3rd Gen Ci3/ 4GB/ 500GB/ Ubuntu) ', '36000', 'asset/Images/compaq.jpg', '18000', '04', 'Laptop, Electronics', 'Core i3 (3rd Gen), 500 GB HDD,48 GB DDR3 RAM, Ubuntu', 'HP', '3');
-INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('36', 'Annie Toys 6 in 1 Educational Solar Energy Kit - Series-2 ', '559', 'asset/Images/toys.jpg', '180', '27', 'Gifts,Kids', 'Learn Concept Of Solar Energy,Use Solar Energy,Easy to Assemble and Play', 'Annie', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('35', 'HP Compaq 15-a002TU Laptop (3rd Gen Ci3/ 4GB/ 500GB/ Ubuntu) ', '36000', 'asset/Images/compaq.jpg', '5000', '04', 'Laptop, Electronics', 'Core i3 (3rd Gen), 500 GB HDD,48 GB DDR3 RAM, Ubuntu', 'HP', '3');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('36', 'Annie Toys 6 in 1 Educational Solar Energy Kit - Series-2 ', '559', 'asset/Images/toys.jpg', '139', '27', 'Gifts,Kids', 'Learn Concept Of Solar Energy,Use Solar Energy,Easy to Assemble and Play', 'Annie', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('37', 'Philips HL1631/J 500 Juicer ', '2295', 'asset/Images/juicer1.jpg', '344', '40', 'Home appliances,Juicer', 'Juice Extractor,Juicing Feature,500 W Consumption', 'Philips', '2');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('38', 'TP-LINK TL-WR740N 150Mbps Wireless N Router', '1299', 'asset/Images/router.jpg', '300', '09', 'Router, Laptop, Network', 'Wireless Security Encryption, Wireless speed upto 150 Mbps, Clear Channel Assessment , Supports SPI Firewall, IP Based Bandwidth Control, IP Based Bandwidth Control', 'TP-Link', '3');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('39', 'Apple iPod iPod Shuffle 2GB 2 GB ', '3700', 'asset/Images/dealoftheday.jpg', '1200', '11', 'Music, MP3, Ipods, Ipads', 'iPod Shuffle 2GB, Silver', 'Apple', '1');

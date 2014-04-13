@@ -15,7 +15,6 @@
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 
@@ -274,16 +273,8 @@
 			 	<br><br>
 			 </s:iterator>
 			<br>
-			<div class="border">
-				<center> <h6> <i> SEND GIFTS </i></h6>
-				<h6> Last minute gifting is now only a few click away!
-				 Send e-gift vouchers to your loved ones instantly.
-				</h6>
-				<img src="asset/Images/GIFTS.jpg" alt="Gifts" height="100px" width="150px">
-				<button class="btn btn-danger" type="button">SEND E-GIFT VOUCHER</button>
-				</center>
-		
-			</div>
+			<br>
+			<br>
 		</div>
 	</form>
 	<br><br><br><br>
@@ -306,7 +297,7 @@
 </script>
 <style>
   .scroll-pane { overflow: auto; width: 99%; float:left; }
-  .scroll-content { width: 950px; float: left; }
+  .scroll-content { width: 1050px; float: left; }
   .scroll-content-item { width: 100px; height: 120px; float: left; margin: 2px; font-size: 3em; line-height: 96px; text-align: center; }
   .scroll-bar-wrap { clear: left; padding: 4px 4px 0 2px; margin: 4px -1px -1px -1px; }
   .scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }

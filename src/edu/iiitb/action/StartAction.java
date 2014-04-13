@@ -11,6 +11,12 @@ import edu.iiitb.model.CategoryModel;
 public class StartAction extends ActionSupport 
 {
 	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook, dealoftheday, advertizementsidebar;
+	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
+	ArrayList<CategoryModel> categoryModel1, categoryModel11, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
+	
+	int[] value = new int[4];
+	int category;
+	String parentcategory;
 	
 	public ArrayList<Advertizement> getAdvertizementsidebar() {
 		return advertizementsidebar;
@@ -21,9 +27,6 @@ public class StartAction extends ActionSupport
 		this.advertizementsidebar = advertizementsidebar;
 	}
 
-	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
-	
-	
 	public ArrayList<Advertizement> getDealoftheday() {
 		return dealoftheday;
 	}
@@ -31,8 +34,6 @@ public class StartAction extends ActionSupport
 	public void setDealoftheday(ArrayList<Advertizement> dealoftheday) {
 		this.dealoftheday = dealoftheday;
 	}
-
-	
 
 	public ArrayList<CategoryModel> getCategoryfashion() {
 		return Categoryfashion;
@@ -49,10 +50,6 @@ public class StartAction extends ActionSupport
 	public void setCategorybooks(ArrayList<CategoryModel> categorybooks) {
 		Categorybooks = categorybooks;
 	}
-
-	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
-	int[] value = new int[4];
-	
  
 	public int[] getValue() {
 		return value;
@@ -61,8 +58,6 @@ public class StartAction extends ActionSupport
 	public void setValue(int[] value) {
 		this.value = value;
 	}
-
-	int category;
 
 	public int getCategory() {
 		return category;
@@ -128,12 +123,62 @@ public class StartAction extends ActionSupport
 		this.categoryModel3 = categoryModel3;
 	}
 
+	public ArrayList<CategoryModel> getCategoryModel11() {
+		return categoryModel11;
+	}
+
+	public void setCategoryModel11(ArrayList<CategoryModel> categoryModel11) {
+		this.categoryModel11 = categoryModel11;
+	}
+
 	public ArrayList<Advertizement> getAdvertizement() {
 		return advertizement;
 	}
 
 	public void setAdvertizement(ArrayList<Advertizement> advertizement) {
 		this.advertizement = advertizement;
+	}
+	
+	public ArrayList<Advertizement> getAdvertizementelectronics() {
+		return advertizementelectronics;
+	}
+
+	public void setAdvertizementelectronics(
+			ArrayList<Advertizement> advertizementelectronics) {
+		this.advertizementelectronics = advertizementelectronics;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementfashion() {
+		return advertizementfashion;
+	}
+
+	public void setAdvertizementfashion(
+			ArrayList<Advertizement> advertizementfashion) {
+		this.advertizementfashion = advertizementfashion;
+	}
+
+	public String getParentcategory() {
+		return parentcategory;
+	}
+
+	public void setParentcategory(String parentcategory) {
+		this.parentcategory = parentcategory;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementbook() {
+		return advertizementbook;
+	}
+
+	public void setAdvertizementbook(ArrayList<Advertizement> advertizementbook) {
+		this.advertizementbook = advertizementbook;
+	}
+
+	public ArrayList<CategoryModel> getCategoryelectronics() {
+		return Categoryelectronics;
+	}
+
+	public void setCategoryelectronics(ArrayList<CategoryModel> categoryelectronics) {
+		Categoryelectronics = categoryelectronics;
 	}
 	
 	public String execute()
@@ -165,39 +210,7 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
-	public ArrayList<Advertizement> getAdvertizementelectronics() {
-		return advertizementelectronics;
-	}
-
-	public void setAdvertizementelectronics(
-			ArrayList<Advertizement> advertizementelectronics) {
-		this.advertizementelectronics = advertizementelectronics;
-	}
-
-	public ArrayList<Advertizement> getAdvertizementfashion() {
-		return advertizementfashion;
-	}
-
-	public void setAdvertizementfashion(
-			ArrayList<Advertizement> advertizementfashion) {
-		this.advertizementfashion = advertizementfashion;
-	}
-
-	public ArrayList<Advertizement> getAdvertizementbook() {
-		return advertizementbook;
-	}
-
-	public void setAdvertizementbook(ArrayList<Advertizement> advertizementbook) {
-		this.advertizementbook = advertizementbook;
-	}
-
-	public ArrayList<CategoryModel> getCategoryelectronics() {
-		return Categoryelectronics;
-	}
-
-	public void setCategoryelectronics(ArrayList<CategoryModel> categoryelectronics) {
-		Categoryelectronics = categoryelectronics;
-	}
+	
 
 	public String getMenuCatagory()
 	{
@@ -219,5 +232,22 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
+	public String getSubMenuCatagory()
+	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		try
+		{
+			System.out.println("parent category in question is : " +parentcategory);
+			if (parentcategory != null)
+			{
+				categoryModel11 = dbHandlerForUser.getsubsubcategorylist(parentcategory);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception at getMenuCategory() of StartAction.java");
+		}
+		return "success";
+	}
 	
 }

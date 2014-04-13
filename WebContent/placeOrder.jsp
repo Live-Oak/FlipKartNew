@@ -150,14 +150,10 @@ $(document).ready(function(){
 		  $("#panel2").slideDown();
 		  $("#panel1").slideUp();		  
 		  $("#editEmailid").show();
-
-	  }
-	  
-		
+	  }		
   });
 });
 </script>
-
 
 <script> 
 /*$(document).ready(function(){
@@ -191,13 +187,24 @@ $(document).ready(function(){
 
 <script> 
 $(document).ready(function(){
-  $("#nextPaymentPage").click(function(){
+  $("#nextPaymentPage").click(function(){	  
+
+
+	  /* Ajax Call for place order Starts Here*/
+	  	   $.ajax({
+	  			    type: 'GET',			    
+	  			    url:'placeOrder?email='+$("#emailInput").val()+'&name='+ $("#name").val()+'&pinCode='+$("#pin").val()+'&addressLine1='+$("#address").val()+'&addressLine2='+$("#address2").val()+'&phoneNumber='+$("#phone").val()+'&city='+$("#city").val() ,	
+	  			    		success: function(data){
+	  			    	/* Success wala kaam here...*/
+	  			    	//alert("Order Place : Address tak Ho gaya");
+	  			    }});	
+	  	  /* Ajax call for place order ends here */
+  
     $("#panel4").slideDown();
     $("#panel3").slideUp();
     $("#editOrder").show();
 	  $("#editEmailid").show();
 	  $("#editAddress").show();
-
   });
 });
 </script>
@@ -427,8 +434,9 @@ table td
 	<th>  <s:property value="grandTotal"/>		</th>
 	</tr>
 </table>
-<br/><br/>
-<input type="submit" id="nextPaymentPage"value="CONTINUE" align="middle" class="mysubmit2" >
+<br/>
+<button id="nextPaymentPage" name="nextPaymentPage"  align="middle" class="mysubmit2" >CONTINUE</button>
+<br/>
 </div>
 
 

@@ -106,25 +106,22 @@ ServletResponseAware, ServletRequestAware
 			addressDetails = new custometAddressDetail();
 			String content = null;
 			DBHandlerForUser db = new DBHandlerForUser();
-			System.out.println("I got lucky here 1 ;)");
+			
 			try
 			{
 				for (Cookie c : servletRequest.getCookies()) 
 				{
-					System.out.println("I got lucky here 2 ;)");
+					
 					if (c.getName().equals("cart")) 
 					{
-						System.out.println("I got lucky here 3 ;)");
+						
 						content = c.getValue();
 						CartCookie cookie = new CartCookie();						
 						JSONPopulator pop = new JSONPopulator();
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 								.deserialize(content);
-						 pop.populateObject(cookie, map);		
-						
-						   
-						 cartDetailsList = db.getCartCokkiesDetail(cookie.getProductList());
-						 System.out.println("I got lucky here 4 ;)");
+						 pop.populateObject(cookie, map);							   
+						 cartDetailsList = db.getCartCokkiesDetail(cookie.getProductList());						 
 						break;
 					}					
 				}
@@ -132,7 +129,7 @@ ServletResponseAware, ServletRequestAware
 				{						
 					grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
 				}
-				System.out.println("Cokies GrandTotal = Rs." + grandTotal);			
+					
 			}
 			catch(Exception e)
 			{
