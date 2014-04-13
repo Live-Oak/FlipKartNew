@@ -314,7 +314,11 @@
 																		$("#products_to_compare").hide();
 																		$("#emptyComparediv").show();
 																		$("#compare_button").attr("disabled",true);
-																	}							
+																	}		
+																if(data.count==1)
+																	{
+																	$("#compare_button").attr("disabled",true);
+																	}
 														}
 													});
 										});
