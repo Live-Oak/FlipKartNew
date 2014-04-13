@@ -107,7 +107,6 @@ ServletResponseAware, ServletRequestAware
 					
 					if (c.getName().equals("comparecart")) {
 						content = c.getValue();
-						System.out.println("nkzxkn");
 						CompareCartCookie cookie = new CompareCartCookie();
 						 JSONPopulator pop = new JSONPopulator();
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
