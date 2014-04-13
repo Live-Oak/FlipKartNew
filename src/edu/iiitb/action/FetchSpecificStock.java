@@ -47,7 +47,7 @@ public class FetchSpecificStock {
 		stock = new ArrayList<ViewStock>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
-			dbHandler.fetchStockInfoForProduct(stock, getProductId());
+			dbHandler.fetchStockInfoForProduct(stock, getProductId() , "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Exception at execute() of FetchSpecificStock.java");

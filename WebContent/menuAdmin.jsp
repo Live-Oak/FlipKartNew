@@ -34,7 +34,11 @@
 		<div class="col-md-2">
 			<h3> <font color="#ffffff"> Hello Admin </font></h3>	
 		</div>
-		<div class="col-md-4"></div>
+		<div class="col-md-2"></div>
+		<div class="col-md-2">
+			<a href="logout">Log out</a>
+		</div>
+		
 	</div>
 		
 <!-- The second layer with menu and dropdown -->
@@ -66,8 +70,13 @@
 								<li><a href="viewSubCategory">Sub-Category</a></li>
 							</ul>
 						</li> 
-						<li><a href="stockData">Stock</a></li>
-					<li><a href="logout">Log out</a></li>	
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">StockInfo <span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="stockData?stockType=in">InStock Products</a></li>
+								<li><a href="stockData?stockType=out">OutStock Products</a></li>
+							</ul>
+						</li> 
+					<!-- <li><a href="logout">Log out</a></li>	 -->
 					</ul>
 				</div>
 			</div>

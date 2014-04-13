@@ -439,11 +439,26 @@ public class DBHandlerForAdmin {
 		}
 	}
 	
-	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId) throws SQLException
+	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId , String stockType) throws SQLException
 	{
-		String query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
-				+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
-				+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+		String query;
+		if(stockType.equalsIgnoreCase("in"))
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+" and "
+							+ "sk.availableQuantity >= sk.minimumQuantity";
+		
+		else if(stockType.equalsIgnoreCase("out"))
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+" and "
+							+ "sk.availableQuantity < sk.minimumQuantity";
+		
+		else
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+			
 		
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
@@ -456,6 +471,10 @@ public class DBHandlerForAdmin {
 			model.setSellerName(rs.getString(5)+" "+rs.getString(6));
 			model.setProductName(rs.getString(7));
 			model.setProductImagePath(rs.getString(8));
+			if(stockType.equalsIgnoreCase("in"))
+				model.setStatusImage("asset/Images/safe2.jpg");
+			else
+				model.setStatusImage("asset/Images/danger.jpg");
 			stock.add(model);
 		}
 	}
