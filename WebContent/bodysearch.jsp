@@ -322,9 +322,7 @@
 									
 														if($(".addtocompare").is(':checked'))
 															{
-														var maxAllowed = 4;
 														var pId = $(event.target).attr("pid");
-														var cnt = $("input[name='compare']:checked").length;
 														var categoryId = $("#category").val();
 														categoryId = categoryId.trim();
 														$.ajax({
@@ -346,13 +344,12 @@
 																			type : 'GET',
 																			url : 'getProductsFromCartToCompare',
 																			success : function(data) {
-																				alert("aa gaya");
-																								alert("hi");
+																				
 																								$("#comparecart").show();
 																								$("#producttocompare").show();
 																								if (data.count == undefined|| data.count == 0) 
 																								{
-																									//$("#emptyComparediv").show();
+																									
 																									$("#compare_button").attr("disabled",true);
 																								}
 																								else 
@@ -360,7 +357,6 @@
 																									if (data.count == 1) 
 																									{
 																										$("#emptyComparediv").hide();
-																										//alert("data cont"+data.count);
 																										$("#compare_button").attr("disabled",true);
 																									}
 																									if (data.count != 1) 
