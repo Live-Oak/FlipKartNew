@@ -110,6 +110,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 	private HttpServletRequest servletRequest;
 	private String category;
 	private String messageCount;
+	private String messageCategoryMismatch;
 	public CompareProducts() {
 
 	}
@@ -189,13 +190,6 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getProductDetails() {
 			try {
-				//if(products.size()>4)
-				//{
-				//	messageCount="You can select only 4 product to compare";
-					
-			//	}
-				//else
-			//	{
 					System.out.println(productId);
 					System.out.println("category "+this.category);
 					String content = null;
@@ -203,22 +197,39 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 					if(productId!=0 && category!=null)
 					{
 					for (Cookie c : servletRequest.getCookies()) {
-						if (c.getName().equals("comparecart")) {				// what is this for?
+						if (c.getName().equals("comparecart")) 
+						{				// what is this for?
 							content = c.getValue();
-							CompareCartCookie cookie = new CompareCartCookie();
-							 JSONPopulator pop = new JSONPopulator();
+							CompareCartCookie cookie = new CompareCartCookie();				
+							JSONPopulator pop = new JSONPopulator();
 							Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 									.deserialize(content);
 							 pop.populateObject(cookie, map);
-							 if(!cookie.getProductList().contains(
-										new CompareCartProduct(productId,category))) 
+							 if(!(cookie.getProductList().isEmpty()))
+							 System.out.println("well hello"+cookie.getProductList().get(0).getCategory());
+							 if(cookie.getProductList().size()<4)
 							 {
-									cookie.getProductList().add(
-											new CompareCartProduct(productId,category));
-									content = JSONUtil.serialize(cookie);
-									c.setValue(content);
-									c.setMaxAge(60*60*24*2);
-									servletResponse.addCookie(c);
+								 if(cookie.getProductList().isEmpty()||cookie.getProductList().get(0).getCategory().equals(getCategory()))
+								 {
+									 if(!cookie.getProductList().contains(
+												new CompareCartProduct(productId,category))) 
+									 {
+											cookie.getProductList().add(
+													new CompareCartProduct(productId,category));
+											content = JSONUtil.serialize(cookie);
+											c.setValue(content);
+											c.setMaxAge(60*60*24*2);
+											servletResponse.addCookie(c);
+									 }
+								 }
+								 else
+								 {
+									 setMessageCategoryMismatch("yes");
+								 }
+							 }
+							 else
+							 {
+								 messageCount="hello";
 							 }
 							cookieFound = true;
 							break;
@@ -226,7 +237,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 					}
 					if(cookieFound == false)
 					{
-						CompareCartCookie cookie = new CompareCartCookie();
+						CompareCartCookie cookie = new CompareCartCookie();				
 						
 						cookie.getProductList().add(new CompareCartProduct(productId,category));
 						content = JSONUtil.serialize(cookie);
@@ -235,7 +246,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 						servletResponse.addCookie(c);
 					}
 				}
-				//}
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -325,6 +336,16 @@ System.out.println("1");
 	public void setMessageCount(String messageCount) {
 		this.messageCount = messageCount;
 	}
+
+	public String getMessageCategoryMismatch() {
+		return messageCategoryMismatch;
+	}
+
+	public void setMessageCategoryMismatch(String messageCategoryMismatch) {
+		this.messageCategoryMismatch = messageCategoryMismatch;
+	}
+
+	
 	
 
 	
@@ -334,4 +355,3 @@ System.out.println("1");
 	
 
 }
-

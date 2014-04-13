@@ -283,49 +283,39 @@
 
 						
 
-						$(document)
-								.on(
-										'click',
-										'.remove',
-										function(e) {
-											var target = e.currentTarget;
-											var pId = $(target).attr("pid");
-											$
-													.ajax({
+						$(document).on('click','.remove',function(e) {
+												var target = e.currentTarget;
+												var pId = $(target).attr("pid");
+												$.ajax({
 														type : 'POST',
 														contentType : "application/x-www-form-urlencoded; charset=utf-8",
 														data : {
-															productId : pId,
-														},
+																productId : pId,
+																},
 														url : 'removeProductFromCompareCart',
 														success : function(data) {
-															//showCart(data);
-															//$("#comparecart").show();
-																$("#producttocompare").show();
-																$("#products_to_compare").empty();
-																$.each(data.products,function(count,productcompare) {
+															$("#producttocompare").show();
+															$("#products_to_compare").empty();
+															$.each(data.products,function(count,productcompare) {
 																	product_id_to_send = productcompare.productId;
 																	$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
-																	+ "<center>"
-																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
-																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																	+ "<div class='productName'>"
-																	+ productcompare.productName
-																	+ "</div>"
-																	+"</center>"
-																	+ "</div>");
-																	});
-																	if(data.count==0)
+																							+ "<center>"
+																							+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																							+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																							+ "<div class='productName'>"
+																							+ productcompare.productName
+																							+ "</div>"
+																							+"</center>"
+																							+ "</div>");
+																	
+																});
+																if(data.count==0)
 																	{
-																		
 																		$("#products_to_compare").hide();
 																		$("#emptyComparediv").show();
-																	}
-																	if(data.count==1)
-																		{
 																		$("#compare_button").attr("disabled",true);
-																		}
-																				} // Success end
+																	}							
+														}
 													});
 										});
 								$(".addtocompare").change(function(event) {
@@ -337,43 +327,47 @@
 														var cnt = $("input[name='compare']:checked").length;
 														var categoryId = $("#category").val();
 														categoryId = categoryId.trim();
-														
-														if (cnt > maxAllowed) 
-														{
-															$(this).prop("checked", "");
-															alert('Select maximum '+ maxAllowed);
-														}
-														else 
-														{
-															$.ajax({
+														$.ajax({
 																type : 'GET',
 																contentType : "application/x-www-form-urlencoded; charset=utf-8",
 																url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
 																success : function(data) {
-																$.ajax({
+																	if(data.messageCount=="hello")
+																		{
+																			alert("no more products can be added for comparison");
+																		}
+																	else if(data.messageCategoryMismatch=="yes")
+																	{
+																		alert("mismatched category!!");
+																	}
+																	else
+																	{
+																	$.ajax({
 																			type : 'GET',
 																			url : 'getProductsFromCartToCompare',
 																			success : function(data) {
-																								
-																								//$("#emptyComparediv").hide();
-																								$("#comparecart").hide();
+																				alert("aa gaya");
+																								alert("hi");
 																								$("#comparecart").show();
-																								//$("#producttocompare").show();
+																								$("#producttocompare").show();
 																								if (data.count == undefined|| data.count == 0) 
 																								{
-																									$("#emptyComparediv").show();
+																									//$("#emptyComparediv").show();
 																									$("#compare_button").attr("disabled",true);
 																								}
 																								else 
 																								{
 																									if (data.count == 1) 
 																									{
+																										$("#emptyComparediv").hide();
+																										//alert("data cont"+data.count);
 																										$("#compare_button").attr("disabled",true);
 																									}
 																									if (data.count != 1) 
 																									{
 																										$("#compare_button").attr("disabled",false);
 																									}
+																									alert("hello");
 																									$("#producttocompare").show();
 																									$("#products_to_compare").empty();
 																									$.each(data.products,function(count,productcompare) {
@@ -388,13 +382,14 @@
 																																	+"</center>"
 																																	+ "</div>");
 																										});
-
+																								}
 																					}
-																				}
+																				
 																			});  // 2 ajax
+																	}	
 																}						// success of first ajax
 															});			// 1 ajax
-												}									// else
+																				// else
 															} 						// if
 											
 											$("#compare_button").click(
@@ -406,7 +401,6 @@
 
 					});
 </script>
-
 
 
 
