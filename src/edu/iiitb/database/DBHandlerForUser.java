@@ -1369,6 +1369,26 @@ public class DBHandlerForUser {
 		rows = stmt.executeUpdate(query2);	
 		 System.out.println("Rowa effected by q2 : " + rows);
 		con.close();			
+	}
+
+	public void updateProductQuantityAfterPurchase(String orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		int pId  = 0;
+		int qty = 0;
+		String query1;
+		String query = "SELECT productId , quantity from FlipKartDatabase.OrderDescription where orderID = "+orderId ;
+		Connection con = db.createConnection();
+		DBConnectivity db = new DBConnectivity();
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			pId = rs.getInt("productId");
+			qty = rs.getInt("quantity");
+			query1 = "Update FlipKartDatabase.Stock Set availableQuantity = availableQuantity - " + qty + " where productId = " + pId ;
+			Statement stmt = (Statement) con.createStatement();
+			stmt.executeUpdate(query1);
+		}
+		System.out.println("PID : " + pId + "quantity : " + qty);
 	}	
 
 }

@@ -286,12 +286,9 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 
 		try {
 			db.insertOrderPaymentDetails(orderId, bankName, grandTotal);	
-			System.out.println("Deduction Process in Progress");
-			System.out.println("Card Number : " + cardNumber);
-
 			db.updatePaymentInAccount(cardNumber, grandTotal);
-			
-			
+			db.updateProductQuantityAfterPurchase(orderId);
+			db.updateProductQuantityAfterPurchase(orderId);
 			
 		}
 		catch(Exception e)
