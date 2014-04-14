@@ -415,4 +415,13 @@ insert into `FlipKartDatabase`.`Stock` values (46 , 20 , 5 , 1000 , 1 , '2014-04
 insert into `FlipKartDatabase`.`Stock` values (47 , 20 , 5 , 1000 , 1 , '2014-04-09');
 
 
+INSERT INTO `FlipKartDatabase`.`BankDetails` (`creditCardNumber`, `bankName`, `nameOfAccountHolder`, `bankLoginId`, `CVV`, `transactionPassword`, `accountNumber`, `expiryDate`, `issueDate`, `balance`) 
+VALUES 
+(1, 'SBI', 'Flipkart', 'Flipkart', 123, 'flipkart', 1, '2020-12-31', '2000-01-01', 0),
+(2, 'HDFC', 'Devesh', 'Devesh', 123, 'devesh', 2, '2020-12-31', '2000-01-01', 155000),
+(3, 'ICICI', 'Nikhil', 'Nikhil', 123, 'nikhil', 3, '2020-12-31', '2020-12-31', 120548),
+(4, 'SBI', 'Flipkart', 'Flipkart', 123, 'flipkart', 4, '2020-12-31', '2000-01-01', 150000),
+(5, 'HDFC', 'Prashant', 'Prashant', 123, 'prashant', 5, '2020-12-31', '2000-01-01', 155000),
+(6, 'ICICI', 'Paras', 'Paras', 123, 'paras', 6, '2020-12-31', '2020-12-31', 120548);
+
 

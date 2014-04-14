@@ -101,7 +101,7 @@
 		<table id="example" class="display" width="100%">
 			<thead>
 				<tr>
-					<th>Product-Image</th>
+					<th>Image</th>
 					<th>Product-Name</th>
 					<th>Seller-Name</th>
 					<th>Min-Qty</th>

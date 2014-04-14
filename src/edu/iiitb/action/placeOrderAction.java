@@ -41,10 +41,15 @@ ServletResponseAware, ServletRequestAware
 	private String addressLine1;
 	private String addressLine2;
 	
+	private int orderId =0;
+	
 	private HttpServletResponse servletResponse;
 	private HttpServletRequest servletRequest;
 	
-	private Map session;
+	private Map<String, Object> session;
+	
+	
+
 	ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
     
 	public ArrayList<customerCartDetail> getCartDetailsList() 
@@ -56,11 +61,11 @@ ServletResponseAware, ServletRequestAware
 		this.cartDetailsList = cartDetailsList;
 	}
 			
-	public Map getSession()
+	public Map<String, Object> getSession()
 	{
 		return session;
 	}
-	public void setSession(Map session) 
+	public void setSession(Map<String, Object> session) 
 	{
 		this.session = session;
 	}
@@ -130,9 +135,28 @@ ServletResponseAware, ServletRequestAware
 		this.addressDetails = addressDetails;
 	}
 
+	private Map<String, Object> session1;
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+	public Map<String, Object> getSession1() {
+		return session1;
+	}
+	public void setSession1(Map<String, Object> session1) {
+		this.session1 = session1;
+	}
 	
 	public String execute() throws SQLException, ParseException, freemarker.core.ParseException 
-	{				
+	{		
 		addressDetails = new custometAddressDetail();
 		addressDetails.setName(name);
 		addressDetails.setEmail(email);
@@ -144,14 +168,13 @@ ServletResponseAware, ServletRequestAware
 	
 		DBHandlerForUser db = new DBHandlerForUser();
 		db.savePlaceOrderDetails();	
-		db.saveOrderAddressDetails(addressDetails);
-		
-		/* From Here OrderDescription Table entry starts*/
-		
+		orderId = db.saveOrderAddressDetails(addressDetails);
+		session.put("orderId", orderId);
+		System.out.println("Session value in OrderId : " +session.get("orderId") );
+		/* From Here OrderDescription Table entry starts*/		
 		User user = (User) session.get("user");			
 		if ( user!=null )			
-		{
-			System.out.println("User Login tha,...!!!");
+		{			
 			userEmail = user.getEmail();
 			addressDetails.setEmail(user.getEmail());	
 			addressDetails = db.getUserAddressDetail(addressDetails.getEmail());
@@ -160,7 +183,6 @@ ServletResponseAware, ServletRequestAware
 		}	
 		else
 		{		
-			System.out.println("User Login nahi tha,...!!!");
 			String content = null;
 			DBHandlerForUser db3 = new DBHandlerForUser();		
 			try
@@ -190,16 +212,14 @@ ServletResponseAware, ServletRequestAware
 		{
 			db.saveUserOrderDescription(cart);	
 		}	
-		
-		if(userEmail != null)
+		/*
+		 if(userEmail != null)
 		{
 			db.clearUserCart(email);
 		}
 		else
 		{
 			try {
-				System.out.println("Main yahan tu wahan...");
-
 				String content = null;
 				for (Cookie c : servletRequest.getCookies()) {
 					if (c.getName().equals("cart")) {
@@ -216,20 +236,14 @@ ServletResponseAware, ServletRequestAware
 						servletResponse.addCookie(c);
 						break;
 					}
-				}
-				
+				}				
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		
 		return "success";
 	}
-	public String getUserEmail() {
-		return userEmail;
-	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+	
 }

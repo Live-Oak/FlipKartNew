@@ -12,7 +12,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script>
+
 
 <script>
 $(document).ready(function(){
@@ -106,10 +108,7 @@ $(document).ready(function(){
 			    	var status=$("#check_email_password").html();
 			    	if(status=="available")
 			    		{
-			    		$("#check_email_password").html(' ');
-						//	$("#login_po").submit();	
-							
-						
+			    		$("#check_email_password").html(' ');												
 						/* Ajax call here to fetch user address details Start here*/
 							 $.ajax({
 						    type: 'GET',	    
@@ -187,9 +186,8 @@ $(document).ready(function(){
 
 <script> 
 $(document).ready(function(){
-  $("#nextPaymentPage").click(function(){	  
-
-
+  $("#nextPaymentPage").click(function(){	 
+	
 	  /* Ajax Call for place order Starts Here*/
 	  	   $.ajax({
 	  			    type: 'GET',			    
@@ -210,11 +208,60 @@ $(document).ready(function(){
 </script>
 <script> 
 $(document).ready(function(){
-  $("#nextReceiptPage").click(function(){
-	  $("#editOrder").hide(); 
-	  $("#editAddress").hide();
-	  $("#editEmailid").hide();
-    $("#panel4").slideUp();
+  $("#makePaymentCreditCard").click(function(){
+	  alert($("#cardNumber").val());
+	  /* Ajax Call for payment via Credit Card Starts Here*/		  
+ 	   $.ajax({
+ 			    type: 'POST',
+ 			    data : {
+ 			    	cardNumber : $("#cardNumber").val(),
+ 			    	expireMonth : $("#expireMonth").val(),
+ 			    	expireYear : $("#expireYear").val(),
+ 			    	cvv : $("#cvv").val()
+ 			    },
+ 			    url:'verifyCreditCardDetails',	
+ 			    		success: function(data)
+ 			    		{
+ 			    			$("#validDetails").html(data.valid);
+ 					    	var valid1 = $("#validDetails").html();
+ 					    	if(valid1 == 1)
+ 					    	{ 	
+ 					    		alert ("Credir Card Payment Valdated");
+ 					    		$("#validDetails").html(' ');   
+ 					    		$.ajax(
+ 					    		{
+ 					 			    type: 'GET',			    
+ 					 			    url:'makePaymentCreditCard?cardNumber='+$("#cardNumber").val() ,	
+ 					 			    		success: function(data)
+ 					 			    		{
+ 					 			    			alert ("Credir Card Payment bhi ho gayi bhai!!!!");
+ 					 			    			$.ajax(
+ 					 	 					    		{
+ 					 	 					 			    type: 'GET',			    
+ 					 	 					 			    url:'clearUserCartDetails' ,	
+ 					 	 					 			    		success: function(data)
+ 					 	 					 			    		{
+ 					 	 					 			    			alert ("Credir Card Payment bhi ho gayi bhai!!!!");
+ 					 					 			    			}
+ 					 		 			    			});
+ 					 			    			alert("Cart Bhi clear ho gaya bhai !!!!32334");
+				 			    			}
+	 			    			});
+ 					    	}
+ 					    	else
+ 					    	{
+ 					    		alert("Details not Valid");
+ 					    		$("#validDetails").html("Invalid Card Details");
+ 				    			$("#validDetails").css("color", "#ff0000"); 					    		   						
+ 					    	}
+ 	   					}
+ 	   		});	
+ 	  /* Ajax Call for payment via Credit Card Ends Here*/ 
+	  
+	 // $("#editOrder").hide(); 
+	 // $("#editAddress").hide();
+	 // $("#editEmailid").hide();
+  //  $("#panel4").slideUp();
 
   });
 });
@@ -295,6 +342,7 @@ $(document).ready(function(){
 
 </head>
 <body>
+ 
 <div id="screenSize" class="myscreenSize">
 <div id="flip1" align="left">
 <label class="mylabel" >1.EMAIL ID</label>
@@ -407,7 +455,7 @@ table td
 		<th>Price</th>
 		<th>Sub Total</th>
 	</tr>
-	<% float grandTotal;	%>
+	
 	<s:iterator value="cartDetailsList">
 	<tr>
 		<td id="cardCol1">
@@ -431,7 +479,7 @@ table td
 	</s:iterator>
 	<tr>
 	<th class="last" colSpan ="4" > Grand Total</th>
-	<th>  <s:property value="grandTotal"/>		</th>
+	<th id="grandTotal">  <s:property value="grandTotal"/>		</th>
 	</tr>
 </table>
 <br/>
@@ -445,8 +493,6 @@ table td
 </div>
 
 <div id="panel4">
-	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 	<script>
 	$('#tabs')
 	.tabs()
@@ -572,7 +618,7 @@ table td
 				<div class="box"> <input type="radio" name="bank" value="SBI"> SBI<br> </div>
 				<div class="box">  <input type="radio" name="bank" value="ICICI" > ICICI<br> </div>
 				<div class="box">  <input type="radio" name="bank" value="HDFC"> HDFC<br> </div>
-				  <input type="submit" name="bankLogin"   value="CONTINUE"   style="background-color: #FFA500; border: 1px solid #FFA500;color: #FFFFFF; font-size: large;    
+				  <input type="submit" name="bankLogin"   id="nextReceiptPageIB" value="CONTINUE"   style="background-color: #FFA500; border: 1px solid #FFA500;color: #FFFFFF; font-size: large;    
 				 height: 40px; left: 350px;  margin-top : 20px; position: none; width: 234px;" >
 				<br>
 			</div>
@@ -582,21 +628,21 @@ table td
         <div class="logo">Visa</div>
         <form>
             <h2>Payment Details</h2>
-
+			<label id="validDetails" width="300px"></label>
             <ul class="inputs">
                 <li>
                     <label>Credit Card Number</label>
-                    <input type="text" name="card_number" pattern="[0-9]{13,16}" placeholder="9842 9472 9457 9472" class="full gr-input" required />
+                    <input type="text"  id="cardNumber" name="card_number" pattern="[0-9]{13,16}" placeholder="9842 9472 9457 9472" class="full gr-input" required />
                 </li>
                 <li class="expire last">
                     <label>Expiration</label>
-                    <input type="text" name="expire_month" placeholder="December (12)" size="10" class="month gr-input" required />
-                    <input type="text" name="expire_year" placeholder="2014" size="10" class="year gr-input" required />
+                    <input type="text" id="expireMonth" name="expire_month" placeholder="December (12)" size="10" class="month gr-input" required />
+                    <input type="text" id="expireYear" name="expire_year" placeholder="2014" size="10" class="year gr-input" required />
                     <div class="clearfix"></div>
                 </li>
                 <li class="cvc-code last">
-                    <label>CVC Code</label>
-                    <input type="text" name="cvc_code" placeholder="174" size="10" class="gr-input" required />
+                    <label>CVV Code</label>
+                    <input type="text" id="cvv" name="cvc_code" placeholder="174" size="10" class="gr-input" required />
                 </li>
                 <div class="clearfix"></div>
             </ul>
@@ -604,7 +650,7 @@ table td
             <ul>
            
            	 <li>
-            	<input type="submit" id="nextReceiptPage"value="CONFIRM ORDER" align="middle"  >
+            	<button  id="makePaymentCreditCard"  align="middle" >MAKE PAYMENT </button>
      		</li>
        		</ul>
        </form>
@@ -638,12 +684,13 @@ table td
             <ul>
            
            	 <li>
-            	<input type="submit" id="nextReceiptPage" value="CONFIRM ORDER" align="middle"  >
+            	<input type="submit" id="nextReceiptPageDC" value="CONFIRM ORDER" align="middle"  >
      		</li>
        		</ul>
          <!--  </form> -->
         <div class="watermark">Visa</div>
     </section>
+  
 	    </div>
 	</div>
 	
