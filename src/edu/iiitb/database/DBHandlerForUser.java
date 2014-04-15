@@ -187,32 +187,30 @@ public class DBHandlerForUser {
 		return advertize;
 	}
 	
-	public ArrayList<Advertizement> getadvertizementforfront(String Type, String category) throws SQLException, IOException
+	public ArrayList<Advertizement> getadvertizementforfront(String Type, ArrayList<String> categorylist) throws SQLException, IOException
 	{
 		//System.out.println("value in handler : " +Type);
-		//System.out.println("value in handler : " +category);
 		Connection con = db.createConnection();
 		ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 		DBConnectivity db=new DBConnectivity();															
-		
-		String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2, CategoryRelation as c3 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c3.subCategoryId and c1.categoryId = '"+category+"' and c2.categoryId = c1.subCategoryId and c3.categoryId = c2.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
-	
+		String query="";
+		query += "SELECT a.productId, a.image, a.timeStamp from (";
+		for(int i=0; i<categorylist.size(); i++)
+		{
+			query += " SELECT distinct(Advertizement.productId), Advertizement.image, Advertizement.timeStamp FROM Advertizement, ProductInfo where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = '"+categorylist.get(i)+"' ";            
+			if(i<(categorylist.size()-1))
+				query += " union ";
+		}
+		query += " ) as a ORDER BY a.timeStamp desc LIMIT 3 ";
 		ResultSet rs=db.executeQuery(query, con);
 		
-		if (rs.next() == false)
-		{
-			query = "SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = '"+category+"' ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
-			rs=db.executeQuery(query, con);
-		}
-		else
-			rs.previous();
 		while(rs.next())
 		{
-			System.out.println("hi");
+			//System.out.println("hi");
 			Advertizement obj = new Advertizement();
 			obj.setProductId(rs.getInt("productId"));
 			obj.setPhoto(rs.getString("image"));
-
+			obj.setTimeStamp(rs.getTimestamp("timeStamp"));
 			//System.out.println(rs.getInt("productId"));
 			//System.out.println(rs.getString("image"));
 			advertize.add(obj);

@@ -15,8 +15,33 @@ public class StartAction extends ActionSupport
 	ArrayList<CategoryModel> categoryModel1, categoryModel11, categoryModel12;
 	int[] value = new int[4];
 	int category;
-	String parentcategory, ancestorid, ancestorname,parentcategoryid;
+	String parentcategory, ancestorid, ancestorname, parentcategoryid, categoryname;
+	ArrayList<String> categoryList, categoryListtemp;
 	
+	public ArrayList<String> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(ArrayList<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+	public ArrayList<String> getCategoryListtemp() {
+		return categoryListtemp;
+	}
+
+	public void setCategoryListtemp(ArrayList<String> categoryListtemp) {
+		this.categoryListtemp = categoryListtemp;
+	}
+
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+
 	public ArrayList<CategoryModel> getCategoryModel12() {
 		return categoryModel12;
 	}
@@ -167,6 +192,9 @@ public class StartAction extends ActionSupport
 	
 	public String execute()
 	{
+		int counter;
+		categoryListtemp = new ArrayList<String>();
+		String[] categoryid = {"01", "02", "03"};
 		
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 	
@@ -177,9 +205,46 @@ public class StartAction extends ActionSupport
 			{
 				value[i] = advertizement.get(i).getProductId();
 			}
-			advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general","01");
-			advertizementfashion = dbHandlerForUser.getadvertizementforfront("general","02");
-			advertizementbook = dbHandlerForUser.getadvertizementforfront("general","03");
+			
+		for(int loop=0; loop<3; loop++)
+		{
+			
+			categoryList = new ArrayList<String>();
+			// Intialize the new arraylist
+			
+			categoryList.add(categoryid[loop]);
+			// add it to the main list
+			
+			categoryListtemp = dbHandlerForUser.getCategoryList(categoryid[loop]);
+			// get the sub category list for the first time
+			
+			for(int i=0; i<categoryListtemp.size(); i++)
+			{
+				//System.out.println("value in category list is : " + categoryList.get(i));
+				categoryList.add(categoryListtemp.get(i));
+			}
+			// add it to the main list
+
+				// get the sub-sub category list if present
+				for(int i=0; i<categoryList.size()-1; i++)
+				{
+					categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i+1));
+					if(categoryListtemp.size() > 0)
+					{
+						for(int j=0; j<categoryListtemp.size(); j++)
+						{
+							// add it to the main list
+							categoryList.add(categoryListtemp.get(j));
+						}
+					}
+				}
+			if(loop == 0)
+				advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+			else if(loop == 1)
+				advertizementfashion = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+			else if(loop == 2)
+				advertizementbook = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+		}
 			advertizementsidebar= dbHandlerForUser.getadvertizement("sidebar","2");
 			dealoftheday= dbHandlerForUser.getadvertizement("dealoftheday","1");
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
