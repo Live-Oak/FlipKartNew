@@ -222,6 +222,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
+			
 			<action name="getProductDetailfilter" class="edu.iiitb.action.getProductList" method="getProductDetail">
 				<result name="success" type="json"></result>
 			</action>
@@ -359,6 +360,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 			<action name="getCatagories" class="edu.iiitb.action.StartAction"
 				method="getMenuCatagory">
+				<result name="success" type="json" />
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
+			
+			<action name="getSubCatagorieslevel" class="edu.iiitb.action.StartAction" method="getSubMenuCatagorylevel">
 				<result name="success" type="json" />
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
