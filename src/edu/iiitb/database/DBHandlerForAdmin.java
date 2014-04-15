@@ -560,5 +560,15 @@ public class DBHandlerForAdmin {
 			stmnt.execute();
 		}
 	}
+
+	public void fetchAllPurchasedOrderID(ArrayList<Integer> orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O Inner Join FlipKartDatabase.Payment P on O.orderId = P.orderId";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+	}
 	
 }

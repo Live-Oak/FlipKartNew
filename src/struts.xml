@@ -494,7 +494,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		
 		<action name="sellerRating" class="edu.iiitb.action.sellerRatingAction">
 				<result name="success" type = "tiles">sellerR</result>
-			</action>
+		</action>
+		
+		<action name="adminFetchPurchaseOrderId" class="edu.iiitb.action.FetchOrderIds">
+			<result name="success" type="tiles">PurchaseOrder</result>
+			<result name="error">/error.jsp</result>
+		</action>
 			
 			
 	</package>

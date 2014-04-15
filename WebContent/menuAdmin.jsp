@@ -43,9 +43,9 @@
 		
 <!-- The second layer with menu and dropdown -->
 <div class="navbar navbar-inverse">
-		<div class="col-md-1"></div>
+		<div class="col-md-2"></div>
 		
-		<div class="col-md-11">
+		<div class="col-md-9">
 			<div class="container">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -56,10 +56,23 @@
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
 						<li><a href="adminhome">Home</a></li>
-						<li><a href="registerUser">Register User</a></li>
-						<li><a href="deleteUser">Delete User</a></li>
-						<li><a href="insertCategoryPage">Add Category</a></li>
-						<li><a href="insertSubCategoryPage">Add CategoryRelation</a></li>
+						
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">UserMgnt <span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="registerUser">Register User</a></li>
+								<li><a href="deleteUser">Delete User</a></li>
+							</ul>
+						</li> 
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Category<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="insertCategoryPage">Add Category</a></li>
+								<li><a href="insertSubCategoryPage">Add CategoryRelation</a></li>
+							</ul>
+						</li> 
+						
+						
 						<li><a href="addProduct">Add Product</a></li>
 						<li><a href="advertizement">Add Advertizement</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">View DB <span class="caret"></span></a>
@@ -76,12 +89,20 @@
 								<li><a href="stockData?stockType=out">OutStock Products</a></li>
 							</ul>
 						</li> 
-					<!-- <li><a href="logout">Log out</a></li>	 -->
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">User Order<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="adminFetchPurchaseOrderId">View Orders</a></li>
+								<li><a href="adminFetchPurchaseOrderId">Delete Orders</a></li>
+							</ul>
+						</li> 
+						
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="col-md-1"></div>
 
 </body>
 </html>

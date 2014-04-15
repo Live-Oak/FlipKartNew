@@ -30,32 +30,6 @@
 <script src="asset/JavaScripts/jquery.dataTables.min.js"></script>
 <script src="asset/JavaScripts/jquery.reveal.js"></script>
 
-<script type="text/javascript">
-<!--
-	// Form validation code will come here.
-	function validate() {
-		
-	var a = parseInt(document.form_stock.minimumQty.value , 10);
-	var b = parseInt(document.form_stock.availableQty.value , 10);
-	var c = parseInt(document.form_stock.orderQty.value , 10);
-	var d = b+c;
-	
-		if ( a > d) {
-			alert("Still below Minimum Qty value .. Order more");
-			document.form_stock.orderQuantity.focus();
-			return false;
-		}
-	}
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#create_account").click(function() {
-			$("#form_stock").submit();
-		});
-	});
-</script>
-
 
 <script type="text/javascript">
 	$("document").ready(function() {
@@ -97,7 +71,24 @@
 		</s:if>
 
 	</center>
-	<div class="col-md-2"></div>
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		
+		
+		<h3> Order- ID :: 
+			<select id="dropDown" name="id">
+					<option> --Select-- </option>
+				<s:iterator value="orderId">
+				<option>	<s:property/>	</option>
+				</s:iterator>
+			 </select><br> </h3>
+		
+		
+	</div>
+	<div class="col-md-3"></div>
+	
+	
+	<%-- <div class="col-md-2"></div>
 	<div class="col-md-8">
 		<table id="example" class="display" width="100%">
 			<thead>
@@ -139,65 +130,7 @@
 		</table>
 	</div>
 
-	<div class="col-md-2"></div>
-
-	<div id="myModal2" class="reveal-modal">
-
-		<h2 align="center">Stock Update Form</h2>
-		<hr>
-		<br> <span id="error" style="color: Red; display: none">*Input
-			digits(0-9)</span>
-		<form id="form_stock" name="form_stock" action="requestStock"
-			onsubmit="return(validate());" method="post">
-			<input type="hidden" id="pId" name="productId" /> <input
-				type="hidden" id="sId" name="sellerId" /> <br> Product Name
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
-				class="textbox" id="pName" name="firstName"
-				placeholder="Product Name" required><br> <br>
-			Seller Name
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" class="textbox" id="sName" name="sellerName"
-				placeholder="Seller Name" required><br> <br>
-			Minimum Quantity &nbsp;&nbsp; <input type="text" class="textbox"
-				id="mQty" name="minimumQty" placeholder="Minimum Product Quantity"
-				required onkeypress="return IsNumeric(event);"
-				ondrop="return false;" onpaste="return false;"><br> <br>
-			Available Quantity &nbsp;&nbsp; <input type="text" class="textbox"
-				id="aQty" name="availableQty"
-				placeholder="Available Product Quantity" required
-				onkeypress="return IsNumeric(event);" ondrop="return false;"
-				onpaste="return false;"><br> <br> Order Quantity
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
-				class="textbox" id="oQty" name="orderQty"
-				placeholder="Ordered Quantity" required
-				onkeypress="return IsNumeric(event);" ondrop="return false;"
-				onpaste="return false;"> <br>
-			<script type="text/javascript">
-				var specialKeys = new Array();
-				specialKeys.push(8); //Backspace
-				function IsNumeric(e) {
-					var keyCode = e.which ? e.which : e.keyCode
-					var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys
-							.indexOf(keyCode) != -1);
-					document.getElementById("error").style.display = ret ? "none"
-							: "inline";
-					return ret;
-				}
-			</script>
-			<br> <br>
-			<button type="button" id="create_account">OrderProduct</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="reset" id="create_account">RESET!</button>
-			<br>
-		</form>
-		<a class="close_button Close">&#215;</a>
-	</div>
-
-
-
-
-
-
+	
 
 
 
@@ -207,6 +140,6 @@
 		$("document").ready(function() {
 			$("#example").dataTable();
 		});
-	</script>
+	</script> --%>
 </body>
 </html>
