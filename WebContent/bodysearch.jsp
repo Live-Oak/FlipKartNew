@@ -107,7 +107,10 @@
 				    		}
 				    		else
 				    		{
-				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+ - +stock.offer+'</font>';
+				    			var a = stock.price;
+			    				var b = stock.offer;
+			    				var c = a-b;
+			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
 					    	temp += '<hr>';
@@ -230,7 +233,10 @@
 				    		}
 				    		else
 				    		{
-				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+ - +stock.offer+'</font>';
+				    			var a = stock.price;
+			    				var b = stock.offer;
+			    				var c = a-b;
+			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
 					    	temp += '<hr>';
