@@ -64,7 +64,7 @@
 								</font>
 							</s:if>
 						<hr>
-						Seller: <a href="#"> <font color="black" size="4">WS Retail </font> </a>
+						Seller: <a href="sellerRating"> <font color="black" size="4">WS Retail </font> </a>
 						<br>
 						</div>
 						<hr>

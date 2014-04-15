@@ -491,6 +491,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="check_orderinfo" class="edu.iiitb.action.GetOrderDetails" method="Validate">
 		<result name="success" type="json"/>
 		</action>
+		
+		<action name="sellerRating" class="edu.iiitb.action.sellerRatingAction">
+				<result name="success" type = "tiles">sellerR</result>
+			</action>
+			
 			
 	</package>
 </struts>

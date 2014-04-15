@@ -155,4 +155,10 @@
    			<put-attribute name="body"   value="/AddAdvertisement.jsp"/>
    		</definition>
    		
+   		<definition name="sellerR" extends="start">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="body"   value="/sellerRating.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+   		
    </tiles-definitions>
