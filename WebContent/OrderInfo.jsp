@@ -36,24 +36,26 @@
      <h2> Order Details </h2>
     <br>
     
-    <table style="width:300px; height:150px;" class="table">
+    <table style="width:330px; height:150px;" class="table">
 			<tr> <td style="text-align:left;">Order ID: </td>
-			<th> 12345 </th> </tr>
+			<td> <strong> <s:property value="GOD.orderNo"/> </strong>
+			     <span style="font-size:13px; color:#848484;">(<s:property value="GOD.quantity"/> Item)</span> </td> </tr>
 		
 			<tr> <td style="text-align:left;"> seller: </td>
 			<td> WS Retail </td> </tr>
 			
 			<tr> <td style="text-align:left;"> Order Date: </td>
-			<td> 3 March,2014 </td></tr>
+			<td> <s:property value="GOD.order_date"/> </td></tr>
 			
 			<tr> <td style="text-align:left;"> Amount Paid: </td>
-			<th>Rs.13999</th></tr>
+			<td><strong>Rs.<s:property value="GOD.totalprice"/> </strong>
+			       <span style="font-size:13px; color:#848484;">through <s:property value="GOD.paymentType"/></span> </td></tr>
 			
 			<tr> <td style="text-align:left;"> Status: </td>
-			<th>Received</th></tr>
+			<th> <s:property value="GOD.status"/></th></tr>
 			
 			<tr> <td style="text-align:left;"> Delivery Date: </td>
-			<td> 6 March,2014</td></tr>
+			<td> <s:property value="GOD.delievry_date"/> </td></tr>
 			
 			<tr><td ></td><td></td></tr>
 			
@@ -64,9 +66,9 @@
       <br>
       <br>
       <br>
-      <h3 style="margin-left: 20px;"> Parush Agarwal </h3><br>
-      <p style="margin-left: 20px;"> I.I.I.T. BANGALORE 26/C ELECTRONICS CITY OPP. INFOSYS TECHNOLOGY HOSUR ROAD , IN FRONT OF INFOSYS GATE NO. 1
-          Bangalore, Karnataka - 560100 </p>
+      <h3 style="margin-left: 20px;"> <s:property value="GOD.cust_name"/> 
+      <span style="font-size:13px; color:#848484;"> <s:property value="GOD.phone_number"/></span> </h3><br>
+      <p style="margin-left: 20px;"> <s:property value="GOD.address_line1"/>, <s:property value="GOD.address_line2"/>, <s:property value="GOD.city"/>-<s:property value="GOD.pincode"/> </p>
       
       
       </div>

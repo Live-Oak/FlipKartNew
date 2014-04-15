@@ -102,17 +102,20 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		
 		<action name="MyOrders" class="edu.iiitb.action.MyOrdersAction">
-		<result type="tiles">MyOrdersTile</result>
+		<result name="success" type="tiles">MyOrdersTile</result>
+		<result name="error">/error.jsp</result>
 		<result name="login">/index.jsp</result>
 		</action>
 		
 		<action name="MyPastOrders" class="edu.iiitb.action.MyOrdersAction" method="executePastorders">
-		<result type="tiles">MyPastOrdersTile</result>
+		<result name="success" type="tiles">MyPastOrdersTile</result>
+		<result name="error">/error.jsp</result>
 		<result name="login">/index.jsp</result>
 		</action>
 		
-		<action name="Get_OrderInfo">
-		<result type="tiles">Get_OrderInfoTile</result>
+		<action name="Get_OrderInfo" class="edu.iiitb.action.GetOrderDetails">
+		<result name="success" type="tiles">Get_OrderInfoTile</result>
+		<result name="error">/error.jsp</result>
 		<result name="login">/index.jsp</result>
 		</action>
 
