@@ -1158,6 +1158,17 @@ public class DBHandlerForUser {
 		}
 		//System.out.println("PID : " + pId + "quantity : " + qty);
 		con.close();
+	}
+
+	public void deactivateAccount(String email) throws SQLException {
+		// TODO Auto-generated method stub
+		DBConnectivity db = new DBConnectivity();
+		Connection con = db.createConnection();
+		
+		String query = "DELETE FROM FlipKartDatabase.UserCredantials WHERE  email = '" + email + "' ";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		
 	}	
 
 }
