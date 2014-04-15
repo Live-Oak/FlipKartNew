@@ -103,9 +103,17 @@ public class FetchOrderIds extends ActionSupport {
 	public String confirmOrder()
 	{
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
-		dbHandler.confirmPurchaseOrder(orderID,orderStatus);
-		
-		addActionMessage("Order Has Been Confirmed");
+		try {
+			dbHandler.confirmPurchaseOrder(orderID,orderStatus);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		if(orderStatus.equalsIgnoreCase("dispatched"))
+			addActionMessage("Order Has Been Dispatched");
+		else	
+			addActionMessage("Order Has Been Confirmed");
 		return "success";
 	}
 	

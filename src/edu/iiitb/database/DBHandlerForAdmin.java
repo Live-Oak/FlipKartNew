@@ -594,9 +594,11 @@ public class DBHandlerForAdmin {
 
 	
 
-	public void confirmPurchaseOrder(int orderID, String orderStatus) {
+	public void confirmPurchaseOrder(int orderID, String orderStatus) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
 	}
 	
 	

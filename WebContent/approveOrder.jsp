@@ -43,35 +43,39 @@
 	</center>
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		
-	<form action="approvePurchaseRequest" method="get">
-		<h3>  Order- ID :: 
-			<select id="dropDown" name="orderID">
+
+		<form action="approvePurchaseRequest" method="get">
+			<h3>
+				Order- ID :: <select id="dropDown" name="orderID">
 					<!-- <option> --Select-- </option> -->
-				<s:iterator value="orderId">
-				<option>	<s:property/>	</option>
-				</s:iterator>
-			 </select><br> </h3>
-			 <br>
-		<h3>  Order- Status :: 
-			<select id="dropDown" name="orderStatus">
+					<s:iterator value="orderId">
+						<option>
+							<s:property />
+						</option>
+					</s:iterator>
+				</select><br>
+			</h3>
+			<br>
+			<h3>
+				Order- Status :: <select id="dropDown2" name="orderStatus">
 					<!-- <option> --Select-- </option> -->
-				<s:iterator value="orderId">
-				<option>DISPATCHED</option>
-				<option>CONFIRMED</option>
-				</s:iterator>
-			 </select><br> </h3>	 
-			 
-			 
-			 <br><br><br>
-			
-			 <input type="submit" value="Change Order"/>
-		
-	</form>			
-		
+				
+						<option>DISPATCHED</option>
+						<option>CONFIRMED</option>
+					
+				</select><br>
+			</h3>
+
+
+			<br>
+			<br>
+			<br> <input type="submit" value="Change Order" />
+
+		</form>
+
 	</div>
 	<div class="col-md-3"></div>
-	
-	
+
+
 </body>
 </html>
