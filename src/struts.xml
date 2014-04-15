@@ -101,6 +101,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<result name="login">/index.jsp</result>
 		</action>
 		
+		<action name="DeactivateAccountFromDB" class="edu.iiitb.action.DeleteUser" method="execute_deactivateAccount">
+		<result name="success" type="redirectAction">
+		<param name="actionName">logout</param>
+		<param name="namespace">/</param></result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
 		<action name="MyOrders" class="edu.iiitb.action.MyOrdersAction">
 		<result name="success" type="tiles">MyOrdersTile</result>
 		<result name="error">/error.jsp</result>
@@ -116,6 +124,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="Get_OrderInfo" class="edu.iiitb.action.GetOrderDetails">
 		<result name="success" type="tiles">Get_OrderInfoTile</result>
 		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="Notifications">
+		<result type="tiles">NotificationsTile</result>
 		<result name="login">/index.jsp</result>
 		</action>
 

@@ -5,9 +5,14 @@ package edu.iiitb.action;
 
 import java.sql.SQLException;
 
+import java.util.Map;
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForAdmin;
+import edu.iiitb.database.DBHandlerForUser;
+import edu.iiitb.model.User;
 
 /**
  * @author paras
@@ -16,8 +21,21 @@ import edu.iiitb.database.DBHandlerForAdmin;
 public class DeleteUser extends ActionSupport{
 	
 	String id;
+	private Map<String, Object> session;
 	
 	
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+
 
 	/**
 	 * @return the id
@@ -52,6 +70,26 @@ public class DeleteUser extends ActionSupport{
 			e.printStackTrace();
 			return "error";
 		}
+		
+	}
+	
+	public String execute_deactivateAccount()
+	{
+		User user1=(User) session.get("user");
+		DBHandlerForUser dbHandler = new DBHandlerForUser();
+		
+		try {
+			dbHandler.deactivateAccount(user1.getEmail());
+			addActionMessage("Account Has Been Deactivated Successfully");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		
+		return "success";
 		
 	}
 
