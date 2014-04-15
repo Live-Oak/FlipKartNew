@@ -118,6 +118,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<result name="error">/error.jsp</result>
 		<result name="login">/index.jsp</result>
 		</action>
+		
+		<action name="Notifications">
+		<result type="tiles">NotificationsTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
 
 		<action name="Admin">
 			<interceptor-ref name="secureStack"></interceptor-ref>

@@ -131,7 +131,7 @@ $(document).ready(function(){
 		<li class="padding2"><a class="padding3" href="Addresses">Addresses</a></li>
 		<li class="padding2"><a class="padding3" href="UpdateEmail">Update Email</a></li>
 		<li class="padding2"><a class="padding3" href="DeactivateAccount">Deactivate Account</a></li>
-		<li class="padding2"><a class="padding3" href="#">Notifications</a></li>
+		<li class="padding2"><a class="padding3" href="Notifications">Notifications</a></li>
 		
 		</ul>
 		</div>
