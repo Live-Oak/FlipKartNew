@@ -109,6 +109,7 @@ $(document).ready(function(){
 		<li class="padding2"><a class="padding3" href="Addresses">Addresses</a></li>
 		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Update Email</li>	
 		<li class="padding2"><a class="padding3" href="DeactivateAccount">Deactivate Account</a></li>
+		<li class="padding2"><a class="padding3" href="#">Notifications</a></li>
 		
 		</ul>
 		</div>
