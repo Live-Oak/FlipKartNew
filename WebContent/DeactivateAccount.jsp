@@ -61,7 +61,7 @@ li.padding {color: #848484;
 		<ul style="list-style-type:none">
 		<li style="background-color: #014A72; color: #FFFFFF; font-size: 16px; font-weight: bold; padding: 1px 5px 1px 9px;"><h4>My Account</h4></li>
 		<li class="padding"><h4>ORDERS</h4></li>
-		<li class="padding2"><a class="padding3" href="#">My Orders</a></li>
+		<li class="padding2"><a class="padding3" href="MyOrders">My Orders</a></li>
 		<li class="padding"><h4>SETTINGS</h4></li>
 		<li class="padding2"><a class="padding3" href="Personal-info">Personal Information</a></li>
 		<li class="padding2"><a class="padding3" href="ChangePassword">Change Password</a></li>

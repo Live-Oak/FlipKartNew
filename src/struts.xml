@@ -101,8 +101,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<result name="login">/index.jsp</result>
 		</action>
 		
-		<action name="MyOrders">
+		<action name="MyOrders" class="edu.iiitb.action.MyOrdersAction">
 		<result type="tiles">MyOrdersTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="MyPastOrders" class="edu.iiitb.action.MyOrdersAction" method="executePastorders">
+		<result type="tiles">MyPastOrdersTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="Get_OrderInfo">
+		<result type="tiles">Get_OrderInfoTile</result>
 		<result name="login">/index.jsp</result>
 		</action>
 
@@ -476,6 +486,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="clearUserCartDetails" class="edu.iiitb.action.cardPayment"
 			method="clearUserCartDetail">
 			<result name="success" type="json" />
+		</action>
+		
+		<action name="check_orderinfo" class="edu.iiitb.action.GetOrderDetails" method="Validate">
+		<result name="success" type="json"/>
 		</action>
 			
 	</package>

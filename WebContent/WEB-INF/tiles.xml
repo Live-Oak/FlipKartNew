@@ -114,8 +114,17 @@
    		
    		<definition name="MyOrdersTile" extends="start">
    		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
-   		<put-attribute name="menu" value="/menu.jsp"/>
    		<put-attribute name="body" value="/RecentOrders.jsp"/>
+   		</definition>
+   		
+   		<definition name="MyPastOrdersTile" extends="start">
+   		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
+   		<put-attribute name="body" value="/PastOrders.jsp"/>
+   		</definition>
+   		
+   		<definition name="Get_OrderInfoTile" extends="start">
+   		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
+   		<put-attribute name="body" value="/OrderInfo.jsp"/>
    		</definition>
    
    		<definition name="Apppage" extends="start">

@@ -286,7 +286,33 @@ $(document).ready(function(){
 			     }
 			});
 		});
-</script>    
+</script>  
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#get_orderinfo_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'check_orderinfo ?Email=' + $("#email_id").val() + '&OrderId=' + $("#order_id").val(),
+		    success: function(data){
+		    	
+		    	var status=data.message;
+		 
+		    	if(status=="available")
+		    		{
+					$("#form_orderinfo").submit();		    			
+		    		}
+		    	else
+		    		{
+		    			$("#check_orderdetails").html("Invalid Email or OrderId");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>  
 
 </head>
 
@@ -340,7 +366,22 @@ $(document).ready(function(){
 						<%
 						}
 						%>
-						&nbsp;&nbsp;<a href="#">Track Order</a><br>
+						
+						<%
+						if(session.getAttribute("user") == null)
+						{
+					%>
+					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a><br>					
+					<%
+						}else
+						{
+					%>
+					
+					&nbsp;&nbsp;<a href="MyOrders" class="big-link Close">Track Order</a><br>
+					<%
+						}
+					%>
+						
 						<button type="submit" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>
 				</form>
@@ -532,6 +573,48 @@ $(document).ready(function(){
 		>PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
+  	
+  	
+<div id="myOrderModal" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
+    <div class="cart-header">Track Your Order</div>
+    <div style = "margin-left: 20px; margin-top: 10px;" class ="col-md-6"> 
+    <strong> Track using order id </strong>
+    <br><br>
+    
+    <form id="form_orderinfo" name="form_orderinfo" action="Get_OrderInfo"  method="post">
+    <table style="width:300px; height:150px;">
+			<tr> <td style="text-align:left;">Email ID </td>
+			<td> <input type="email" id="email_id" name="Email" class="textbox"   required ></td> </tr>
+		
+			<tr> <td style="text-align:left;">Order ID </td>
+			<td> <input type="text" id="order_id" name="OrderId" class="textbox"  required ></td> </tr>
+			
+			<tr> <td> <label id="check_orderdetails"></label> </td>
+			<td><input style=" text-align:center;padding:10px;" type="button" id="get_orderinfo_button" class="btn btn-primary" value="View Order Status" >&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+		    </td></tr>
+			</table>
+			</form>
+			</div>
+	
+	<div style = "margin-top: 10px; border-left: 1px dotted;" class ="col-md-5" >
+	   <strong> Login and do more!</strong>
+	   <br><br>
+	   <ul style="margin-left: 30px;" >
+          <li >Track individual Orders</li>
+          <li >View your entire Order history</li>
+          <li >Cancel individual Orders</li>
+          <li >Conveniently review products and sellers</li>
+      </ul>
+      <br>
+      
+      <a href="#" data-reveal-id="myModal" ><input type="submit" class="btn btn-primary Close" value="Login" ></a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	
+	</div>	
+		
+		<a class="close-reveal-modal Close">×</a>
+  </div>
+  	
+  	
 		
 <script type="text/javascript">
 $.ajax({

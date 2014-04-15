@@ -208,9 +208,8 @@ a {
 
 <script> 
 $(document).ready(function(){
-  $(".toggle-details").click(function(e){
-	  var currentTarget = e.currentTarget;
-    $(currentTarget).parent().find(".order-expanded").slideToggle("slow");
+  $(".toggle-details").click(function(){
+    $(".order-expanded").slideToggle("slow");
   });
 });
 </script>
@@ -234,12 +233,12 @@ $(document).ready(function(){
 </ul>
 <div class="col-md-12 myorder-tabs ">
 <ul>
-<li id="recent-orders" class="fk-inline-block tab selected">
-<span class="text">RECENT ORDERS</span>
+<li id="recent-orders" class="fk-inline-block tab "><a href = "MyOrders">
+<span class="text">RECENT ORDERS</span></a>
 <span id="subText" class="text fk-font-small">(Last 2 Months)</span>
 </li>
-<li id="past-orders" class="fk-inline-block tab"><a href = "MyPastOrders">
-<span class="text">PAST ORDERS</span></a>
+<li id="past-orders" class="fk-inline-block tab selected">
+<span class="text">PAST ORDERS</span>
 </li>
 </ul>
 
@@ -266,7 +265,7 @@ $(document).ready(function(){
 </div>
 <div class="line order-expanded">
   <div class="unit size2of5">
-  <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
+   <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
   </div>
   <div class="lastUnit text_right">
   <%-- <a class="toggle-details" title="Hide order details"></a> --%>
