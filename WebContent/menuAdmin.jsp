@@ -92,8 +92,8 @@
 						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">User Order<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-								<li><a href="adminFetchPurchaseOrderId">View Orders</a></li>
-								<li><a href="adminFetchPurchaseOrderId">Delete Orders</a></li>
+								<li><a href="adminFetchPurchaseOrderId?status=view">View Orders</a></li>
+								<li><a href="adminFetchPurchaseOrderId?status=confirm">Confirm Orders</a></li>
 							</ul>
 						</li> 
 						

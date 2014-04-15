@@ -16,6 +16,7 @@ import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.MyOrdersModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.ViewRequestSeller;
@@ -569,6 +570,34 @@ public class DBHandlerForAdmin {
 		{
 			orderId.add(rs.getInt(1));
 		}
+	//	db.closeConnection(con);
 	}
+
+	public void fetchOrderDetails(int orderID,
+			ArrayList<MyOrdersModel> orderDeatils) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select  PI.productName , OD.quantity , PI.price , PI.image , OSA.customerName from FlipKartDatabase.OrderDescription OD Inner Join FlipKartDatabase.ProductInfo PI on OD.productId = PI.productId Inner Join FlipKartDatabase.OrderShipingAddress OSA on OSA.orderId = OD.orderId where OD.orderId = "+orderID+"";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			MyOrdersModel model = new MyOrdersModel();
+			model.setOrderPersonName(rs.getString(5));
+			model.setProdName(rs.getString(1));
+			model.setQuantity(rs.getInt(2));
+			model.setPrice(rs.getFloat(3));
+			model.setPhoto(rs.getString(4));
+			model.setTotalprice(rs.getFloat(3) * rs.getInt(2));
+			orderDeatils.add(model);
+		}
+	//	db.closeConnection(con);
+	}
+
+	
+
+	public void confirmPurchaseOrder(int orderID, String orderStatus) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 }

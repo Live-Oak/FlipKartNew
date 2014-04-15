@@ -27,6 +27,10 @@
    			<put-attribute name="body" value="/viewOrder.jsp"/>
    		</definition>
    		
+   		<definition name="ConfirmPurchaseOrder" extends="Administrator">
+   			<put-attribute name="title" value="Approve Order"/>
+   			<put-attribute name="body" value="/approveOrder.jsp"/>
+   		</definition>
    		
    		<definition name="Stock" extends="Administrator">
    			<put-attribute name="title" value="Stock Data"/>

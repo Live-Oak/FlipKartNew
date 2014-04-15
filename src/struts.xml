@@ -498,9 +498,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		
 		<action name="adminFetchPurchaseOrderId" class="edu.iiitb.action.FetchOrderIds">
 			<result name="success" type="tiles">PurchaseOrder</result>
+			<result name="confirm" type="tiles">ConfirmPurchaseOrder</result>
 			<result name="error">/error.jsp</result>
 		</action>
 			
+		<action name="fetchOrderDetails" class="edu.iiitb.action.FetchOrderIds" method="orderDeatils">
+			<result name="success" type="json" />
+		</action>
+		
+		<action name="approvePurchaseRequest" class="edu.iiitb.action.FetchOrderIds" method="confirmOrder">
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+		</action>	
 			
 	</package>
 </struts>

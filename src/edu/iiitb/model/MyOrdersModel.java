@@ -8,7 +8,7 @@ public class MyOrdersModel {
 	
 	Date order_date, delievry_date;
 	
-	String prodName, photo, status;
+	String prodName, photo, status , orderPersonName;
 	
 	float price, totalprice;
 	
@@ -67,6 +67,12 @@ public class MyOrdersModel {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getOrderPersonName() {
+		return orderPersonName;
+	}
+	public void setOrderPersonName(String orderPersonName) {
+		this.orderPersonName = orderPersonName;
 	}
 	
 

@@ -29,34 +29,7 @@
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/jquery.dataTables.min.js"></script>
 <script src="asset/JavaScripts/jquery.reveal.js"></script>
-<script type="text/javascript">
 
-	$(document).ready(function(){
-		
-		$("#dropDown").change(function(){
-			
-			var id = $("#dropDown").val();
-			$.ajax({
-				
-				 type: 'POST',
-				    url:'fetchOrderDetails?orderID='+id,
-				    success: function(data){
-				    	$("#tableData").empty();
-				    	$.each(data.orderDeatils, function(count,order) { 
-				    	
-				    	$("#tableData").append("<tr> <td> "+order.orderPersonName+" </td> <td> <img src="+order.photo+" height=80 width=60 ></td> <td> "+order.prodName+" </td> <td> "+order.quantity+" </td> <td> "+order.totalprice+" </td> </tr>");
-				    	
-				    	});
-				    
-				
-				    }
-				
-			});
-			
-		});
-	});
-
-</script>
 
 </head>
 <body>
@@ -71,42 +44,34 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
 		
-		
+	<form action="approvePurchaseRequest" method="get">
 		<h3>  Order- ID :: 
-			<select id="dropDown" name="id">
-					<option> --Select-- </option>
+			<select id="dropDown" name="orderID">
+					<!-- <option> --Select-- </option> -->
 				<s:iterator value="orderId">
 				<option>	<s:property/>	</option>
 				</s:iterator>
 			 </select><br> </h3>
+			 <br>
+		<h3>  Order- Status :: 
+			<select id="dropDown" name="orderStatus">
+					<!-- <option> --Select-- </option> -->
+				<s:iterator value="orderId">
+				<option>DISPATCHED</option>
+				<option>CONFIRMED</option>
+				</s:iterator>
+			 </select><br> </h3>	 
+			 
 			 
 			 <br><br><br>
-			 
-			 <table id="example" class="display" width="100%">
-			<thead>
-				<tr>
-					<th>Order Person</th>
-					<th>Product-Image</th>
-					<th>Product-Name</th>
-					<th>Quantity</th>
-					<th>&nbsp;&nbsp;Price</th>
-				</tr>
-			</thead>
-
-			<tbody id="tableData">
-			</tbody>
-			</table>
+			
+			 <input type="submit" value="Change Order"/>
 		
+	</form>			
 		
 	</div>
 	<div class="col-md-3"></div>
 	
 	
-
-	<script type="text/javascript">
-		$("document").ready(function() {
-			$("#example").dataTable();
-		});
-	</script> 
 </body>
 </html>
