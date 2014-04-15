@@ -357,7 +357,9 @@ $(document).ready(function(){
 									
 										<li><a href="Personal-info">Account</a></li>
 										<li class="divider" role="presentation"></li>
-										<li><a href="#">Orders</a></li>
+										<li><a href="MyOrders">Orders</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="#">Review & rating</a></li>
 										<li class="divider" role="presentation"></li>
 										<li><a href="logout">Logout</a></li>
 									
