@@ -278,7 +278,7 @@ public class DBHandlerForUser {
 		
 		while(rs.next())
 		{
-			System.out.println("output sub catgeory is : " + rs.getString("subcategory"));
+			//System.out.println("output sub catgeory is : " + rs.getString("subcategory"));
 			CategoryModel obj = new CategoryModel();
 			obj.setCategoryName(rs.getString("subcategory"));
 			obj.setCategoryId(rs.getString("subcategoryid"));
@@ -1122,7 +1122,7 @@ public class DBHandlerForUser {
 	
 	public void updatePaymentInAccount(String cardNumber, String grandTotal) throws SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("CardNumber : " + cardNumber + " grandTotal : " + grandTotal);
+		//System.out.println("CardNumber : " + cardNumber + " grandTotal : " + grandTotal);
 		DBConnectivity db = new DBConnectivity();
 		Connection con = db.createConnection();		
 		Statement stmt = (Statement) con.createStatement();

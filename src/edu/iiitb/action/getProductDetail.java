@@ -38,7 +38,7 @@ public class getProductDetail  extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			System.out.println("Productid in action : " +productID);
+			//System.out.println("Productid in action : " +productID);
 			productinfo = dbHandlerForUser.getproductinfo(productID);
 			String[] temp = productinfo.get(0).getDescription().split(",");
 			description = new ArrayList<String>();

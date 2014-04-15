@@ -95,8 +95,8 @@ public class getProductList  extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			System.out.println("Comapany to filter is : " +pricelist[count-1]);
-			System.out.println("Count is : "+count);
+			//System.out.println("Comapany to filter is : " +pricelist[count-1]);
+			//System.out.println("Count is : "+count);
 			
 			categoryName = dbHandlerForUser.getnameonid(category);
 			// get name on category
@@ -124,7 +124,7 @@ public class getProductList  extends ActionSupport
 				// get the sub-sub category list if present
 				for(int i=count-1; i<categoryList.size(); i++)
 				{
-					System.out.println("It is here");
+					//System.out.println("It is here");
 					categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i));
 					if(categoryListtemp.size() > 0)
 					{
