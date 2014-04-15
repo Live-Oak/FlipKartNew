@@ -38,7 +38,7 @@ public class DBHandlerForMyOrders {
 				" On OD.orderId = O.orderId"+
 				" Inner Join FlipKartDatabase.ProductInfo as PI "+
 				"ON PI.productId = OD.productId"+
-				" Where customerEmail = '" + email + "' ";
+				" Where customerEmail = '" + email + "' ORDER BY O.orderDate desc ";
 
 		ResultSet rs=db.executeQuery(query, con);
 		System.out.println("hellomyorders");
@@ -101,7 +101,7 @@ public class DBHandlerForMyOrders {
 				" On OD.orderId = O.orderId"+
 				" Inner Join FlipKartDatabase.ProductInfo as PI "+
 				"ON PI.productId = OD.productId"+
-				" Where customerEmail = '" + email + "' ";
+				" Where customerEmail = '" + email + "' ORDER BY O.orderDate desc ";
 
 		ResultSet rs=db.executeQuery(query, con);
 		System.out.println("hellomyorders");
