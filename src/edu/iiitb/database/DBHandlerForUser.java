@@ -98,13 +98,13 @@ public class DBHandlerForUser {
 		String role=null;
 		String query="select email,password,role from UserCredantials";
 		ResultSet rs=db.executeQuery(query, con);
-		System.out.println(email+password);
+		//System.out.println(email+password);
 		while(rs.next())
 		{
 			if(rs.getString("email").equals(email)&&rs.getString("password").equals(password))
 				role=rs.getString("role");
 		}
-		System.out.println(role);
+		//System.out.println(role);
 		if (role==null)
 		{
 			System.out.println(role);
@@ -122,13 +122,13 @@ public class DBHandlerForUser {
 		String role=null;
 		String query="select email,role from UserCredantials";
 		ResultSet rs=db.executeQuery(query, con);
-		System.out.println(email);
+		//System.out.println(email);
 		while(rs.next())
 		{
 			if(rs.getString("email").equals(email))
 				role=rs.getString("role");
 		}
-		System.out.println(role);
+		//System.out.println(role);
 		if (role==null)
 		{
 			System.out.println(role);
@@ -326,7 +326,7 @@ public class DBHandlerForUser {
 			
 				}
 			}
-			System.out.println(fName);
+			//System.out.println(fName);
 			con.close();
 			return fName;
 		
@@ -346,7 +346,7 @@ public class DBHandlerForUser {
 		
 			}
 		}
-		System.out.println(userId);
+		//System.out.println(userId);
 		con.close();
 		return userId;
 	}	
@@ -826,8 +826,8 @@ public class DBHandlerForUser {
 		
 		for(CompareCartProduct p : cartProducts)
 		{
-		System.out.println("db category"+p.getCategory());
-		System.out.println("db product"+p.getProductId());
+		//System.out.println("db category"+p.getCategory());
+		//System.out.println("db product"+p.getProductId());
 		String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + p.getCategory() + "' and ProductInfo.productId = '" + p.getProductId() + "'" ;       
 		ResultSet rs=db.executeQuery(query, con);
 		
@@ -852,10 +852,10 @@ public class DBHandlerForUser {
 			
 		}
 		db.closeConnection(con);
-		for(int i=0;i<ProductInfo.size();i++)
+		/*for(int i=0;i<ProductInfo.size();i++)
 		{
 			System.out.println("db wala"+ProductInfo.get(i).getImage());
-		}
+		}*/
 		return ProductInfo;
 	}
 	
@@ -867,7 +867,7 @@ public class DBHandlerForUser {
 		String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Stock where  ProductInfo.productId = Stock.productId and ProductInfo.productName = '" + productname + "'" ;       
 		      
 		ResultSet rs=db.executeQuery(query, con);
-		System.out.println("hello1");
+		//System.out.println("hello1");
 		ProductInfo obj = new ProductInfo();
 		while(rs.next())
 		{
@@ -887,7 +887,7 @@ public class DBHandlerForUser {
 		}
 		
 		db.closeConnection(con);
-		System.out.println("hello2");
+		//System.out.println("hello2");
 		return productInfoAdded;		}
 
 	public ArrayList<String>  getproductsforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException 
@@ -901,16 +901,16 @@ public class DBHandlerForUser {
 			
 		String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + p.getCategory() ;       
 		ResultSet rs=db.executeQuery(query, con);
-		System.out.println("hello1");
+		//System.out.println("hello1");
 		while(rs.next())
 		{
 			categoryproducts.add(rs.getString("productName"));
 		}
 		break;
 		}
-		System.out.println("hello2");
+		//System.out.println("hello2");
 		for (String i : categoryproducts)
-		System.out.println(i);
+		//System.out.println(i);
 		
 		db.closeConnection(con);
 		
@@ -1129,10 +1129,10 @@ public class DBHandlerForUser {
 		
 		String query1 = "UPDATE FlipKartDatabase.BankDetails SET balance = balance - " + grandTotal + " WHERE creditCardNumber = " + cardNumber;
 		 int rows = stmt.executeUpdate(query1);
-		 System.out.println("Rowa effected by q1 : " + rows);
+		// System.out.println("Rowa effected by q1 : " + rows);
 		String query2 = "UPDATE FlipKartDatabase.BankDetails SET balance = balance + " + grandTotal + " WHERE creditCardNumber = 1";
 		rows = stmt.executeUpdate(query2);	
-		 System.out.println("Rowa effected by q2 : " + rows);
+		 //System.out.println("Rowa effected by q2 : " + rows);
 		con.close();			
 	}
 
@@ -1153,7 +1153,7 @@ public class DBHandlerForUser {
 			Statement stmt = (Statement) con.createStatement();
 			stmt.executeUpdate(query1);
 		}
-		System.out.println("PID : " + pId + "quantity : " + qty);
+		//System.out.println("PID : " + pId + "quantity : " + qty);
 	}	
 
 }
