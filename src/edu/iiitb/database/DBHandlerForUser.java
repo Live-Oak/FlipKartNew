@@ -1,30 +1,18 @@
 	package edu.iiitb.database;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-
-import org.apache.struts2.json.JSONPopulator;
-import org.apache.struts2.json.JSONUtil;
-
-	import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-
-	import edu.iiitb.model.Advertizement;
-import edu.iiitb.model.CartCookie;
-import edu.iiitb.model.CartModel;
+import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.CompareCartProduct;
-import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
