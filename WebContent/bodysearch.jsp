@@ -285,7 +285,7 @@ function name()
 						success : function(data) {
 							if(data.messageCount=="hello")
 								{
-									alert("no more products can be added for comparison");
+									alert("No more products can be added for comparison!!");
 									$('input:checkbox').removeAttr('checked');
 									$("#comparecart").show();
 									$("#producttocompare").show();
@@ -307,7 +307,7 @@ function name()
 								}
 							else if(data.messageCategoryMismatch=="yes")
 							{
-								alert("mismatched category!!");
+								alert("Category Mismatched !!");
 								$('input:checkbox').removeAttr('checked');
 								$("#comparecart").show();
 								$("#producttocompare").show();
