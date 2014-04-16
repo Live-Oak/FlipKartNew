@@ -27,7 +27,7 @@
    			<put-attribute name="body" value="/viewOrder.jsp"/>
    		</definition>
    		
-   		<definition name="RatingPage" extends="Administrator">
+   		<definition name="RatingPage" extends="start">
    			<put-attribute name="title" value="Rating and Reviews"/>
    			<put-attribute name="body" value="/giveSellerRating.jsp"/>
 		</definition>
