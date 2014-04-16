@@ -9,7 +9,8 @@ package edu.iiitb.model;
  */
 public class SellerReviews {
 
-	String userName , review ;
+	String userName , review , sellerID;
+	int rating ;
 
 	public String getUserName() {
 		return userName;
@@ -25,6 +26,23 @@ public class SellerReviews {
 
 	public void setReview(String review) {
 		this.review = review;
+	}
+
+	public String getSellerID() {
+		return sellerID;
+	}
+
+	public void setSellerID(String sellerID) {
+		String[] split = sellerID.split("_");
+		this.sellerID = split[0];
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 	

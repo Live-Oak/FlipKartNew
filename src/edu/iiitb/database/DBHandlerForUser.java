@@ -437,10 +437,10 @@ public class DBHandlerForUser {
 	public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 	{
 		
-		//System.out.println("ProductId in dbhandler : " +Productid);
+		System.out.println("ProductId in dbhandler : " +Productid);
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-		String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
+		String query="select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, s.sellerId, u.firstName, u.lastName from ProductInfo as p, Seller as s, Stock as st, UserCredantials as u where p.productId = '" + Productid + "' and p.productId = st.productId and st.sellerId = s.sellerId and s.userId = u.userId ";   
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
@@ -456,6 +456,9 @@ public class DBHandlerForUser {
 			obj.setDescription(rs.getString("description"));
 			obj.setBrand(rs.getString("brand"));
 			obj.setWarranty(rs.getInt("warranty"));
+			obj.setSellerID(rs.getString("sellerId"));
+			obj.setSellerFName(rs.getString("firstName"));
+			obj.setSellerLName(rs.getString("lastName"));
 			obj.setDiscount(discount);
 			ProductInfo.add(obj);
 		}

@@ -79,9 +79,6 @@ public class FetchCategoryDetails {
 			dbHandler.fetchCategoryID(cId);
 			dbHandler.fetchCategoryName(cName);
 			dbHandler.fetchSellerIdWithRole(sellerId);
-			
-			for(int i = 0;i<sellerId.size();i++)
-				System.out.println("Seller id is :: "+sellerId.get(i));
 			for(int i=0;i<cName.size();i++)
 				categoryId.add(cId.get(i)+"_"+cName.get(i));
 			return "success";

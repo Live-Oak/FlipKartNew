@@ -74,6 +74,12 @@ public class DBHandlerForSellerRating {
 		rating.setPositivePercentage(rating.getFiveStar()+rating.getFourStar());
 		con1.close();
 	}
+
+	public void insertReviewandrating(SellerReviews review, String string) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = db.createConnection();
+		query = "insert into FlipKartDatabase.ReviewNRating values(?,?,?,?,?)";
+	}
 	
 	
 	

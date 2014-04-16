@@ -10,18 +10,33 @@ public class ProductInfo {
 	int productID,offer,warranty,price;
 	String productName,categoryID,keywords,description,brand;
 	int discount;
-	public int getDiscount() {
-		return discount;
-	}
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
+	String sellerFName, sellerLName;
 	String image;
 	File myFile;
 	String myFileFileName,myFileContentType,sellerID;
 	int minimumQuantity;
 	int availableQuantity;
 	
+
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+	
+	public String getSellerFName() {
+		return sellerFName;
+	}
+	public void setSellerFName(String sellerFName) {
+		this.sellerFName = sellerFName;
+	}
+	public String getSellerLName() {
+		return sellerLName;
+	}
+	public void setSellerLName(String sellerLName) {
+		this.sellerLName = sellerLName;
+	}
 	public int getAvailableQuantity() {
 		return availableQuantity;
 	}
@@ -101,8 +116,6 @@ public class ProductInfo {
 	public void setMyFileContentType(String myFileContentType) {
 		this.myFileContentType = myFileContentType;
 	}
-
-
 
 	public int getProductID() {
 		return productID;
