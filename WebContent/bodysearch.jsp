@@ -181,6 +181,44 @@ function name()
 	var product_id_to_send;
 	$("#comparecart").show();
 	$(document).ready(function() {
+		$.ajax({
+			type : 'GET',
+			url : 'getProductsFromCartToCompare',
+			success : function(data) {
+				
+				if(data.count>0)
+					{
+								$("#comparecart").show();
+								$("#producttocompare").show();
+								
+									if (data.count == 1) 
+									{
+										$("#emptyComparediv").hide();
+										$("#compare_button").attr("disabled",true);
+										
+									}
+									if (data.count != 1) 
+									{
+										$("#compare_button").attr("disabled",false);
+									}
+									$("#producttocompare").show();
+									$("#products_to_compare").empty();
+									$.each(data.products,function(count,productcompare) {
+											product_id_to_send = productcompare.productId;
+											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																	+ "<center>"
+																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																	+ "<div class='productName'>"
+																	+ productcompare.productName
+																	+ "</div>"
+																	+"</center>"
+																	+ "</div>");
+										});
+								}
+					
+			}
+			});  // 2 ajax
 						$("#close_compare").click(function() {
 							$("#comparecart").hide();
 							$('.addtocompare').prop('checked', false);
