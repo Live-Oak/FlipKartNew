@@ -39,9 +39,7 @@ public class RemoveCompareProducts implements ServletResponseAware, ServletReque
 
 	public String execute()
 	{
-		System.out.println("i m in remove all products ");
 		try {
-
 			String content = null;
 			for (Cookie c : servletRequest.getCookies()) {
 				if (c.getName().equals("comparecart")) {
@@ -51,7 +49,6 @@ public class RemoveCompareProducts implements ServletResponseAware, ServletReque
 					Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 							.deserialize(content);
 					 pop.populateObject(cookie, map);
-//					cookie.getProductList().removeAll(new CompareCartProduct());
 					cookie.getProductList().clear();
 					content = JSONUtil.serialize(cookie);
 					c.setValue(content);
@@ -65,8 +62,6 @@ public class RemoveCompareProducts implements ServletResponseAware, ServletReque
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 		return "success";
 	}
 }
