@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.MyOrdersModel;
 
@@ -209,6 +210,41 @@ public class DBHandlerForMyOrders {
 		System.out.println("finally get order info");
 
 
+	}
+
+
+	public boolean stockUpdationAfterCancelOrder(int orderId) throws SQLException 
+	{
+		int pId  = 0;
+		int qty = 0;
+		String query1;
+		String query = "SELECT productId , quantity from FlipKartDatabase.OrderDescription where orderID = "+orderId ;
+		Connection con = db.createConnection();
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			pId = rs.getInt("productId");
+			qty = rs.getInt("quantity");
+			query1 = "Update FlipKartDatabase.Stock Set availableQuantity = availableQuantity + " + qty + " where productId = " + pId ;
+			Statement stmt = (Statement) con.createStatement();
+			stmt.executeUpdate(query1);
+		}
+		//System.out.println("PID : " + pId + "quantity : " + qty);
+		con.close();
+		
+		return true;
+	}
+
+
+	public boolean deleteOrder(int orderId) throws SQLException 
+	{
+        Connection con = db.createConnection();
+		
+		String query = "DELETE FROM FlipKartDatabase.Order as O, OrderDescription as OD, OrderShipingAddress as SA, Payment as P WHERE O.orderId = " + orderId + " AND OD.orderID = " + orderId + " AND SA.orderId = " + orderId + " AND P.orderId = " + orderId + "  ";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		
+		return true;
 	}
 
 }

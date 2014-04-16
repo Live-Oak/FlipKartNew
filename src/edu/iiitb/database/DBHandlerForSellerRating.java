@@ -3,6 +3,7 @@
  */
 package edu.iiitb.database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -73,6 +74,19 @@ public class DBHandlerForSellerRating {
 		}
 		rating.setPositivePercentage(rating.getFiveStar()+rating.getFourStar());
 		con1.close();
+	}
+
+	public void insertReviewandrating(SellerReviews review, int id) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = db.createConnection();
+		query = "insert into FlipKartDatabase.ReviewNRating values(?,?,?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setString(1,review.getSellerID());
+		stmnt.setString(2,"Good");
+		stmnt.setInt(3, id);
+		stmnt.setString(4, review.getReview());
+		stmnt.setInt(5, review.getRating());
+		stmnt.execute();
 	}
 	
 	

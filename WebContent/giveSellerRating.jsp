@@ -71,19 +71,29 @@
 			    <div class="tab-pane active" id="aaa">
 			    
 			    <div id="ratingForm">
-							<form action="">		
+							<form action="insertReview" method="post">		
 								 <div><br><br>
 								 	<label>Select Seller*</label>	
-								 	<select><option>
-								 		<option>
-								 		<option>
+								 	<select name="sellerID">
+							<s:iterator value="sellerId">
+								 		<option><s:property/></option>
+								 	</s:iterator>
 								 	</select>
 									<label>Star Rating*</label>
-									<input id="input-21" type="number" class="rating" min="1" max="5" step="1">
+									<select name="rating">
+							
+								 		<option>1</option>
+								 		<option>2</option>
+								 		<option>3</option>
+								 		<option>4</option>
+								 		<option>5</option>
+								 	</select>
+									
+									<!-- <input id="input-21" type="number" class="rating" min="1" max="5" step="1"> -->
 								</div>
 								<br><br>
 								<label>Review*</label>
-								<textarea rows="5" cols="70" style="border:solid 2px black;"></textarea>
+								<textarea name="review" required="true" rows="5" cols="70" style="border:solid 2px black;"></textarea>
 								<br><br>
 								<button>SUBMIT</button>
 							</form>

@@ -19,6 +19,25 @@ public class MyOrdersAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	ArrayList<MyOrdersModel> Orders;
+	
+	int OrderId;
+	String message;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public int getOrderId() {
+		return OrderId;
+	}
+
+	public void setOrderId(int orderId) {
+		OrderId = orderId;
+	}
 
 	public ArrayList<MyOrdersModel> getOrders() {
 		return Orders;
@@ -69,6 +88,52 @@ public class MyOrdersAction extends ActionSupport implements SessionAware {
 		}
 		
 		return "success";
+	}
+	
+	public String executeStockUpdateAfterCancelOrder()
+	{
+		DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
+		
+		try{
+			if(dbHandler.stockUpdationAfterCancelOrder(OrderId))
+			{
+				message = "updateStock";
+			}
+			else
+			{
+				message = "notupdateStock";
+			}
+			}
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "error";
+			}
+			
+			return "success";
+	}
+	
+	public String executeDeleteOrder()
+	{
+        DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
+		
+		try{
+			if(dbHandler.deleteOrder(OrderId))
+			{
+				message = "remove";
+			}
+			else
+			{
+				message = "notremove";
+			}
+			}
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "error";
+			}
+			
+			return "success";
 	}
 	
 

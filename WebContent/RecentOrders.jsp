@@ -216,6 +216,46 @@ $(document).ready(function(){
 </script>
  
 
+<script type="text/javascript">
+  function remove_order()
+  {
+	  $.ajax({
+		    type: 'POST',	    
+		    url:'UpdateStock ?OrderId=' + $("#orderid").attr(name),
+		    success: function(data){
+		    	
+		    var status1=data.message;
+		    if(status1=="updateStock")
+                {		    
+		    		 
+		    		$.ajax({
+		    		    type: 'POST',	    
+		    		    url:'RemoveOrder ?OrderId=' + data.OrderId,
+		    		    success: function(data){
+		    		    	
+		    		    	var status2=data.message;
+		    		    	if(status2=="remove")
+		    		    		{
+		    		    		     alert( "Order has been cancelled successfully" );
+		    							    			
+		    		    		}
+		    		    	else
+		    		    		{
+		    		    		     alert( "Order cancellation failed" );
+		    		    		}
+		    		     }});
+                }		    			
+		    	
+		    	else
+		    		{
+		    		   alert( "Order cancellation failed" );
+		    		}
+		     }});
+	  
+  }
+  
+ </script>
+
 
 </head>
 <body>
@@ -271,8 +311,8 @@ $(document).ready(function(){
            
             <s:if test="%{status=='PLACED' }">
                  <div class="lastUnit text_right">
-                      <a class="lastUnit text_right" style="color:black" onClick="if(confirm('Are you sure you want to cancel this order?'))
-                        alert('You are very brave!');
+                      <a class="lastUnit text_right" id="orderid" style="color:black" name="<s:property value="oredrNo" />" onClick="if(confirm('Are you sure you want to cancel this order?'))
+                        remove_order();
                         else alert('A wise decision!')" href="#">Cancel this Order</a> 
                  </div> 
             </s:if>
