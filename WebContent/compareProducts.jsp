@@ -117,8 +117,6 @@
 				<div class="col-md-3">
 						<div class="border">
 						<div class="borderForComparison">
-						
-<!-- 								<a class="close-reveal-modal" id="close">&#215;</a> -->
 								<br>
 								<center>
 										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="160px" >
@@ -181,9 +179,6 @@
 					
 					<%count1=count1+1; %>
 			</s:iterator>
-			
-									<!-- If 3 products to compare -->
-											
 										<%
 											if(count1==3) {
 											%>
