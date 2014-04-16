@@ -13,12 +13,20 @@ import edu.iiitb.model.GetOrderDetailsModel;
 public class GetOrderDetails extends ActionSupport implements SessionAware{
 	
 	private String Email;
-	private int OrderId;
+    int OrderId;
 	String message;
 	
 	private Map<String, Object> session;
 	
+	private GetOrderDetailsModel GOD = new GetOrderDetailsModel();
 	
+	
+	public GetOrderDetailsModel getGOD() {
+		return GOD;
+	}
+	public void setGOD(GetOrderDetailsModel gOD) {
+		GOD = gOD;
+	}
 	public Map<String, Object> getSession() {
 		return session;
 	}
@@ -71,24 +79,18 @@ public class GetOrderDetails extends ActionSupport implements SessionAware{
 	
 	public String execute()
 	{
-		GetOrderDetailsModel GOD = new GetOrderDetailsModel();
+		
 		DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
 		
-		
-		if(session.get("user") == null)
-		{
-	          dbHandler.GetOrderdetails(GOD, Email, OrderId);
-		}
-		else
-		{
-			User user1=(User) session.get("user");
-			dbHandler.GetOrderdetails(GOD, user1.getEmail(), OrderId);
-		}
-		
-		
-		
-		
-		
+	          try {
+				dbHandler.GetOrderdetails(GOD, Email, OrderId);
+				System.out.println(GOD.getQuantity());
+				System.out.println(GOD.getCity());
+				System.out.println(GOD.getCust_name());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		
 		

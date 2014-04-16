@@ -137,6 +137,12 @@
    		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
    		<put-attribute name="body" value="/OrderInfo.jsp"/>
    		</definition>
+   		
+   		<definition name="NotificationsTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Notifications"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
+   			<put-attribute name="body"   value="/Notifications.jsp"/>
+   		</definition>
    
    		<definition name="Apppage" extends="start">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>

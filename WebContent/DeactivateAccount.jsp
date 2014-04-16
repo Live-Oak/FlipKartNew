@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="edu.iiitb.model.UserEntry"%>
+<%@page import="edu.iiitb.model.User"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -67,7 +69,8 @@ li.padding {color: #848484;
 		<li class="padding2"><a class="padding3" href="ChangePassword">Change Password</a></li>
 		<li class="padding2"><a class="padding3" href="Addresses">Addresses</a></li>
 		<li class="padding2"><a class="padding3" href="UpdateEmail">Update Email</a></li>
-		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Deactivate Account</li>	
+		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Deactivate Account</li>
+		<li class="padding2"><a class="padding3" href="Notifications">Notifications</a></li>	
 		
 		
 		</ul>
@@ -75,15 +78,19 @@ li.padding {color: #848484;
 		<div class="col-md-6">
 			<h3> Deactivate Account</h3>
 			<br>
+			
 			<table style="width:400px">
 			<tr> <td style="text-align:left">Email Address </td> 
-			<td> </td> </tr>
+			<td> <label id="emailid"><% User u = (User) session.getValue("user");
+					out.print(u.getEmail());%></label>
+		    </td> </tr>
 			<tr> <td style="text-align:left">Password </td> 
-			<td> <input type="password" class="textbox" name="password" required> </td> </tr>
+			<td> <input type="password" class="textbox" name="password" > </td> </tr>
 			<tr> <td></td>
-			<td style="text-align:right"><input type="submit" class="btn btn-primary" value="CONFIRM DEACTIVATION"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td style="text-align:right"><input type="submit" class="btn btn-primary" value="CONFIRM DEACTIVATION" onClick="form.action='DeactivateAccountFromDB';"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    
 
 			
 			</div>	

@@ -38,7 +38,7 @@ public class DBHandlerForMyOrders {
 				" On OD.orderId = O.orderId"+
 				" Inner Join FlipKartDatabase.ProductInfo as PI "+
 				"ON PI.productId = OD.productId"+
-				" Where customerEmail = '" + email + "' ";
+				" Where customerEmail = '" + email + "' ORDER BY O.orderDate desc ";
 
 		ResultSet rs=db.executeQuery(query, con);
 		System.out.println("hellomyorders");
@@ -101,7 +101,7 @@ public class DBHandlerForMyOrders {
 				" On OD.orderId = O.orderId"+
 				" Inner Join FlipKartDatabase.ProductInfo as PI "+
 				"ON PI.productId = OD.productId"+
-				" Where customerEmail = '" + email + "' ";
+				" Where customerEmail = '" + email + "' ORDER BY O.orderDate desc ";
 
 		ResultSet rs=db.executeQuery(query, con);
 		System.out.println("hellomyorders");
@@ -166,9 +166,48 @@ public class DBHandlerForMyOrders {
 	}
 
 
-	public void GetOrderdetails(GetOrderDetailsModel gOD, String email,
-			int orderId) {
+	public void GetOrderdetails(GetOrderDetailsModel god, String email, int orderId) throws SQLException {
 		// TODO Auto-generated method stub
+
+		Connection con = db.createConnection();
+
+		String query= "SELECT O.orderId, O.status, O.orderDate, O.deliveryDate, SA.customerName, SA.customerEmail, SA.addressLine1,"+ 
+				" SA.addressLine2, SA.pincode, SA.city, SA.customerPhoneNumber, P.paymentType, sum(OD.quantity) as totalItems,"+
+				" sum(OD.quantity * OD.price) as totalAmount"+
+				" From  FlipKartDatabase.Order as O "+
+				" Inner Join FlipKartDatabase.Payment as P "+
+				" ON P.orderId = O.orderId "+
+				" Inner Join FlipKartDatabase.OrderDescription as OD "+
+				" ON O.orderId = OD.orderId "+
+				" Inner Join FlipKartDatabase.OrderShipingAddress as SA "+
+				" On SA.orderId = O.orderId "+
+				" Where O.orderId = " + orderId + " "+
+				" Group By O.orderId, O.status, O.orderDate, O.deliveryDate, SA.orderId, SA.customerName, SA.customerEmail, SA.addressLine1, "+ 
+				" SA.addressLine2, SA.pincode, SA.city, SA.customerPhoneNumber, P.paymentType ";
+
+		ResultSet rs=db.executeQuery(query, con);
+		System.out.println("get order info");
+
+		while(rs.next())
+		{
+			god.setOrderNo(rs.getInt("orderID"));
+			god.setStatus(rs.getString("status"));
+			god.setOrder_date(rs.getDate("orderDate"));
+			god.setDelievry_date(rs.getDate("deliveryDate"));
+			god.setCust_name(rs.getString("customerName"));
+			god.setAddress_line1(rs.getString("addressLine1"));
+			god.setAddress_line2(rs.getString("addressLine2"));
+			god.setPincode(rs.getString("pincode"));
+			god.setCity(rs.getString("city"));
+			god.setPhone_number(rs.getString("customerPhoneNumber"));
+			god.setPaymentType(rs.getString("paymentType"));
+			god.setQuantity(rs.getInt("totalItems"));
+			god.setTotalprice(Float.parseFloat(rs.getString("totalAmount")));
+
+		}
+		db.closeConnection(con);
+		System.out.println("finally get order info");
+
 
 	}
 

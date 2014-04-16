@@ -4,13 +4,77 @@ import java.sql.Date;
 
 public class GetOrderDetailsModel {
 	
-	int orderNo; 
+	int orderNo, quantity; 
 	
 	float price, totalprice;
 	
 	Date order_date, delievry_date;
 	
-	String status, seller;
+	String status, seller, cust_name, address_line1, address_line2, pincode, city, phone_number, paymentType ;
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getCust_name() {
+		return cust_name;
+	}
+
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
+	}
+
+	public String getAddress_line1() {
+		return address_line1;
+	}
+
+	public void setAddress_line1(String address_line1) {
+		this.address_line1 = address_line1;
+	}
+
+	public String getAddress_line2() {
+		return address_line2;
+	}
+
+	public void setAddress_line2(String address_line2) {
+		this.address_line2 = address_line2;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
 
 	public int getOrderNo() {
 		return orderNo;

@@ -1,30 +1,18 @@
 	package edu.iiitb.database;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-
-import org.apache.struts2.json.JSONPopulator;
-import org.apache.struts2.json.JSONUtil;
-
-	import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-
-	import edu.iiitb.model.Advertizement;
-import edu.iiitb.model.CartCookie;
-import edu.iiitb.model.CartModel;
+import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.CompareCartProduct;
-import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
@@ -390,7 +378,7 @@ public class DBHandlerForUser {
 		System.out.println("in db handler for user");
 		
 		prep1.execute();
-		
+		con.close();
 	}
 	
 	public void updatepassword(UserEntry user) throws SQLException
@@ -405,7 +393,7 @@ public class DBHandlerForUser {
 		System.out.println("update password");
 		
 		prep1.execute();
-		
+		con.close();
 	}
 	
 	public void updateaddress(UserEntry user) throws SQLException
@@ -426,7 +414,7 @@ public class DBHandlerForUser {
 		System.out.println("update address");
 		
 		prep1.execute();
-		
+		con.close();
 	}
 	
 	public void updateemail(UserEntry user) throws SQLException
@@ -441,7 +429,7 @@ public class DBHandlerForUser {
 		System.out.println("update email");
 		
 		prep1.execute();
-		
+		con.close();
 	}
 	
 
@@ -733,6 +721,7 @@ public class DBHandlerForUser {
 			name = rs.getString("categoryName");
 		}
 		//System.out.println("Name is : "+name);
+		con.close();
 		return name;
 	}
 	
@@ -748,6 +737,7 @@ public class DBHandlerForUser {
 			id = rs.getString("categoryId");
 		}
 		//System.out.println("Id is : " +id);
+		con.close();
 		return id;
 	}
 	
@@ -755,13 +745,14 @@ public class DBHandlerForUser {
 	{
 		ArrayList<String> categoryList = new ArrayList<String>();
 		Connection con = db.createConnection();
-		String query="Select categoryrelation.subCategoryId from category, categoryrelation where category.categoryId = '"+ categoryid +"'and category.categoryId = categoryrelation.categoryId";     
+		String query="Select CategoryRelation.subCategoryId from Category, CategoryRelation where Category.categoryId = '"+ categoryid +"'and Category.categoryId = CategoryRelation.categoryId";     
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
 			categoryList.add(rs.getString("subCategoryId"));
 			//System.out.println(rs.getString("subCategoryId"));
 		}
+		con.close();
 		return categoryList;
 	}
 	
@@ -769,7 +760,7 @@ public class DBHandlerForUser {
 	{
 		ArrayList<String> categoryList = new ArrayList<String>();
 		Connection con = db.createConnection();
-		String query="Select categoryrelation.subCategoryId from category as c1, category as c2, categoryrelation where c1.categoryId = '"+ categoryid +"' and c1.categoryId = categoryrelation.categoryId and c2.categoryId = categoryrelation.subCategoryId and c2.categoryName Like '"+ Parentcategory+"%'";     
+		String query="Select CategoryRelation.subCategoryId from Category as c1, Category as c2, CategoryRelation where c1.categoryId = '"+ categoryid +"' and c1.categoryId = CategoryRelation.categoryId and c2.categoryId = CategoryRelation.subCategoryId and c2.categoryName Like '"+ Parentcategory+"%'";     
 
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
@@ -777,6 +768,7 @@ public class DBHandlerForUser {
 			categoryList.add(rs.getString("subCategoryId"));
 			//System.out.println(rs.getString("subCategoryId"));
 		}
+		con.close();
 		return categoryList;
 	}
 	
@@ -1039,6 +1031,7 @@ public class DBHandlerForUser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public int saveOrderAddressDetails( custometAddressDetail addressDetail) throws SQLException
@@ -1052,7 +1045,7 @@ public class DBHandlerForUser {
 		{
 			orderId = Integer.parseInt( rs.getString("orderId"));
 		}
-		
+		con.close();
 		Connection con1 = db.createConnection();
 		String query1 = "INSERT INTO FlipKartDatabase.OrderShipingAddress (orderID, customerName, customerEmail, addressLine1," +
 				" addressLine2,  city, pinCode, customerPhoneNumber) Values (?, ?, ?, ?, ?, ?, ?, ?);" ;
@@ -1201,7 +1194,7 @@ public class DBHandlerForUser {
 		{
 			bankName = rs.getString("bankName");
 		}
-		
+		con.close();
 		return bankName;
 	}
 
@@ -1255,6 +1248,18 @@ public class DBHandlerForUser {
 			stmt.executeUpdate(query1);
 		}
 		//System.out.println("PID : " + pId + "quantity : " + qty);
+		con.close();
+	}
+
+	public void deactivateAccount(String email) throws SQLException {
+		// TODO Auto-generated method stub
+		DBConnectivity db = new DBConnectivity();
+		Connection con = db.createConnection();
+		
+		String query = "DELETE FROM FlipKartDatabase.UserCredantials WHERE  email = '" + email + "' ";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		
 	}	
 
 }

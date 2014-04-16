@@ -50,8 +50,10 @@ li.padding {color: #848484;
 
 
 </head>
+
 <body>
-     <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
+
+<%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
 
 <div class="col-md-1"></div>
 <div class="col-md-10" style="background-color: #FFFFFF">
@@ -64,72 +66,21 @@ li.padding {color: #848484;
 		<li class="padding"><h4>ORDERS</h4></li>
 		<li class="padding2"><a class="padding3" href="MyOrders">My Orders</a></li>
 		<li class="padding"><h4>SETTINGS</h4></li>
-		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Personal Information</li>
+		<li class="padding2"><a class="padding3" href="Personal-info">Personal Information</a></li>
 		<li class="padding2"><a class="padding3" href="ChangePassword">Change Password</a></li>
 		<li class="padding2"><a class="padding3" href="Addresses">Addresses</a></li>
 		<li class="padding2"><a class="padding3" href="UpdateEmail">Update Email</a></li>
 		<li class="padding2"><a class="padding3" href="DeactivateAccount">Deactivate Account</a></li>
-		<li class="padding2"><a class="padding3" href="Notifications">Notifications</a></li>
+		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Notifications</li>
 		
 		</ul>
 		</div>
 		<div class="col-md-6">
-			<h3> Personal Information</h3>
+			<h3> Notifications</h3>
 			<br>
 			
-			<form>
-			<center>
-	<s:if test="hasActionMessages()">
-		<div class="welcome">
-      		<s:actionmessage/>
-  		 </div>
-	
-	</s:if>
-	<br>
-		
-</center>
-			<table style="width:400px">
-			<tr> <td style="text-align:left">First Name </td> 
-			<td> <input type="text" class="textbox" name="firstname" value="<s:property value="user.firstName"/>"> </td> </tr>
-			<tr> <td style="text-align:left">Last Name </td> 
-			<td> <input type="text" class="textbox" name="lastname" value="<s:property value="user.lastName"/>"> </td> </tr>
-			<tr> <td style="text-align:left">Mobile Number </td> 
-			<td> <input type="text" id="phone" class="textbox" name="mobilenumber" value="<s:property value="user.Phonenumber"/>" onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br> 
-			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
-			    <script type="text/javascript">
-        			var specialKeys = new Array();
-        			specialKeys.push(8); //Backspace
-        			function IsNumber(e) 
-				{
-        		    	var keyCode = e.which ? e.which : e.keyCode
-            			var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-            			document.getElementById("error_phone").style.display = ret ? "none" : "inline";
-            			return ret;
-        			}
-			    </script>
-			    </td> </tr>
-			
-			
-			<tr> <td style="text-align:left">Landline Number </td> 
-			<td> <input type="text" class="textbox" name="landlinenumber"> </td> </tr>
-			 <tr> <td style="text-align:left">Gender </td> 
-			<td> <select id="gender" name="gender">
-				        <option> <s:property value="user.gender"/> </option>
-						<option value="Female">Female</option>
-						<option value="Male">Male</option>
-						
-						
-		    </select>	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td> </tr>
-			<tr> <td></td>
-			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES" onClick="form.action='UpdatePersonalInfo';"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
-		    </td></tr>
-		    </table>
-		    </form>
 		</div>
-		
-		
 		</div>
-
 
 </body>
 </html>
