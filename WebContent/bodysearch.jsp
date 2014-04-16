@@ -58,16 +58,12 @@ function name()
 			$("#newdivision").empty();
 			$(".filters").each(function() {
 				if ($(this).is(':checked')) {
-					 //alert("hi");
 					  pId.push($(this).attr("brandname"));
-					 //alert(pId);
 				   }
 			});
 			$(".filtersprice").each(function() {
 				if ($(this).is(':checked')) {
-					//alert("hi");
 					 price.push($(this).attr("price"));
-					//alert(pId);
 					}
 			});	
 			var categoryId = $("#categoryid").val();
@@ -279,7 +275,6 @@ function name()
 				
 				if($(".addtocompare").is(':checked'))
 					{
-					alert("true");
 				var pId = $(event.target).attr("pid");
 				var categoryId = $("#category").val();
 				categoryId = categoryId.trim();
@@ -385,7 +380,6 @@ function name()
 	
 					else
 						{
-						alert("false");
 						}
 											
 											$("#compare_button").click(
