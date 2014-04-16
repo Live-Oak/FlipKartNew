@@ -37,10 +37,7 @@ public class CompareProductAjax
 	public String getProductDetail() throws SQLException
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
-		System.out.println("kwhdk");
-		System.out.println("product nbame is"+productname);
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
-		System.out.println(productInfoAdded.get(0).getImage());
 		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
 		{
 			setMessagestock("Out of Stock");
