@@ -711,7 +711,7 @@ $(document).ready(function(){
 	
 	
 	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
-		<div id="cartHeader" class="cart-header">CART(0)</div>
+		<div id="cartHeader" class="cart-header">CART(0)</div><div id="notification" style=" color:red;margin-left:20px;display:none"></div>
 		<div class="cartContainer">
 			<center>
 			<div id="emptyCart" class="empty-cart">
