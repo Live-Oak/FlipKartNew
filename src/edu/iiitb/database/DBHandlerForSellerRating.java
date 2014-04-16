@@ -71,6 +71,7 @@ public class DBHandlerForSellerRating {
 			else 
 				rating.setFiveStar((rs1.getInt(1) * 100 )/rating.getTotalReview());
 		}
+		rating.setPositivePercentage(rating.getFiveStar()+rating.getFourStar());
 		con1.close();
 	}
 	

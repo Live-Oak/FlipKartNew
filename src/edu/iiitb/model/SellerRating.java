@@ -10,7 +10,7 @@ package edu.iiitb.model;
 public class SellerRating {
 
 	String sellerName , description;
-	int oneStar , twoStar , threeStar , fourStar , fiveStar ,totalReview;
+	int oneStar , twoStar , threeStar , fourStar , fiveStar ,totalReview ,positivePercentage ;
 	public String getSellerName() {
 		return sellerName;
 	}
@@ -58,6 +58,12 @@ public class SellerRating {
 	}
 	public void setTotalReview(int totalReview) {
 		this.totalReview = totalReview;
+	}
+	public int getPositivePercentage() {
+		return positivePercentage;
+	}
+	public void setPositivePercentage(int positivePercentage) {
+		this.positivePercentage = positivePercentage;
 	}
 	
 	
