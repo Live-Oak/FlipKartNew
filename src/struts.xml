@@ -222,12 +222,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
-			
-			<action name="getProductDetailfilter" class="edu.iiitb.action.getProductList" method="getProductDetail">
-				<result name="success" type="json"></result>
-			</action>
-			
-			<action name="getProductDetailfilterprice" class="edu.iiitb.action.getProductList" method="getProductDetailprice">
+			<action name="getProductDetailcombined" class="edu.iiitb.action.getProductList" method="getProductDetailcombined">
 				<result name="success" type="json"></result>
 			</action>
 

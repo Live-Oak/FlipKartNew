@@ -542,7 +542,9 @@ $(document).ready(function(){
 						if(session.getAttribute("user") == null)
 						{
 					%>
-					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a><br>					
+					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a>
+									
+					
 					<%
 						}else
 						{
@@ -558,7 +560,6 @@ $(document).ready(function(){
 				</form>
 				
 				<div class="col-md-2">
-					
 					<%
 						if(session.getAttribute("user") == null)
 						{
