@@ -11,8 +11,15 @@ public class MyOrdersModel {
 	String prodName, photo, status , orderPersonName;
 	
 	float price, totalprice;
+	long days_ago;
 	
 	
+	public long getDays_ago() {
+		return days_ago;
+	}
+	public void setDays_ago(long days_ago) {
+		this.days_ago = days_ago;
+	}
 	public float getTotalprice() {
 		return totalprice;
 	}

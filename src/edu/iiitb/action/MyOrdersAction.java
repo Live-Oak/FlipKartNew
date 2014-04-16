@@ -114,17 +114,19 @@ public class MyOrdersAction extends ActionSupport implements SessionAware {
 	}
 	
 	public String executeDeleteOrder()
-	{
+	{System.out.println("order cancel successfully3");
         DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
 		
 		try{
 			if(dbHandler.deleteOrder(OrderId))
 			{
 				message = "remove";
+				System.out.println("order cancel successfully4");
 			}
 			else
 			{
 				message = "notremove";
+				System.out.println("order cancel successfully5");
 			}
 			}
 			catch (Exception e) {
@@ -134,6 +136,23 @@ public class MyOrdersAction extends ActionSupport implements SessionAware {
 			}
 			
 			return "success";
+	}
+	
+	public String executeForNotification()
+	{
+		User user1=(User) session.get("user");
+		
+		DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
+		try {
+			Orders = dbHandler.getNotificationData(user1.getEmail());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		
+		return "success";
 	}
 	
 

@@ -1,0 +1,25 @@
+.mycontent
+{
+    display:none;
+}
+.no-notifications
+{
+	color: #007FB8;
+	font-size: 15px;
+	font-weight: bold;
+}
+.notification-popup-header
+{
+	border-bottom: 1px solid #EOE4E7;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 7px;
+}
+.whatrnotif1
+{
+	color: #565656;
+}
+.whatrnotif2
+{
+	color: #848484;
+}

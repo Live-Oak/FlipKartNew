@@ -523,6 +523,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="success" type="tiles">RatingPage</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		
+		<action name="UpdateStock" class="edu.iiitb.action.MyOrdersAction" method="executeStockUpdateAfterCancelOrder">
+			<result name="success" type="json" />
+		</action>
+		
+		<action name="RemoveOrder" class="edu.iiitb.action.MyOrdersAction" method="executeDeleteOrder">
+			<result name="success" type="json" />
+		</action>
 			
 	</package>
 </struts>

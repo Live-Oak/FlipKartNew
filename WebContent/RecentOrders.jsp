@@ -221,34 +221,34 @@ $(document).ready(function(){
   {
 	  $.ajax({
 		    type: 'POST',	    
-		    url:'UpdateStock ?OrderId=' + $("#orderid").attr(name),
-		    success: function(data){
+		    url:'UpdateStock?OrderId=' + $("#orderid").attr("name"),
+		    success: function(data1){
 		    	
-		    var status1=data.message;
-		    if(status1=="updateStock")
+		    var status1=data1.message;
+		    if(status1 == "updateStock")
                 {		    
 		    		 
 		    		$.ajax({
 		    		    type: 'POST',	    
-		    		    url:'RemoveOrder ?OrderId=' + data.OrderId,
-		    		    success: function(data){
+		    		    url:'RemoveOrder?OrderId=' + data1.orderId,
+		    		    success: function(data2){
 		    		    	
-		    		    	var status2=data.message;
-		    		    	if(status2=="remove")
+		    		    	var status2=data2.message;
+		    		    	if(status2 == "remove")
 		    		    		{
 		    		    		     alert( "Order has been cancelled successfully" );
 		    							    			
 		    		    		}
 		    		    	else
 		    		    		{
-		    		    		     alert( "Order cancellation failed" );
+		    		    		     alert( "Order cancellation failed 2" );
 		    		    		}
 		    		     }});
                 }		    			
 		    	
 		    	else
 		    		{
-		    		   alert( "Order cancellation failed" );
+		    		   alert( "Order cancellation failed 1" );
 		    		}
 		     }});
 	  

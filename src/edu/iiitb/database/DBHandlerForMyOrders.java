@@ -237,14 +237,79 @@ public class DBHandlerForMyOrders {
 
 
 	public boolean deleteOrder(int orderId) throws SQLException 
-	{
+	{System.out.println("order cancel successfully2");
         Connection con = db.createConnection();
 		
-		String query = "DELETE FROM FlipKartDatabase.Order as O, OrderDescription as OD, OrderShipingAddress as SA, Payment as P WHERE O.orderId = " + orderId + " AND OD.orderID = " + orderId + " AND SA.orderId = " + orderId + " AND P.orderId = " + orderId + "  ";
+		String query = "DELETE FROM FlipKartDatabase.Payment Where orderId = " + orderId + " ";
 		Statement st=(Statement) con.createStatement();
 		st.executeUpdate(query);
+		System.out.println("order cancel successfully1");
+		
+		con.close();
 		
 		return true;
+	}
+
+
+	public ArrayList<MyOrdersModel> getNotificationData(String email) throws SQLException 
+	{
+		Connection con = db.createConnection();
+		ArrayList<MyOrdersModel> notification = new ArrayList<MyOrdersModel>();
+		
+		String query = "Select O.orderId, O.orderDate, O.deliveryDate, O.status "+
+                       " From FlipKartDatabase.Payment as P "+
+                       " Inner Join FlipKartDatabase.Order as O "+
+	                   " ON O.orderId = P.orderId "+
+                       " Inner Join FlipKartDatabase.OrderShipingAddress as SA "+
+	                   " On O.orderId = SA.orderId "+ 
+                       " Where SA.email = '" + email + "' "+
+                       " Order By deliveryDate, /*dispatchDate,*/orderDate  desc ";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		Date date1 = new Date();
+		
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		Calendar cal3 = Calendar.getInstance();
+
+		cal1.setTime(date1);
+		
+		while(rs.next())
+		{  
+
+			MyOrdersModel obj = new MyOrdersModel();
+
+			
+			Date date2 = rs.getDate("orderDate");
+			Date date3 = rs.getDate("deliveryDate");
+			
+			
+			cal2.setTime(date2);
+			cal2.setTime(date3);
+			long diff_in_days1 = ( (cal1.getTimeInMillis() - cal2.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
+			long diff_in_days2 = ( (cal1.getTimeInMillis() - cal3.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
+
+			
+				
+				obj.setOredrNo(rs.getInt("orderId"));
+			    obj.setStatus(rs.getString("status"));
+			    if(rs.getString("status").equals("PLACE") || rs.getString("status").equals("PLACE") )
+			    {
+			    	obj.setDays_ago(diff_in_days1);
+			    }
+			    
+			    else
+			    {
+			    	obj.setDays_ago(diff_in_days2);
+			    }
+				
+
+				notification.add(obj);
+				
+		}
+		db.closeConnection(con);
+		System.out.println("helloNotification");
+		return notification;
 	}
 
 }

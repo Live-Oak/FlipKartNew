@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="asset/CSS/jquery-ui.css">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 	<link rel="stylesheet" href="asset/CSS/reveal.css">	
+	<link href="asset/CSS/notification.css" rel="stylesheet">
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
@@ -29,6 +30,7 @@
 	<script src="asset/JavaScripts/drophover.js"></script>
 	<script src="asset/JavaScripts/jquery.reveal.js"></script>
 	<script src="asset/JavaScripts/cart.js"></script>
+	<script src="asset/JavaScripts/notification.js"></script>
 	
 	
 	
@@ -562,6 +564,61 @@ $(document).ready(function(){
 						<button type="submit" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>
 				</form>
+				
+				
+				
+				
+				
+						<% 
+				if(session.getAttribute("user") == null) 
+				{ 
+		%>
+	
+	<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title="">
+		 
+		 <div id ="popover_content_wrapper" class="hide">Hi Hello</div> 
+		 <div class="mycontent hide">
+		 		<div class="notification-popup-header">Notifications</div>
+		 		<hr>
+  				<div class="no-notifications">Get notifications on price drops!</div>
+  				<br>
+   				<div class="whatrnotif1">What are Notifications??</div>
+				<br>
+   				<div class="whatrnotif2">
+   					Notifications are timely alerts including updates to your order status
+   		  			and price drops on products you are interested in.
+   		 			<br>
+   		 			Sign in now to start receiving notifications. 
+   			  	</div>
+   					 
+		</div>
+		
+		<% 
+				}
+				else 
+				{ 
+		%>
+		
+	<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title="">
+		 
+		 <div id ="popover_content_wrapper" class="hide">Hi Hello</div> 
+		 <div class="mycontent hide">
+		 		<div class="notification-popup-header">Notifications</div>
+  				  <div></div>
+   					 
+   					 This is user's page
+		</div>	
+		
+		<%  } %>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				<div class="col-md-2">
 					<%
