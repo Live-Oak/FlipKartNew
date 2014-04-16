@@ -328,6 +328,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
+			
+			<action name="reviewandrating" class="edu.iiitb.action.FetchCategoryDetails">
+			<result name="success" type="tiles">RatingPage</result>
+			<result name="error">/error.jsp</result>
+		</action>
 
 			<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
 				<interceptor-ref name="secureStack"></interceptor-ref>

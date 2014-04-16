@@ -532,7 +532,7 @@ $(document).ready(function(){
 										<li class="divider" role="presentation"></li>
 										<li><a href="MyOrders">Orders</a></li>
 										<li class="divider" role="presentation"></li>
-										<li><a href="#">Review & rating</a></li>
+										<li><a href="reviewandrating">Review & rating</a></li>
 										<li class="divider" role="presentation"></li>
 										<li><a href="logout">Logout</a></li>
 									

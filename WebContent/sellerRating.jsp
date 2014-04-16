@@ -41,6 +41,9 @@
 					<s:property value="rating.positivePercentage" />
 					% Positive
 				</h1>
+				Based on
+				<s:property value="rating.totalReview" />
+				ratings
 				<!-- Calculated percentage positive review -->
 			</div>
 			<div class="col-md-6">
@@ -90,33 +93,24 @@
 
 			</div>
 			<div class="col-md-2"></div>
-			<br>
-			<br> <br>
-			<br> <br>
-			<br> <br>
-			<br> <br>
-			<br> <br>
-			<br>
-			<br>
-			<br> <br>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br> <br> <br> <br>
 			<div class="page-header">
 				<h1>Reviews</h1>
 			</div>
 			<s:iterator value="reviews">
 				<div class="well">
 
-				<div class="col-md-4">
-					<b> User : </b>	<s:property value="userName" /> 
-				</div>
-				<div class="col-md-2">
-
-				</div>
-				<div class="col-md-6">
-					<b> Review : </b>	<s:property value="review" />
-				</div>
+					<div class="col-md-4">
+						<b> User : </b>
+						<s:property value="userName" />
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-6">
+						<b> Review : </b>
+						<s:property value="review" />
+					</div>
 
 
 				</div>
@@ -124,7 +118,7 @@
 			</s:iterator>
 
 
-
+<br><br><br>
 		</div>
 	</div>
 
