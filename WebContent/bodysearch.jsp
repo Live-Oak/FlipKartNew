@@ -205,9 +205,9 @@ function name()
 																	+ "<center>"
 																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																	+ "<div class='productName'>"
+																	+ "<div class='productName'> <div class='giveMeEllipsis'>"
 																	+ productcompare.productName
-																	+ "</div>"
+																	+ "</div> </div>"
 																	+"</center>"
 																	+ "</div>");
 										});
@@ -251,9 +251,9 @@ function name()
 															+ "<center>"
 															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-															+ "<div class='productName'>"
+															+ "<div class='productName'> <div class='giveMeEllipsis'>"
 															+ productcompare.productName
-															+ "</div>"
+															+ "</div></div>"
 															+"</center>"
 															+ "</div>");
 									
@@ -298,9 +298,9 @@ function name()
 																+ "<center>"
 																+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 																+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																+ "<div class='productName'>"
+																+ "<div class='productName'><div class='giveMeEllipsis'>"
 																+ productcompare.productName
-																+ "</div>"
+																+ "</div></div>"
 																+"</center>"
 																+ "</div>");
 									});
@@ -319,9 +319,9 @@ function name()
 															+ "<center>"
 															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-															+ "<div class='productName'>"
+															+ "<div class='productName'><div class='giveMeEllipsis'>"
 															+ productcompare.productName
-															+ "</div>"
+															+ "</div></div>"
 															+"</center>"
 															+ "</div>");
 								});
