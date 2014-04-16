@@ -9,4 +9,9 @@ package edu.iiitb.action;
  */
 public class InsertReviews {
 
+	public String execute()
+	{
+		return "success";
+	}
+	
 }
