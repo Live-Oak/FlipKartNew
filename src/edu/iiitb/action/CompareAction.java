@@ -78,9 +78,6 @@ ServletResponseAware, ServletRequestAware
 	public void setCategoryproductsfiltered(ArrayList<String> categoryproductsfiltered) {
 		this.categoryproductsfiltered = categoryproductsfiltered;
 	}
-	
-	
-	
 	public ArrayList<ProductInfo> getProductinfo() {
 		return productinfo;
 	}
@@ -93,12 +90,9 @@ ServletResponseAware, ServletRequestAware
 	public void setProductID(int productId) {
 		this.productId = productId;
 	}
-
 	public String execute()
 	{
-		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
-		
-		 
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();	 
 		try {
 				String content = null;
 				boolean cookieFound = false;
@@ -176,6 +170,5 @@ ServletResponseAware, ServletRequestAware
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
 	
 }
