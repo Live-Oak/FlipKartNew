@@ -268,7 +268,14 @@ $(document).ready(function(){
     <div class="line order-expanded">
     	<div class="col-md-12">
            <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
-           <hr>
+           
+            <s:if test="%{status=='PLACED' }">
+                 <div class="lastUnit text_right">
+                      <a class="lastUnit text_right" style="color:black" href="#">Cancel this Order</a> 
+                 </div> 
+            </s:if>
+             
+            <hr>
 <div class="col-md-12">
 <div class="line js-order-details">
    <div class="line order-item">
