@@ -20,6 +20,8 @@
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 <script src="asset/JavaScripts/jquery-ui.js"></script>
+<script src="asset/JavaScripts/jquery.min.js"></script>
+<script src="asset/JavaScripts/blockUI.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -46,6 +48,14 @@
 </script>
 
 <script type="text/javascript">
+	function block()
+	{
+	 $.blockUI({ message: $('#loading...') }); 
+	 setTimeout($.unblockUI, 1000); 
+	}
+</script>
+
+<script type="text/javascript">
 function name()
 {
 	var temp='<b> Showing all the products in the category </b><br><br>';
@@ -66,7 +76,7 @@ function name()
 					 price.push($(this).attr("price"));
 					}
 			});	
-			var categoryId = $("#categoryid").val();
+			var categoryName = $("#categoryname").val();
 			
 			 $.ajax({
 				    type: 'POST',
@@ -74,7 +84,7 @@ function name()
 				    data : {
 				    	brand : pId.join(","),
 				    	price : price.join(","),
-				    	category : categoryId,
+				    	categoryName : categoryName,
 				    	count : cnt,
 				    	countprice : cnt1
 				    },
@@ -431,7 +441,7 @@ function name()
 				<hr>
 				<input type="hidden" id="category"
 					value="<s:property value="productinfo.get(2).categoryID"/>">
-					<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(0).categoryID"/>">
+					<input type="hidden" id="categoryname" value="<s:property value="categoryname"/>">
 					<s:iterator value="companyList">
 						<input type="checkbox" id="brand" class="filters" name="checkbox"
 							brandname="<s:property />">

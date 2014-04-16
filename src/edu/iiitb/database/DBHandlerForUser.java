@@ -612,28 +612,40 @@ public class DBHandlerForUser {
 	
 	public ArrayList<Linklists> getlinktothecategory(String category) throws SQLException
 	{
-		System.out.println("Category in question is : " +category);
+		//System.out.println("Category in question is : " +category);
 		ArrayList<Linklists> Listoflink = new ArrayList<Linklists>();
 		Connection con = db.createConnection();
-		String query="select c1.categoryName as childCategory, c2.categoryName as parentCategory from Category as c1, Category as c2, CategoryRelation where c2.categoryName = '"+category+"' and c2.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = c1.categoryId";       
+		String query="select distinct(c2.categoryName) as parentCategory, c1.categoryName as childCategory from Category as c1, Category as c2, CategoryRelation where c2.categoryName = '"+category+"' and c2.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = c1.categoryId";       
 		ResultSet rs=db.executeQuery(query, con);
 		if(rs.next() == false)
 		{
-			query="select distinct(c1.categoryName) as childCategory, c2.categoryName as ParentCategory from Category as c1, Category as c2, CategoryRelation where c1.categoryName = '"+category+"' and c1.categoryId = CategoryRelation.categoryId and CategoryRelation.subCategoryId = c2.categoryId";
+			query="select distinct(c1.categoryName) as ParentCategory, c2.categoryName as childCategory from Category as c1, Category as c2, CategoryRelation where c1.categoryName = '"+category+"' and c1.categoryId = CategoryRelation.categoryId and CategoryRelation.subCategoryId = c2.categoryId";
 			rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				// This is the case when their is no parent category and we need only child category
+				//System.out.println("product is : " +rs.getString("childCategory"));
+				Linklists obj = new Linklists();
+				obj.setParentCategory(rs.getString("parentCategory"));
+				obj.setCategory(rs.getString("childCategory"));
+				Listoflink.add(obj);
+			}
 		}
 		else
 		{
 			rs.previous();
+			if(rs.next())
+			{
+				// This is the case of child category
+				//System.out.println("product is : " +rs.getString("childCategory"));
+				Linklists obj = new Linklists();
+				obj.setParentCategory(rs.getString("childCategory"));
+				obj.setCategory(rs.getString("parentCategory"));
+				Listoflink.add(obj);
+			}
 		}
-		while(rs.next())
-		{
-			//System.out.println("product is : " +rs.getString("childCategory"));
-			Linklists obj = new Linklists();
-			obj.setCategory(rs.getString("parentCategory"));
-			obj.setParentCategory(rs.getString("childCategory"));
-			Listoflink.add(obj);
-		}
+		
+		
 		db.closeConnection(con);
 		return Listoflink;
 	}

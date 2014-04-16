@@ -101,8 +101,8 @@ public class getProductList  extends ActionSupport
 			pricelist = price.split(",");
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try{
-			categoryName = dbHandlerForUser.getnameonid(category);
-			// get name on category
+			category = dbHandlerForUser.getidonname(categoryName);
+			// get id on category
 			
 			categoryList.add(category);
 			// add the first value to list
