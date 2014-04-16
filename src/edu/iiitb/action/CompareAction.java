@@ -100,7 +100,6 @@ ServletResponseAware, ServletRequestAware
 		
 		 
 		try {
-			System.out.println("in compareaction");
 				String content = null;
 				boolean cookieFound = false;
 				for (Cookie c : servletRequest.getCookies()) {
@@ -115,10 +114,6 @@ ServletResponseAware, ServletRequestAware
 						 
 						productinfo=dbHandlerForUser.getproductinfoforcomparison(cookie.getProductList()); 
 						
-						for(ProductInfo p : productinfo)
-						{
-							System.out.println("yup"+p.getCategoryID());
-						}
 						categoryproducts=dbHandlerForUser.getproductsforcomparison(cookie.getProductList());
 						
 						
@@ -151,14 +146,7 @@ ServletResponseAware, ServletRequestAware
 				}
 			}
 		}
-		for(String i : categoryproducts)
-		{
-			System.out.println("filterd"+i);
-		}
-		return "success";
-		
-		
-	
+		return "success";	
 	}
 	@Override
 	public void setServletRequest(HttpServletRequest servletRequest) {
