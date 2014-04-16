@@ -453,6 +453,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 			
+			<action name="removeAllProductFromCompareCart" class="edu.iiitb.action.RemoveCompareProducts">
+			<result name="success" type="json"/>
+			</action>
+			
 			<action name="getProductsFromCartToCompare" class="edu.iiitb.action.CompareProducts"
 				method="getCartProducts">
 				<result name="success" type="json" />
