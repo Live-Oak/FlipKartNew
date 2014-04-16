@@ -22,7 +22,7 @@
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="asset/CSS/cart.css" rel="stylesheet">
 	<link href="asset/CSS/dropdown.css" rel="stylesheet">
-	
+	<link href="asset/CSS/revolving.css" rel="stylesheet">	
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -57,6 +57,7 @@ function validate()
     
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#floatingBarsG").hide();
 	$("#login_button").click(function()
 			{
 		$.ajax({
@@ -66,10 +67,11 @@ $(document).ready(function(){
 		    	
 		    	$("#check_email_password").html(data.message);
 		    	var status=$("#check_email_password").html();
+		    	
 		    	if(status=="available")
 		    		{
-		    		
-					$("#form_login").submit();		    			
+		    		$("#floatingBarsG").show();
+		    		$("#form_login").submit();		    			
 		    		}
 		    	else
 		    		{
@@ -460,6 +462,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$("#get_orderinfo_button").click(function()
 			{
 		$.ajax({
@@ -645,6 +648,25 @@ $(document).ready(function(){
 			<button type="button" id="login_button" class="css_button">LOGIN</button>
 		</form>
 <br>
+
+								<div id="floatingBarsG">
+								<div class="blockG" id="rotateG_01">
+								</div>
+								<div class="blockG" id="rotateG_02">
+								</div>
+								<div class="blockG" id="rotateG_03">
+								</div>
+								<div class="blockG" id="rotateG_04">
+								</div>
+								<div class="blockG" id="rotateG_05">
+								</div>
+								<div class="blockG" id="rotateG_06">
+								</div>
+								<div class="blockG" id="rotateG_07">
+								</div>
+								<div class="blockG" id="rotateG_08">
+								</div>
+								</div>
 		<div class="forgot_password">
 		    <p>FORGOT YOUR PASSWORD?</p>
 				<form class="forgot_password_form" id="forgot_password_form" action="forgotpassword">
