@@ -10,6 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ModelDriven;
 
+import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.database.DBHandlerForSellerRating;
 import edu.iiitb.model.SellerReviews;
 import edu.iiitb.model.User;
@@ -26,9 +27,11 @@ public class InsertReviews implements ModelDriven<SellerReviews> , SessionAware{
 	public String execute()
 	{
 		User user = (User) session.get("user");
+		DBHandlerForAdmin dbAdmin = new DBHandlerForAdmin();
 		DBHandlerForSellerRating dbHandler = new DBHandlerForSellerRating();
 		try {
-			dbHandler.insertReviewandrating(review , user.getEmail());
+			int id = dbAdmin.fetchUserIDIntForm(user.getEmail());
+			dbHandler.insertReviewandrating(review , id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
