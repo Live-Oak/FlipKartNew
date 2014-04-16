@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="edu.iiitb.model.MyOrdersModel"%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -584,7 +585,7 @@ $(document).ready(function(){
 				{ 
 		%>
 	
-	<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title="">
+	<a href="#"><img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title=""> </a>
 		 
 		 <div id ="popover_content_wrapper" class="hide">Hi Hello</div> 
 		 <div class="mycontent hide">
@@ -616,13 +617,19 @@ $(document).ready(function(){
 		 		<div class="notification-popup-header">Notifications</div>
   				  <div></div>
    					 
-   					 This is user's page
+   					 <table class="table" style="background-color: #F6F6F6;">
+   					 <s:iterator value="Orders">
+   					 <tr><td>Your Flipkart order <strong> <s:property value="oredrNo"/> </strong> has been <strong> <s:property value="status"/> </strong>
+   					 <br> (<s:property value="days_ago"/> days ago)
+   					 </td></tr>
+   					 </s:iterator>
+   					 </table>
 		</div>	
 		
 		<%  } %>
 				
 				
-				
+			
 				
 				
 				
