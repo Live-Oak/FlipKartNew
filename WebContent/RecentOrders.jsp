@@ -271,7 +271,9 @@ $(document).ready(function(){
            
             <s:if test="%{status=='PLACED' }">
                  <div class="lastUnit text_right">
-                      <a class="lastUnit text_right" style="color:black" href="#">Cancel this Order</a> 
+                      <a class="lastUnit text_right" style="color:black" onClick="if(confirm('Are you sure you want to cancel this order?'))
+                        alert('You are very brave!');
+                        else alert('A wise decision!')" href="#">Cancel this Order</a> 
                  </div> 
             </s:if>
              
