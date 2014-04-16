@@ -121,7 +121,7 @@
 <!-- 								<a class="close-reveal-modal" id="close">&#215;</a> -->
 								<br>
 								<center>
-										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="160px" >
 										<br><br><br>
 																									
 								<div class="giveMeEllipsis">
