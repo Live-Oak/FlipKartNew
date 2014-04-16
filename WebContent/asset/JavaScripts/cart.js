@@ -62,6 +62,7 @@ $(document).ready(function(){
 		    url:'updateProductQuantity',
 		    success: function(data){
 		    	showCart(data);
+		    	$("#notification").html(data.message).show().delay(2000).hide(1000);
 		     }});	
 	});
 
@@ -103,10 +104,9 @@ else
 		});
 		$("#totalCost").html("Total Cost : "+totalcost);
 		$(".quantityInput").keyup(function(e){
-			var keyCode = e.which ? e.which : e.keyCode;
-			var ret = ((keyCode >= 48 && keyCode <= 57));
+			
 			var value = $(".quantityInput").val();
-			if(ret && value > 0)
+			if(Number(value) && Number(value) > 0)
 			{
 				$(this).parent().find(".save").show();
 			}

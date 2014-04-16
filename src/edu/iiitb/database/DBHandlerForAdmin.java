@@ -541,7 +541,7 @@ public class DBHandlerForAdmin {
 		System.out.println("Product Available Quantity updated");
 	}
 
-	private int fetchProductAvailableQuantity(int productId) throws SQLException {
+	public int fetchProductAvailableQuantity(int productId) throws SQLException {
 		// TODO Auto-generated method stub
 		String query = "select availableQuantity from Stock where productId = '"+productId+"'";
 		ResultSet rs=db.executeQuery(query, con);

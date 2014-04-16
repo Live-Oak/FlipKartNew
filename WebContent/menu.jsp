@@ -542,7 +542,9 @@ $(document).ready(function(){
 						if(session.getAttribute("user") == null)
 						{
 					%>
-					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a><br>					
+					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a>
+									
+					
 					<%
 						}else
 						{
@@ -558,7 +560,6 @@ $(document).ready(function(){
 				</form>
 				
 				<div class="col-md-2">
-					
 					<%
 						if(session.getAttribute("user") == null)
 						{
@@ -711,7 +712,7 @@ $(document).ready(function(){
 	
 	
 	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
-		<div id="cartHeader" class="cart-header">CART(0)</div>
+		<div id="cartHeader" class="cart-header">CART(0)</div><div id="notification" style=" color:red;margin-left:20px;display:none"></div>
 		<div class="cartContainer">
 			<center>
 			<div id="emptyCart" class="empty-cart">
