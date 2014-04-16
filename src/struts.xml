@@ -518,6 +518,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="success" type="tiles">Administrator</result>
 			<result name="error">/error.jsp</result>
 		</action>	
+		
+		<action name="insertReview" class="edu.iiitb.action.InsertReviews">
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+		</action>
 			
 	</package>
 </struts>
