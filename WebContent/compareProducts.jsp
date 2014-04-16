@@ -14,18 +14,17 @@
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
 		<link href="asset/CSS/Index.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link href="asset/CSS/bootstrap.css" rel="stylesheet">
+		<!-- Bootstrap theme -->
+		<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<!-- Bootstrap core CSS -->
-	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	
-	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
-	<script src="asset/JavaScripts/bootstrap.min.js"></script>
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
-	<script src="asset/JavaScripts/jquery-ui.js"></script>
-	<script src="asset/JavaScripts/compareProducts.js"></script>
-	
+		<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+		<script src="asset/JavaScripts/bootstrap.min.js"></script>
+		<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+		<script src="asset/JavaScripts/jquery-ui.js"></script>
+		<script src="asset/JavaScripts/compareProducts.js"></script>
+		
 	
 <script>
 	$(document).ready(function()
@@ -240,9 +239,7 @@
 										
 			</div>
 	<div class="col-md-1 "></div>
-		
 </div>
-
 </body>
 </html>
 

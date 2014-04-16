@@ -20,22 +20,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/index.jsp</result>
 		</action>
 
-
-	<!-- 	<action name="loginAction" class="edu.iiitb.action.LoginAction">
-			<result name="admin" type="redirectAction">
-				<param name="actionName">Admin</param>
-				<param name="namespace">/</param>
-			</result>
-			<result name="user" type="redirectAction">
-				<param name="actionName">MenuHome</param>
-				<param name="namespace">/</param>
-			</result>
-			<result name="seller">/menu.jsp</result>
-			<result name="invalid" type="json"></result>
-			<result name="error">/error.jsp</result>
-			<result name="success" type="tiles">LoginPage</result>
-		</action> -->
-
 		<action name="MenuHome">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result>/menu.jsp</result>
@@ -212,9 +196,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json"></result>
 			</action>
 						
-<!-- 			<action name="getdetails_of_product_to_compare" class="edu.iiitb.action.CompareAction" method="formproduct_array_list">
-				<result name="success" type="json"></result>
-			</action> -->
 			<action name="apppage">
 				<result type="tiles">Apppage</result>
 			</action>
