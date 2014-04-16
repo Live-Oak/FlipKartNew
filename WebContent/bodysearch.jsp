@@ -68,16 +68,12 @@ function name()
 			$("#newdivision").empty();
 			$(".filters").each(function() {
 				if ($(this).is(':checked')) {
-					 //alert("hi");
 					  pId.push($(this).attr("brandname"));
-					 //alert(pId);
 				   }
 			});
 			$(".filtersprice").each(function() {
 				if ($(this).is(':checked')) {
-					//alert("hi");
 					 price.push($(this).attr("price"));
-					//alert(pId);
 					}
 			});	
 			var categoryName = $("#categoryname").val();
@@ -191,25 +187,184 @@ function name()
 	var product_id_to_send;
 	$("#comparecart").show();
 	$(document).ready(function() {
-						$("#close_compare").click(function() {
-							$("#comparecart").hide();
-							$('.addtocompare').prop('checked', false);
-						});
+		$.ajax({
+			type : 'GET',
+			url : 'getProductsFromCartToCompare',
+			success : function(data) {
+				
+				if(data.count>0)
+					{
+								$("#comparecart").show();
+								$("#producttocompare").show();
+								
+									if (data.count == 1) 
+									{
+										$("#emptyComparediv").hide();
+										$("#compare_button").attr("disabled",true);
+										
+									}
+									if (data.count != 1) 
+									{
+										$("#compare_button").attr("disabled",false);
+									}
+									$("#producttocompare").show();
+									$("#products_to_compare").empty();
+									$.each(data.products,function(count,productcompare) {
+											product_id_to_send = productcompare.productId;
+											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																	+ "<center>"
+																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																	+ "<div class='productName'> <div class='giveMeEllipsis'>"
+																	+ productcompare.productName
+																	+ "</div> </div>"
+																	+"</center>"
+																	+ "</div>");
+										});
+								}
+					
+			}
+			});  // 2 ajax
+			$("#close_compare").click(function() {
+				$.ajax({
+					type : 'POST',
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					url : 'removeAllProductFromCompareCart',
+					success : function(data) {
+
+						$("#comparecart").hide();
+						$('.addtocompare').prop('checked', false);
+
+					}
+				});
+
+			});
 
 						
 
-						$(document).on('click','.remove',function(e) {
-												var target = e.currentTarget;
-												var pId = $(target).attr("pid");
-												$.ajax({
-														type : 'POST',
-														contentType : "application/x-www-form-urlencoded; charset=utf-8",
-														data : {
-																productId : pId,
-																},
-														url : 'removeProductFromCompareCart',
-														success : function(data) {
+			$(document).on('click','.remove',function(e) {
+				var target = e.currentTarget;
+				var pId = $(target).attr("pid");
+				$.ajax({
+						type : 'POST',
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						data : {
+								productId : pId,
+								},
+						url : 'removeProductFromCompareCart',
+						success : function(data) {
+							$("#producttocompare").show();
+							$("#products_to_compare").empty();
+							$.each(data.products,function(count,productcompare) {
+									product_id_to_send = productcompare.productId;
+									$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+															+ "<center>"
+															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+															+ "<div class='productName'> <div class='giveMeEllipsis'>"
+															+ productcompare.productName
+															+ "</div></div>"
+															+"</center>"
+															+ "</div>");
+									
+								});
+								if(data.count==0)
+									{
+										$("#products_to_compare").hide();
+										$("#emptyComparediv").show();
+										$("#compare_button").attr("disabled",true);
+									}		
+								if(data.count==1)
+									{
+									$("#compare_button").attr("disabled",true);
+									}
+						}
+					});
+		});
+			$(".addtocompare").change(function(event) {
+				
+				if($(".addtocompare").is(':checked'))
+					{
+				var pId = $(event.target).attr("pid");
+				var categoryId = $("#category").val();
+				categoryId = categoryId.trim();
+				$.ajax({
+						type : 'GET',
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
+						success : function(data) {
+							if(data.messageCount=="hello")
+								{
+									alert("No more products can be added for comparison!!");
+									$('input:checkbox').removeAttr('checked');
+									$("#comparecart").show();
+									$("#producttocompare").show();
+									$("#products_to_compare").show();
+									$("#products_to_compare").empty();
+									$("#products_to_compare").show();
+									$.each(data.products,function(count,productcompare) {
+										product_id_to_send = productcompare.productId;
+										$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																+ "<center>"
+																+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																+ "<div class='productName'><div class='giveMeEllipsis'>"
+																+ productcompare.productName
+																+ "</div></div>"
+																+"</center>"
+																+ "</div>");
+									});
+								}
+							else if(data.messageCategoryMismatch=="yes")
+							{
+								alert("Category Mismatched !!");
+								$('input:checkbox').removeAttr('checked');
+								$("#comparecart").show();
+								$("#producttocompare").show();
+								$("#products_to_compare").show();
+								$("#products_to_compare").empty();
+								$.each(data.products,function(count,productcompare) {
+									product_id_to_send = productcompare.productId;
+									$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+															+ "<center>"
+															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+															+ "<div class='productName'><div class='giveMeEllipsis'>"
+															+ productcompare.productName
+															+ "</div></div>"
+															+"</center>"
+															+ "</div>");
+								});
+							}
+							else
+							{
+							$.ajax({
+									type : 'GET',
+									url : 'getProductsFromCartToCompare',
+									success : function(data) {
+										
+														$("#comparecart").show();
+														$("#producttocompare").show();
+														$("#products_to_compare").show();
+														if (data.count == undefined|| data.count == 0) 
+														{
+															
+															$("#compare_button").attr("disabled",true);
+														}
+														else 
+														{
+															if (data.count == 1) 
+															{
+																$("#emptyComparediv").hide();
+																$("#compare_button").attr("disabled",true);
+																
+															}
+															if (data.count != 1) 
+															{
+																$("#compare_button").attr("disabled",false);
+															}
 															$("#producttocompare").show();
+															$("#products_to_compare").show();
 															$("#products_to_compare").empty();
 															$.each(data.products,function(count,productcompare) {
 																	product_id_to_send = productcompare.productId;
@@ -217,95 +372,25 @@ function name()
 																							+ "<center>"
 																							+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 																							+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																							+ "<div class='productName'>"
+																							+ "<div class='productName'> <div class='giveMeEllipsis'>"
 																							+ productcompare.productName
-																							+ "</div>"
+																							+ "</div></div>"
 																							+"</center>"
 																							+ "</div>");
-																	
 																});
-																if(data.count==0)
-																	{
-																		$("#products_to_compare").hide();
-																		$("#emptyComparediv").show();
-																		$("#compare_button").attr("disabled",true);
-																	}		
-																if(data.count==1)
-																	{
-																	$("#compare_button").attr("disabled",true);
-																	}
 														}
-													});
-										});
-								$(".addtocompare").change(function(event) {
-									
-														if($(".addtocompare").is(':checked'))
-															{
-														var pId = $(event.target).attr("pid");
-														var categoryId = $("#category").val();
-														categoryId = categoryId.trim();
-														$.ajax({
-																type : 'GET',
-																contentType : "application/x-www-form-urlencoded; charset=utf-8",
-																url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
-																success : function(data) {
-																	if(data.messageCount=="hello")
-																		{
-																			alert("no more products can be added for comparison");
-																		}
-																	else if(data.messageCategoryMismatch=="yes")
-																	{
-																		alert("mismatched category!!");
-																	}
-																	else
-																	{
-																	$.ajax({
-																			type : 'GET',
-																			url : 'getProductsFromCartToCompare',
-																			success : function(data) {
-																				
-																								$("#comparecart").show();
-																								$("#producttocompare").show();
-																								if (data.count == undefined|| data.count == 0) 
-																								{
-																									
-																									$("#compare_button").attr("disabled",true);
-																								}
-																								else 
-																								{
-																									if (data.count == 1) 
-																									{
-																										$("#emptyComparediv").hide();
-																										$("#compare_button").attr("disabled",true);
-																									}
-																									if (data.count != 1) 
-																									{
-																										$("#compare_button").attr("disabled",false);
-																									}
-																									alert("hello");
-																									$("#producttocompare").show();
-																									$("#products_to_compare").empty();
-																									$.each(data.products,function(count,productcompare) {
-																											product_id_to_send = productcompare.productId;
-																											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
-																																	+ "<center>"
-																																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
-																																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																																	+ "<div class='productName'>"
-																																	+ productcompare.productName
-																																	+ "</div>"
-																																	+"</center>"
-																																	+ "</div>");
-																										});
-																								}
-																					}
-																				
-																			});  // 2 ajax
-																	}	
-																}						// success of first ajax
-															});			// 1 ajax
-																				// else
-															} 						// if
+											}
+										
+									});  // 2 ajax
+							}	
+						}						// success of first ajax
+					});			// 1 ajax
+										// else
+					} 						// if
+	
+					else
+						{
+						}
 											
 											$("#compare_button").click(
 													function() {

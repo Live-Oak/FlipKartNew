@@ -14,18 +14,17 @@
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
 		<link href="asset/CSS/Index.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link href="asset/CSS/bootstrap.css" rel="stylesheet">
+		<!-- Bootstrap theme -->
+		<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<!-- Bootstrap core CSS -->
-	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	
-	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
-	<script src="asset/JavaScripts/bootstrap.min.js"></script>
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
-	<script src="asset/JavaScripts/jquery-ui.js"></script>
-	<script src="asset/JavaScripts/compareProducts.js"></script>
-	
+		<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+		<script src="asset/JavaScripts/bootstrap.min.js"></script>
+		<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+		<script src="asset/JavaScripts/jquery-ui.js"></script>
+		<script src="asset/JavaScripts/compareProducts.js"></script>
+		
 	
 <script>
 	$(document).ready(function()
@@ -58,7 +57,7 @@
 	      	    						    			product_id_to_send=productcompare.productId;
 	      	    						    			obj.hide();
 	      	    						    			obj.parent().html(
-	      	    						    					"<img src='"+productcompare.image+"' height='140px' width='auto' /><br><br><br>"+		    												    				
+	      	    						    					"<img src='"+productcompare.image+"' height='140px' width='160px' /><br><br><br>"+		    												    				
 	      	    					    						"<div> <style>'-webkit-line-clamp: 1;'</style> <font size='3' color='black'>"+productcompare.productName+"</font><br></div><hr>"+
 	      	    					    						"<strong> <font size='4px' color='#BB0000'>"+productcompare.price+"</strong><hr><font size='2px' color='#BB0000'>"  
 	      	    					    						+data.messagestock+"<br><hr><font size='3px' color='#76553B'>"+data.messageoffer+"</font><hr><font size='2px' color='#000000'>"+productcompare.brand+
@@ -117,11 +116,9 @@
 				<div class="col-md-3">
 						<div class="border">
 						<div class="borderForComparison">
-						
-<!-- 								<a class="close-reveal-modal" id="close">&#215;</a> -->
 								<br>
 								<center>
-										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="160px" >
 										<br><br><br>
 																									
 								<div class="giveMeEllipsis">
@@ -181,9 +178,6 @@
 					
 					<%count1=count1+1; %>
 			</s:iterator>
-			
-									<!-- If 3 products to compare -->
-											
 										<%
 											if(count1==3) {
 											%>
@@ -245,9 +239,7 @@
 										
 			</div>
 	<div class="col-md-1 "></div>
-		
 </div>
-
 </body>
 </html>
 

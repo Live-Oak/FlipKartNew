@@ -174,7 +174,7 @@ a {
 
 #order-section .order-item {
     border-bottom: 1px dotted #CCCCCC;
-    margin: 0 15px;
+    margin: 10 0px;
     padding: 10px 0;
 }
 .size1of8 {
@@ -184,7 +184,7 @@ a {
     text-align: center;
 }
 .size2of7 {
-    width: 28.5714%;
+    width: 32.5714%;
 }
 .tmargin10 {
     margin-top: 10px;
@@ -249,66 +249,72 @@ $(document).ready(function(){
 <s:iterator value="Orders">
 
 <div class="col-md-12" id="order-section">
-<div class="fk-inf-scroll-item order physical collapsed">
-<div class="line order-collapsed fk-hidden toggle-details">
-<div class="unit size1of7">
-<strong>    <s:property value="oredrNo"/>   </strong>
-</div>
-<div class="unit size3of5 smallText"> <s:property value="prodName"/> (Total: <s:property value="quantity"/> item) </div>
-<div class="unit size1of6">
-<span class="smallText">Order Total:</span>
-<strong>   Rs.<s:property value="totalprice"/>  </strong>
-</div>
-<div class="lastUnit text_right">
-<%-- <a class="toggle-details" title="Show order details"></a>  --%>
-</div>
-
-</div>
-<div class="line order-expanded">
-  <div class="unit size2of5">
-  <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
-  </div>
-  <div class="lastUnit text_right">
-  <%-- <a class="toggle-details" title="Hide order details"></a> --%>
-  </div>
-  </div>
+   <div class="fk-inf-scroll-item order physical collapsed ">
+      <div class="line order-collapsed fk-hidden toggle-details">
+          <div class="unit size1of7">
+               <strong>    <s:property value="oredrNo"/>   </strong>
+          </div>
+          <div class="unit size3of5 smallText"> <s:property value="prodName"/> (Total: <s:property value="quantity"/> item) </div>
+          <div class="unit size1of6">
+                <span class="smallText">Order Total:</span>
+                <strong>   Rs.<s:property value="totalprice"/>  </strong>
+          </div>
+          <div class="lastUnit text_right">
+                <%-- <a class="toggle-details" title="Show order details"></a>  --%>
 
 
+          </div>
+      </div>
+    <div class="line order-expanded">
+    	<div class="col-md-12">
+           <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
+           
+            <s:if test="%{status=='PLACED' }">
+                 <div class="lastUnit text_right">
+                      <a class="lastUnit text_right" style="color:black" href="#">Cancel this Order</a> 
+                 </div> 
+            </s:if>
+             
+            <hr>
+<div class="col-md-12">
 <div class="line js-order-details">
-<div class="line order-item">
-<div class="unit size1of8 fk-text-center">
-<img src="<s:property value="photo" />" alt="Smiley face" width="40" height="60">
+   <div class="line order-item">
+        <div class="unit size1of8 fk-text-center">
+             <img src="<s:property value="photo" />" alt="Smiley face" width="40" height="60">
+        </div>
+        <div class="unit size2of7">
+              <s:property value="prodName"/>
+              <p class="smallText tmargin10"> Qty: <s:property value="quantity"/> </p>
+        </div>
+        <div class="unit size1of6">
+              <div> Rs. <s:property value="price"/> </div>
+        </div>
+        <div class="unit size2of7">
+              <p class="greyText bmargin10"> Delivered on <s:property value="delievry_date"/> </p>
+        </div>
+        <div class="lastUnit text_right"> </div>
+   </div>
+
+   <div class="line order-total">
+        <div class="line">
+              <div class="unit size2of5">
+                    <span class="smallText">Seller:</span>
+                    <span class="rmargin20">WS Retail</span>
+                    <span class="smallText fk-inline-block">Date:</span>
+                    <s:property value="order_date"/> 
+              </div> 
+              <div class="lastUnit text_right">
+                    <span class="smallText">Order Total:</span>
+                    <strong>  Rs.<s:property value="totalprice"/>  </strong>
+              </div>
+
+        </div>
+   </div>
+
 </div>
-<div class="unit size2of7">
-<s:property value="prodName"/>
-<p class="smallText tmargin10"> Qty: <s:property value="quantity"/> </p>
 </div>
-<div class="unit size1of6">
-<div> Rs. <s:property value="price"/> </div>
-</div>
-<div class="unit size2of7">
-<p class="greyText bmargin10"> Delivered on <s:property value="delievry_date"/> </p>
-</div>
-<div class="lastUnit text_right"> </div>
 </div>
 
-<div class="line order-total">
-<div class="line">
-<div class="unit size2of5">
-  <span class="smallText">Seller:</span>
-  <span class="rmargin20">WS Retail</span>
-  <span class="smallText fk-inline-block">Date:</span>
-  <s:property value="order_date"/> 
-</div> 
-<div class="lastUnit text_right">
-<span class="smallText">Order Total:</span>
-<strong>  Rs.<s:property value="totalprice"/>  </strong>
-</div>
-
-</div>
-</div>
-
-</div>
  
   
 
@@ -318,6 +324,7 @@ $(document).ready(function(){
 
 
 
+</div>
 </div>
 </s:iterator>
 </div>

@@ -118,8 +118,6 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getProductDetails() {
 			try {
-					System.out.println(productId);
-					System.out.println("category "+this.category);
 					String content = null;
 					boolean cookieFound = false;
 					if(productId!=0 && category!=null)
@@ -179,15 +177,11 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-
 		return "success";
-
 	}
 
 	public String getCartProducts() {
 			try {
-System.out.println("1");
 				String content = null;
 				boolean cookieFound = false;
 				for (Cookie c : servletRequest.getCookies()) {
@@ -211,9 +205,7 @@ System.out.println("1");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		System.out.println("hereit2");
 		count = products.size();
-		System.out.println(count);
 		return "success";
 	}
 
@@ -272,14 +264,4 @@ System.out.println("1");
 	public void setMessageCategoryMismatch(String messageCategoryMismatch) {
 		this.messageCategoryMismatch = messageCategoryMismatch;
 	}
-
-	
-	
-
-	
-	
-	
-	
-	
-
 }

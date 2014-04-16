@@ -13,12 +13,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.model.User;
+import edu.iiitb.model.UserEntry;
 
 /**
  * @author paras
  *
  */
-public class DeleteUser extends ActionSupport{
+public class DeleteUser extends ActionSupport implements SessionAware {
 	
 	String id;
 	private Map<String, Object> session;
