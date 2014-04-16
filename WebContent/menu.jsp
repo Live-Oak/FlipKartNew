@@ -68,6 +68,7 @@ $(document).ready(function(){
 		    	var status=$("#check_email_password").html();
 		    	if(status=="available")
 		    		{
+		    		
 					$("#form_login").submit();		    			
 		    		}
 		    	else
