@@ -219,10 +219,20 @@ function name()
 					
 			}
 			});  // 2 ajax
-						$("#close_compare").click(function() {
-							$("#comparecart").hide();
-							$('.addtocompare').prop('checked', false);
-						});
+			$("#close_compare").click(function() {
+				$.ajax({
+					type : 'POST',
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					url : 'removeAllProductFromCompareCart',
+					success : function(data) {
+
+						$("#comparecart").hide();
+						$('.addtocompare').prop('checked', false);
+
+					}
+				});
+
+			});
 
 						
 
