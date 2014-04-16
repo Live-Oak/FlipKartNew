@@ -49,6 +49,33 @@ li.padding {color: #848484;
 </style>
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#deactivateAccount_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'check_user_password ?email=' + $("#emailid").html() + '&password=' + $("#password").val(),
+		    success: function(data){
+		    	
+		    	var status=data.message;
+		    	if(status=="available")
+		    		{
+		    		 
+		    			 $("#form_deactivateAccount").submit();
+		    		}
+		    			 
+				else
+		    		{
+		    			$("#check_password").html("Invalid password");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>
+
 
 </head>
 <body>
@@ -78,18 +105,19 @@ li.padding {color: #848484;
 		<div class="col-md-6">
 			<h3> Deactivate Account</h3>
 			<br>
-			
+			<form id="form_deactivateAccount" name="form_deactivateAccount" action="DeactivateAccountFromDB"  method="post">
 			<table style="width:400px">
 			<tr> <td style="text-align:left">Email Address </td> 
 			<td> <label id="emailid"><% User u = (User) session.getValue("user");
 					out.print(u.getEmail());%></label>
 		    </td> </tr>
 			<tr> <td style="text-align:left">Password </td> 
-			<td> <input type="password" class="textbox" name="password" > </td> </tr>
-			<tr> <td></td>
-			<td style="text-align:right"><input type="submit" class="btn btn-primary" value="CONFIRM DEACTIVATION" onClick="form.action='DeactivateAccountFromDB';"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td> <input type="password" id="password" class="textbox"> </td> </tr>
+			<tr>  <td> <label id="check_password"></label> </td>
+			<td style="text-align:right"><input type="button" id="deactivateAccount_button" class="btn btn-primary" value="CONFIRM DEACTIVATION" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    </form>
 		    
 
 			
