@@ -125,7 +125,7 @@ function name()
 					    	temp += '<div class="giveMeEllipsis">';
 					    	temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
 					    	temp += '<font size="4" color="black">'+stock.productName+'</font><br></a></div>';
-					    	temp += '<hr>';
+					    	temp += '<hr><div style="height:50px">';
 					    	
 					    	if(stock.offer == 0)
 				    		{
@@ -133,13 +133,14 @@ function name()
 				    		}
 				    		else
 				    		{
+				    			temp += '<font color="#848484" size="4">Rs. <strike>'+stock.price+'</strike> '+stock.discount+'% OFF</font><br>';
 				    			var a = stock.price;
 			    				var b = stock.offer;
 			    				var c = a-b;
 			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
-					    	temp += '<hr>';
+					    	temp += '</div><hr>';
 					    	temp += 'This item has manufacturer warranty of '+stock.warranty+' years.<br>';
 					    	temp += '<hr>';
 					    	if(stock.availableQuantity == 0)
@@ -415,14 +416,17 @@ function name()
 								</a>
 							</div>
 							<hr>
+							<div style="height:50px">
 							<s:if test="%{offer==0}">
 								<font size="5px" color="#76553B"> Rs. <s:property
-										value="price" /><br>
+										value="price" /><br><br>
 								</font>
 							</s:if>
 							<s:if test="%{offer>0}">
+								<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
 								<font size="5px" color="#76553B"> Rs. ${price-offer} </font>
 							</s:if>
+							</div>
 							<hr>
 							This item has manufacturer warranty of
 							<s:property value="warranty" />

@@ -588,6 +588,7 @@ public class DBHandlerForUser {
 		rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
+			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
 			//System.out.println("product is : " +rs.getString("productName") );
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
@@ -601,6 +602,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			obj.setDiscount(discount);
 			ProductInfo.add(obj);
 		}
 		db.closeConnection(con);
@@ -791,7 +793,7 @@ public class DBHandlerForUser {
 			
 		while(rs.next())
 		{
-				
+			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
 			//System.out.println("product is : " +rs.getString("productName") );
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
@@ -805,6 +807,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			obj.setDiscount(discount);
 			ProductInfo.add(obj);
 		}
 	
@@ -863,6 +866,7 @@ public class DBHandlerForUser {
 		
 		while(rs.next())
 		{
+			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
@@ -875,6 +879,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			obj.setDiscount(discount);
 			ProductInfo.add(obj);
 		}
 		db.closeConnection(con);
