@@ -487,6 +487,16 @@ $(document).ready(function(){
 
 </script>  
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#button").click(function()
+			{
+			var search = $("#search").val();
+			window.location="Browseresult?keyword=" + search;
+			});
+});
+</script>
+
 </head>
 
 <body>
@@ -508,10 +518,10 @@ $(document).ready(function(){
 		</div>
 
 			<div class="container">
-				<form action="Browseresult"  method="post">
+				<form action=""  method="post">
 					<div class="col-md-5">	
 						<br>
-						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
+						  <input id="search" type="text" name="keyword" class="form-control" id="funkystyling" placeholder=" Search for a product category or brand"> 
 						</div>
 					<div class="col-md-2">
 						<%
@@ -559,7 +569,7 @@ $(document).ready(function(){
 						}
 					%>
 						
-						<button type="submit" class="btn btn-warning" style="width:140px;">SEARCH</button>
+						<button id="button" type="button" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>
 				</form>
 				
