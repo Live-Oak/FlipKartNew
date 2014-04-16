@@ -356,7 +356,6 @@ function name()
 															$("#producttocompare").show();
 															$("#products_to_compare").show();
 															$("#products_to_compare").empty();
-															alert("hi");
 															$.each(data.products,function(count,productcompare) {
 																	product_id_to_send = productcompare.productId;
 																	$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
