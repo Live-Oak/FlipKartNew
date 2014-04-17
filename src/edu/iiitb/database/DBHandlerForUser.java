@@ -22,6 +22,7 @@ import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.customerCartDetail;
 import edu.iiitb.model.custometAddressDetail;
+import edu.iiitb.model.getKeywords;
 import edu.iiitb.model.getUserBankDetails;
 
 
@@ -176,6 +177,30 @@ public class DBHandlerForUser {
 		}
 		db.closeConnection(con);
 		return advertize;
+	}
+	public ArrayList<getKeywords> getKeywordList(String keywordToCheck) throws SQLException, IOException
+	{
+		ArrayList<getKeywords> KeywordList = new ArrayList<getKeywords>();
+		DBConnectivity db=new DBConnectivity();	
+		//System.out.println("Keyword to check is " +keywordToCheck);
+
+		String query="Select distinct(p.productId), p.image, p.productName " +
+				" from ProductInfo as p, (select distinct(k.keyword), k.productId " +
+											" from Keywords as k " +
+											" where k.keyword like '%"+keywordToCheck+"%') as keyw " +
+				" where p.productId = keyw.productId ORDER BY p.productId desc LIMIT 5";
+		Connection con= db.createConnection();		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			//System.out.println("product is "+rs.getString("productId"));
+			getKeywords obj = new getKeywords();
+			obj.setProductId(rs.getString("productId"));
+			obj.setProductImage(rs.getString("image"));
+			obj.setProductName(rs.getString("productName"));
+			KeywordList.add(obj);
+		}
+		return KeywordList;
 	}
 	
 	public ArrayList<Advertizement> getadvertizementforfront(String Type, ArrayList<String> categorylist) throws SQLException, IOException
