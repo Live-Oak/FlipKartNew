@@ -1,5 +1,6 @@
 $(document).on('click','#butt',function(){
 	$("#slideout_inner").toggleClass("out_inner");
+	$("#butt").toggleClass("butt_out");
 	
 });
 
