@@ -514,154 +514,148 @@ $(document).ready(function(){
 <!-- The first layer with logo and search -->
 
 	<div class="navbar-fixed-top">
-	<div class="col-md-1"></div>
-		<div class="col-md-2">
-			&nbsp;&nbsp;&nbsp;
-			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="40px" width="160px"> 
-				<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
-		</div>
-
-			<div class="container">
-				<form action=""  method="post">
-					<div class="col-md-5">	
-						<br>
-						  <input id="search" type="text" name="keyword" class="form-control" id="funkystyling" placeholder=" Search for a product category or brand"> 
-						</div>
-					<div class="col-md-2">
-					
-						<!-- First track order -->
-							<%
-								if (session.getAttribute("user") == null) {
-							%>
-							&nbsp;&nbsp;<a href="#" class="big-link Close"
-								data-reveal-id="myOrderModal">Track Order</a>
-		
-		
-							<%
-								} else {
-							%>
-		
-							&nbsp;&nbsp;<a href="MyOrders"
-								class="big-link Close">Track Order</a><br>
-							<%
-								}
-							%>
-							
-						<!-- Second is notification track order -->
-
-							<%
-								if (session.getAttribute("user") == null) {
-							%>
-		
-							<a href="#"><img src="asset/Images/bell.JPG" height="25px"
-								data-contentwrapper=".mycontent" rel="popover" data-title="">
-							</a>
-		
-							<div id="popover_content_wrapper" class="hide">Hi Hello</div>
-							<div class="mycontent hide">
-								<div class="notification-popup-header">Notifications</div>
-								<hr>
-								<div class="no-notifications">Get notifications on price
-									drops!</div>
-								<br>
-								<div class="whatrnotif1">What are Notifications??</div>
-								<br>
-								<div class="whatrnotif2">
-									Notifications are timely alerts including updates to your order
-									status and price drops on products you are interested in. <br>
-									Sign in now to start receiving notifications.
-								</div>
-		
-							</div>
-		
-							<%
-								} else {
-							%>
-		
-							<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"
-								rel="popover" data-title="">
-		
-							<div id="popover_content_wrapper" class="hide">Hi Hello</div>
-							<div class="mycontent hide">
-								<div class="notification-popup-header">Notifications</div>
-								<div></div>
-		
-								<table class="table" style="background-color: #F6F6F6;">
-									<s:iterator value="Orders">
-										<tr>
-											<td>Your Flipkart order <strong> <s:property
-														value="oredrNo" />
-											</strong> has been <strong> <s:property value="status" />
-											</strong> <br> (<s:property value="days_ago" /> days ago)
-											</td>
-										</tr>
-									</s:iterator>
-								</table>
-							</div>
-		
-							<%  } %>
-					<button id="button" type="button" class="btn btn-warning" style="width:140px;">SEARCH</button>
-					</div>
-				</form>
+				<div class="col-md-1"></div>
 				
 				<div class="col-md-2">
-				
-					<!-- Third is Signup -->	
-							<%
-								if (session.getAttribute("user") == null) {
-							%>
-							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a>
-							<%
-								} else {
-							%>
-							<%
-								Login l = new Login();
-							%>
-		
-							<li style="list-style-type: none" class="dropdown"><a href="#"
-								class="dropdown-toggle" data-hover="dropdown"
-								data-toggle="dropdown">Hi <%=session.getValue("fname")%>!<span
-									class="caret"></span></a>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
-									role="menu">
-		
-									<li><a href="Personal-info">Account</a></li>
-									<li class="divider" role="presentation"></li>
-									<li><a href="MyOrders">Orders</a></li>
-									<li class="divider" role="presentation"></li>
-									<li><a href="reviewandrating">Review & rating</a></li>
-									<li class="divider" role="presentation"></li>
-									<li><a href="logout">Logout</a></li>
-		
-								</ul></li>
-							<%
-								}
-							%>
-		
-		
-		
-							
-				
-				
-					<%
-						if(session.getAttribute("user") == null)
-						{
-					%>
-					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
-					<%
-						}else
-						{
-					%>
-					
-					<a href="logout" class="big-link Close">Logout</a><br>
-					<%
-						}
-					%>
-					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" style="width:130px;"> <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;">&nbsp; CART (0) </div> </button></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="index.jsp" >	 <img style="padding-top:10px" alt="flipkart" src="asset/Images/flipkart.png" height="50px" width="160px"> 
+							<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
 				</div>
 				
-			</div>
-	</div>
+				<div class="col-md-5">	
+						<br>
+						  <input style="margin-top:5px" id="search" type="text" name="keyword" class="form-control" id="funkystyling" placeholder=" Search for a product category or brand"> 
+				</div>
+				
+				<div class="col-md-3">
+					
+					<div class="col-md-6">
+						
+						<!-- First track order -->
+								 <%
+									if (session.getAttribute("user") == null) {
+								%>
+								&nbsp;&nbsp;<a href="#" class="big-link Close"
+									data-reveal-id="myOrderModal">Track Order</a>
+			
+			
+								<%
+									} else {
+								%>
+			
+								&nbsp;&nbsp;<a href="MyOrders"
+									class="big-link Close">Track Order</a>
+								<%
+									}
+								%> 
+							
+							<!-- Second is notification track order -->
+								 <%
+									if (session.getAttribute("user") == null) {
+								%>
+			
+								<a href="#"><img src="asset/Images/bell.JPG" height="25px"
+									data-contentwrapper=".mycontent" rel="popover" data-title="">
+								</a>
+			
+								<div id="popover_content_wrapper" class="hide">Hi Hello</div>
+								<div class="mycontent hide">
+									<div class="notification-popup-header">Notifications</div>
+									<hr>
+									<div class="no-notifications">Get notifications on price
+										drops!</div>
+									<br>
+									<div class="whatrnotif1">What are Notifications??</div>
+									<br>
+									<div class="whatrnotif2">
+										Notifications are timely alerts including updates to your order
+										status and price drops on products you are interested in. <br>
+										Sign in now to start receiving notifications.
+									</div>
+			
+								</div>
+			
+								<%
+									} else {
+								%>
+			
+								<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent" height="25px"
+									rel="popover" data-title="">
+			
+								<div id="popover_content_wrapper" class="hide">Hi Hello</div>
+								<div class="mycontent hide">
+									<div class="notification-popup-header">Notifications</div>
+			
+									<table class="table" style="background-color: #F6F6F6;">
+										<s:iterator value="Orders">
+											<tr>
+												<td>Your Flipkart order <strong> <s:property
+															value="oredrNo" />
+												</strong> has been <strong> <s:property value="status" />
+												</strong> <br> (<s:property value="days_ago" /> days ago)
+												</td>
+											</tr>
+										</s:iterator>
+									</table>
+			
+								
+								</div> 
+								<%  } %>
+						<button  id="button" type="button" class="btn btn-warning" style="width:140px;">SEARCH</button>
+					</div>	
+						
+					<div class="col-md-6">
+						<!-- Third is Signup -->	
+								<%
+									if (session.getAttribute("user") == null) {
+								%>
+								<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a>&nbsp;
+								<%
+									} else {
+								%>
+								<%
+									Login l = new Login();
+								%>
+			
+								<li style="list-style-type: none" class="dropdown"><a href="#"
+									class="dropdown-toggle" data-hover="dropdown"
+									data-toggle="dropdown">Hi <%=session.getValue("fname")%>!<span
+										class="caret"></span></a>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
+										role="menu">
+			
+										<li><a href="Personal-info">Account</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="MyOrders">Orders</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="reviewandrating">Review & rating</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="logout">Logout</a></li>
+			
+									</ul></li>
+								<%
+									}
+								%>
+	
+					
+						<%
+							if(session.getAttribute("user") == null)
+							{
+						%>
+						&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>	
+						<%
+							}else
+							{
+						%>
+							
+						<%
+							}
+						%> 
+						<a data-reveal-id="cartModel"><button style="margin-top:5px" id="cartButton" type="submit" class="btn btn-primary" style="width:130px;"> <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;">&nbsp; CART (0) </div> </button></a>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+	</div>			
 		
 <!-- The second layer with menu and dropdown -->
 	<div class="navbar navbar-inverse">
