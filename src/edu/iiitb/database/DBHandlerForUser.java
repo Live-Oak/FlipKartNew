@@ -22,6 +22,7 @@ import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.customerCartDetail;
 import edu.iiitb.model.custometAddressDetail;
+import edu.iiitb.model.getUserBankDetails;
 
 
 	/**
@@ -968,7 +969,8 @@ public class DBHandlerForUser {
 		cal.set(2222, 11, 31);
 		java.util.Date deliveryDate = (java.util.Date) cal.getTime();
 		Connection con = db.createConnection();
-		String query="INSERT INTO  FlipKartDatabase.Order (status, orderDate, deliveryDate) VALUES (?, ?, ?);";
+		String query = " INSERT INTO  FlipKartDatabase.Order (status, orderDate, deliveryDate) " +
+			           " VALUES (?, ?, ?);";
 		PreparedStatement prep;
 		try {
 			prep = con.prepareStatement(query);
@@ -989,7 +991,8 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		DBConnectivity db = new DBConnectivity();	
 		int  orderId = 0;
-		String query="Select MAX(orderId) as orderId FROM FlipKartDatabase.Order;";
+		String query = " Select MAX(orderId) as orderId" +
+				       " FROM FlipKartDatabase.Order;";
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{
@@ -997,8 +1000,8 @@ public class DBHandlerForUser {
 		}
 		con.close();
 		Connection con1 = db.createConnection();
-		String query1 = "INSERT INTO FlipKartDatabase.OrderShipingAddress (orderID, customerName, customerEmail, addressLine1," +
-				" addressLine2,  city, pinCode, customerPhoneNumber) Values (?, ?, ?, ?, ?, ?, ?, ?);" ;
+		String query1 = " INSERT INTO FlipKartDatabase.OrderShipingAddress (orderID, customerName, customerEmail, addressLine1, addressLine2,  city, pinCode, customerPhoneNumber) " +
+			         	" Values (?, ?, ?, ?, ?, ?, ?, ?);" ;
 		PreparedStatement prep = con1.prepareStatement(query1);		
 		prep.setInt(1, orderId);
 		prep.setString(2, addressDetail.getName());
@@ -1021,14 +1024,17 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		Connection con1 = db.createConnection();
 		int  orderId = 0;
-		String query="Select MAX(orderId) as orderId FROM FlipKartDatabase.Order;";
+		String query = " Select MAX(orderId) as orderId" +
+				       " FROM FlipKartDatabase.Order;";
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{
 			orderId = Integer.parseInt( rs.getString("orderId"));
 		}		
 		con.close();
-		String query1 = " INSERT INTO FlipKartDatabase.OrderDescription (orderID, productId, quantity, price) Values (?, ?, ?, ?)" ;
+		String query1 = " INSERT INTO FlipKartDatabase.OrderDescription " +
+				        " (orderID, productId, quantity, price) " +
+				        " Values (?, ?, ?, ?)" ;
 		PreparedStatement prep = con1.prepareStatement(query1);		
 		prep.setInt(1, orderId);
 		prep.setInt(2, cart.getProductID());
@@ -1045,14 +1051,18 @@ public class DBHandlerForUser {
 		Connection con1 = db.createConnection();
 		int  userId = 0;	
 		
-		String query="SELECT userId FROM FlipKartDatabase.UserCredantials WHERE email = '" + email + "';" ;
+		String query = " SELECT userId " +
+				       " FROM FlipKartDatabase.UserCredantials" +
+				       " WHERE email = '" + email + "';" ;
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{
 			userId = Integer.parseInt( rs.getString("userId"));
 		}		
 		con.close();
-		String query1 = " DELETE FROM FlipKartDatabase.Cart WHERE userID = " + userId + ";" ;		
+		String query1 = " DELETE" +
+				        " FROM FlipKartDatabase.Cart" +
+				        " WHERE userID = " + userId + ";" ;		
 		Statement st=(Statement) con1.createStatement();
 		st.executeUpdate(query1);				
 		con1.close();			
@@ -1063,7 +1073,9 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		DBConnectivity db = new DBConnectivity();
 		custometAddressDetail addressDetails = new custometAddressDetail();	
-		String query="SELECT  CONCAT(firstName, ' ', lastName) as name, addressLine1, addressLine2, pinCode,phoneNumber, city FROM `FlipKartDatabase`.`UserCredantials` WHERE email = '" + email + "' " ;
+		String query = " SELECT  CONCAT(firstName, ' ', lastName) as name, addressLine1, addressLine2, pinCode,phoneNumber, city " +
+				       " FROM `FlipKartDatabase`.`UserCredantials` " +
+				       " WHERE email = '" + email + "' " ;
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{				
@@ -1086,7 +1098,12 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		DBConnectivity db = new DBConnectivity();	
 		
-		String query="SELECT P.image as image, P.productName as productName,P.productId  as productId, C.quantity as quantity, (P.price -P.offer) as price FROM FlipKartDatabase.UserCredantials AS U INNER JOIN FlipKartDatabase.Cart AS C  ON C.useriD = U.userId INNER JOIN FlipKartDatabase.ProductInfo AS P    ON P.productId = C.productId WHERE email =  '" + email + "' " ;
+		String query = " SELECT P.image as image, P.productName as productName,P.productId  as productId, C.quantity as quantity, (P.price -P.offer) as price" +
+				       " FROM FlipKartDatabase.UserCredantials AS U " +
+				       " INNER JOIN FlipKartDatabase.Cart AS C " +
+				       " 	ON C.useriD = U.userId " +
+				       " INNER JOIN FlipKartDatabase.ProductInfo AS P    " +
+				       "	ON P.productId = C.productId WHERE email =  '" + email + "' " ;
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{
@@ -1111,7 +1128,9 @@ public class DBHandlerForUser {
 		
 		for(CartProduct p : cartDetails)
 		{		
-			String query = "SELECT P.image as image, P.productId as productId, P.productName as productName, (P.price - P.offer) as price FROM FlipKartDatabase.ProductInfo    as P WHERE P.productId = "+p.getProductId()+";";
+			String query = " SELECT P.image as image, P.productId as productId, P.productName as productName, (P.price - P.offer) as price " +
+					       " FROM FlipKartDatabase.ProductInfo    as P " +
+					       " WHERE P.productId = "+p.getProductId()+";";
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
@@ -1124,35 +1143,19 @@ public class DBHandlerForUser {
 				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * (  cartDetail.getQuantity()	 )	)  );				
 				cartDetailsList.add(cartDetail);
 			}
-		}
-		
+		}		
 		
 		db.closeConnection(con);					
 		return cartDetailsList;
 	}
 	
-	public String verifyCardDetails(String cardNumber, String expireMonth, String expireYear, String cvv) throws SQLException
-	{		
-		String bankName = null ;
-		Connection con = db.createConnection();
-		DBConnectivity db = new DBConnectivity();
-		
-		String query = "SELECT bankName FROM FlipKartDatabase.BankDetails WHERE creditCardNumber = " +cardNumber + " AND MONTH(expiryDate) = '" + expireMonth + "' AND YEAR(expiryDate) = '" + expireYear +" ' AND cvv = '" + cvv + "';";
-		
-		ResultSet rs=db.executeQuery(query, con);
-		if(rs.next())
-		{
-			bankName = rs.getString("bankName");
-		}
-		con.close();
-		return bankName;
-	}
-
 	public void insertOrderPaymentDetails(String orderId, String bankName, String grandTotal) throws SQLException {
 		// TODO Auto-generated method stub
 		DBConnectivity db = new DBConnectivity();
 		Connection con = db.createConnection();
-		String query1 = " INSERT INTO  FlipKartDatabase.Payment (orderID, bank, paymentType, amount, paymentDate) VALUES (?, ?, ?, ?, ?);" ;
+		String query1 = " INSERT INTO  FlipKartDatabase.Payment " +
+						" (orderID, bank, paymentType, amount, paymentDate) " +
+						" VALUES (?, ?, ?, ?, ?);" ;
 		PreparedStatement prep = con.prepareStatement(query1);		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
 		prep.setInt(1, Integer.parseInt(orderId) );
@@ -1164,43 +1167,6 @@ public class DBHandlerForUser {
 		con.close();			
 	}	
 	
-	public void updatePaymentInAccount(String cardNumber, String grandTotal) throws SQLException {
-		// TODO Auto-generated method stub
-		//System.out.println("CardNumber : " + cardNumber + " grandTotal : " + grandTotal);
-		DBConnectivity db = new DBConnectivity();
-		Connection con = db.createConnection();		
-		Statement stmt = (Statement) con.createStatement();
-		
-		String query1 = "UPDATE FlipKartDatabase.BankDetails SET balance = balance - " + grandTotal + " WHERE creditCardNumber = " + cardNumber;
-		 int rows = stmt.executeUpdate(query1);
-		// System.out.println("Rowa effected by q1 : " + rows);
-		String query2 = "UPDATE FlipKartDatabase.BankDetails SET balance = balance + " + grandTotal + " WHERE creditCardNumber = 1";
-		rows = stmt.executeUpdate(query2);	
-		 //System.out.println("Rowa effected by q2 : " + rows);
-		con.close();			
-	}
-
-	public void updateProductQuantityAfterPurchase(String orderId) throws SQLException {
-		// TODO Auto-generated method stub
-		int pId  = 0;
-		int qty = 0;
-		String query1;
-		String query = "SELECT productId , quantity from FlipKartDatabase.OrderDescription where orderID = "+orderId ;
-		Connection con = db.createConnection();
-		DBConnectivity db = new DBConnectivity();
-		ResultSet rs=db.executeQuery(query, con);
-		while(rs.next())
-		{
-			pId = rs.getInt("productId");
-			qty = rs.getInt("quantity");
-			query1 = "Update FlipKartDatabase.Stock Set availableQuantity = availableQuantity - " + qty + " where productId = " + pId ;
-			Statement stmt = (Statement) con.createStatement();
-			stmt.executeUpdate(query1);
-		}
-		//System.out.println("PID : " + pId + "quantity : " + qty);
-		con.close();
-	}
-
 	public void deactivateAccount(String email) throws SQLException {
 		// TODO Auto-generated method stub
 		DBConnectivity db = new DBConnectivity();
@@ -1236,6 +1202,169 @@ public class DBHandlerForUser {
 		System.out.println("Feedback submitted!!");
 		con.close();
 	}
+	
+
+	public String verifyCardDetails(String cardNumber, String expireMonth, String expireYear, String cvv) throws SQLException
+	{		
+		String bankName = null ;
+		Connection con = db.createConnection();
+		DBConnectivity db = new DBConnectivity();
+		
+		String query = 	" SELECT bankName" +
+						" FROM FlipKartDatabase.BankDetails " +
+						" WHERE creditCardNumber = " +cardNumber + 
+						"	 	AND MONTH(expiryDate) = '" + expireMonth + "' " +
+						"		AND YEAR(expiryDate) = '" + expireYear +" ' " +
+						"		AND cvv = '" + cvv + "';";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next())
+		{
+			bankName = rs.getString("bankName");
+		}
+		
+		return bankName;
+	}
+
+	public void insertOrderPaymentDetails(String orderId, String bankName, String grandTotal, String paymentType) throws SQLException {
+		// TODO Auto-generated method stub
+		DBConnectivity db = new DBConnectivity();
+		Connection con = db.createConnection();
+		String query1 = " INSERT INTO  FlipKartDatabase.Payment " +
+						" (orderID, bank, paymentType, amount, paymentDate)" +
+						" VALUES (?, ?, ?, ?, ?);" ;
+		PreparedStatement prep = con.prepareStatement(query1);		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
+		prep.setInt(1, Integer.parseInt(orderId) );
+		prep.setString(2, bankName);
+		prep.setString(3, paymentType );
+		prep.setFloat(4, Float.parseFloat( grandTotal ) );
+		prep.setString(5, sdf.format(new java.util.Date()));
+		prep.execute();	
+		con.close();			
+	}	
+	
+	public void updatePaymentInAccount(String cardNumber, String grandTotal) throws SQLException {
+
+		DBConnectivity db = new DBConnectivity();
+		Connection con = db.createConnection();		
+		Statement stmt = (Statement) con.createStatement();
+		
+		String query1 = "UPDATE FlipKartDatabase.BankDetails " +
+						" SET balance = balance - " + grandTotal + 
+						" WHERE creditCardNumber = " + cardNumber;
+		 int rows = stmt.executeUpdate(query1);		
+		String query2 = "UPDATE FlipKartDatabase.BankDetails " +
+						" SET balance = balance + "	+ grandTotal + 
+						" WHERE creditCardNumber = 1";
+		rows = stmt.executeUpdate(query2);			
+		con.close();			
+	}
+
+	public void updateProductQuantityAfterPurchase(String orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		int pId  = 0;
+		int qty = 0;
+		String query1;
+		String query = 	" SELECT productId , quantity " +
+						" From FlipKartDatabase.OrderDescription " +
+						" Where orderID = "+orderId ;
+		Connection con = db.createConnection();
+		DBConnectivity db = new DBConnectivity();
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			pId = rs.getInt("productId");
+			qty = rs.getInt("quantity");
+			query1 = " Update FlipKartDatabase.Stock " +
+					 " Set availableQuantity = availableQuantity - " + qty + 
+					 " Where productId = " + pId ;
+			Statement stmt = (Statement) con.createStatement();
+			stmt.executeUpdate(query1);
+		}		
+	}
+	
+	public String validateBankLogin(String bankLoginId,String bankPassword, String bankName) throws SQLException
+	{
+		String creditCardNumber =null;
+		Connection con = db.createConnection();
+		String query =  " SELECT creditCardNumber, transactionPassword" +
+						" FROM FlipKartDatabase.BankDetails " +
+						" WHERE bankLoginId= '"+bankLoginId+"' " +
+						"		And bankName = '" + bankName + "';";		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			String password = rs.getString("transactionPassword");			
+			if(password.equals(bankPassword))
+			{
+				creditCardNumber = rs.getString("creditCardNumber");				
+			}
+		}
+		con.close();
+		return creditCardNumber;
+	}
+
+	public ArrayList<customerCartDetail> generateReceipt(int orderId) throws SQLException
+	{
+		ArrayList<customerCartDetail> productDetailList = new ArrayList<customerCartDetail>();
+		String query = " SELECT PI.productName, OD.price, OD.quantity, ( (OD.quantity) * (OD.price) ) as subTotal, P.transactionID " +  
+								" FROM FlipKartDatabase.OrderDescription as OD "  + 
+								" Inner Join FlipKartDatabase.Payment as P " +
+								"		ON P.orderId = OD.orderID " +
+								" Inner Join FlipKartDatabase.ProductInfo as PI " +
+								"		ON OD.productId = PI.productId WHERE OD.orderId = " + orderId;
+		Connection con = db.createConnection();
+		DBConnectivity db = new DBConnectivity();
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			customerCartDetail productDetails = new customerCartDetail();
+			productDetails.setProductName(rs.getString("productName"));
+			productDetails.setPrice(rs.getString("price"));
+			productDetails.setQuantity(rs.getInt("quantity"));
+			productDetails.setSubTotal(rs.getString("subTotal"));
+			productDetails.setTransactionId(rs.getString("transactionId" ) );	
+			productDetailList.add(productDetails);
+		}		
+		return productDetailList;		
+	}
+
+	public getUserBankDetails getUserBankDetail(String bankLoginId) throws SQLException 
+	{
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();
+		String query = " SELECT nameofAccountHolder,accountNumber,balance" +
+					   " FROM FlipKartDatabase.BankDetails " +
+					   " Where bankLoginId ='"+bankLoginId+"'";
+		ResultSet rs=db.executeQuery(query, con);
+		getUserBankDetails user = new getUserBankDetails();
+		while(rs.next())
+		{
+			user.setCustomerName(rs.getString("nameofAccountHolder"));
+			user.setAccountNumber(rs.getString("accountNumber"));
+			user.setBalance(rs.getString("balance"));			
+		}
+		return user;
+	}
+
+	public String verifyBalanceDetails(String accountNumber, String grandTotal) throws SQLException 
+	{
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();		
+		String query = " SELECT balance   " +
+				       " FROM FlipKartDatabase.BankDetails " +
+				       " Where accountNumber ='"+accountNumber + "';";		
+		ResultSet rs=db.executeQuery(query, con);
+		getUserBankDetails user = new getUserBankDetails();
+		String balance = null;
+		while(rs.next())
+		{
+			balance = (rs.getString("balance"));
+		}
+		return balance;
+	}
+
 
 }
 

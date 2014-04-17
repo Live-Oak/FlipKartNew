@@ -482,19 +482,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				method="updateCartProductQuantity">
 				<result name="success" type="json" />
 			</action>
-			
-		<action name="verifyCreditCardDetails" class="edu.iiitb.action.cardPayment" method="execute">
-			<result name="success" type="json" />
-		</action>
-
-		<action name="makePaymentCreditCard" class="edu.iiitb.action.cardPayment"
-			method="makeCreditCardPayment">
-			<result name="success" type="json" />
-		</action>		
-		<action name="clearUserCartDetails" class="edu.iiitb.action.cardPayment"
-			method="clearUserCartDetail">
-			<result name="success" type="json" />
-		</action>
 		
 		<action name="check_orderinfo" class="edu.iiitb.action.GetOrderDetails" method="Validate">
 		<result name="success" type="json"/>
@@ -537,6 +524,27 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 		<action name="insertFeedback" class="edu.iiitb.action.Feedback">
 			<result name="success" type="json" />
+		</action>
+		
+		<action name="generateReceipt" class="edu.iiitb.action.generateReceipt">
+			<result name="success" type="json"/>
+		</action>
+		<action name="clearUserCartDetails" class="edu.iiitb.action.cardPayment" 
+			method="clearUserCartDetail">
+		<result name="success">./generateReceipt.jsp</result>
+		</action>
+		<action name="verifyCreditCardDetails" class="edu.iiitb.action.cardPayment" method="execute">
+			<result name="success" type="json"/>
+		</action>
+		<action name="bankLoginAction" class="edu.iiitb.action.bankLoginAction" method="execute">
+			<result name="success" type="json"/>
+			<result name="fail">/error.jsp</result>
+		</action><action name="onlineBankingPayment" class="edu.iiitb.action.onlineBankingPaymentAction">
+			<result name="success" type="redirect">clearUserCartDetails</result>
+			<result name="fail">/error.jsp</result>
+		</action>
+		<action name="makePaymentCreditCard" class="edu.iiitb.action.cardPayment" method="makeCreditCardPayment">
+			<result name="success" type="json"/>
 		</action>
 			
 	</package>

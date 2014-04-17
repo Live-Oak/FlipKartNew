@@ -7,6 +7,7 @@ public class customerCartDetail {
 	private int quantity;
 	private String price;	
 	private String subTotal;
+	private String transactionId;
 
 	public String getImage() {
 		return image;
@@ -54,6 +55,14 @@ public class customerCartDetail {
 
 	public void setProductID(int productID) {
 		this.productID = productID;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 
 }

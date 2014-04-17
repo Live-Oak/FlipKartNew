@@ -25,10 +25,6 @@ import edu.iiitb.model.*;
 public class placeOrderAction extends ActionSupport implements SessionAware,
 ServletResponseAware, ServletRequestAware 
 {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	custometAddressDetail addressDetails;
@@ -81,8 +77,7 @@ ServletResponseAware, ServletRequestAware
 	}
 	public void setServletRequest(HttpServletRequest servletRequest) {
 		this.servletRequest = servletRequest;
-	}
-	
+	}	
 	
 	public String getName() {
 		return name;
@@ -125,12 +120,10 @@ ServletResponseAware, ServletRequestAware
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
+	}	
 	public custometAddressDetail getAddressDetails() {
 		return addressDetails;
 	}
-
 	public void setAddressDetails(custometAddressDetail addressDetails) {
 		this.addressDetails = addressDetails;
 	}
@@ -170,8 +163,6 @@ ServletResponseAware, ServletRequestAware
 		db.savePlaceOrderDetails();	
 		orderId = db.saveOrderAddressDetails(addressDetails);
 		session.put("orderId", orderId);
-		System.out.println("Session value in OrderId : " +session.get("orderId") );
-		/* From Here OrderDescription Table entry starts*/		
 		User user = (User) session.get("user");			
 		if ( user!=null )			
 		{			
@@ -212,36 +203,6 @@ ServletResponseAware, ServletRequestAware
 		{
 			db.saveUserOrderDescription(cart);	
 		}	
-		/*
-		 if(userEmail != null)
-		{
-			db.clearUserCart(email);
-		}
-		else
-		{
-			try {
-				String content = null;
-				for (Cookie c : servletRequest.getCookies()) {
-					if (c.getName().equals("cart")) {
-						content = c.getValue();
-						CartCookie cookie = new CartCookie();
-						 JSONPopulator pop = new JSONPopulator();
-						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
-								.deserialize(content);
-						 pop.populateObject(cookie, map);
-						cookie.getProductList().clear();
-						content = JSONUtil.serialize(cookie);
-						c.setValue(content);
-						c.setMaxAge(60*60*24*2);
-						servletResponse.addCookie(c);
-						break;
-					}
-				}				
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}*/
 		
 		return "success";
 	}
