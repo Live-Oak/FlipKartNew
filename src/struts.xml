@@ -181,7 +181,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="invalid">/sorry.jsp</result>
 			</action>
 
-
+			
+			<action name="autoComplete" class="edu.iiitb.action.autoCompleteAction" method="getProduct">
+				<result name="success" type="json"></result>
+			</action>
 			
 
 			<action name="logout" class="edu.iiitb.action.LogoutAction">

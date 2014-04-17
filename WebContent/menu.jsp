@@ -501,37 +501,33 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-  $(function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#search" ).autocomplete({
-      source: availableTags
-    });
-  });
-  </script>
+<script>
+$(document).ready(function(){
+	$("#search").keyup(function(){
+		debugger;
+		var keywordToCheck=$("#search").val();
+		$.ajax({
+			
+			url: 'autoComplete?keyword='+keywordToCheck,
+			type:'GET',
+			success: function(data){
+				$("#searchoption").empty();
+				$.each(data.keywordsList,function(index,value){
+					var temp= '<a href ="getProductDetail?productID='+value.productId+'"><li><img src='+value.productImage+' height="50px" width="auto" style="margin-left:1%;"> &nbsp;&nbsp;<font color="#000000">'+value.productName+'</font></li> </a>';
+					
+					$("#searchoption").append(temp);
+				});
+				$("#searchForm").addClass("open");
+			}
+		});
+	});
+	
+	$("#search").click(function(){
+		$("#searchoption").toggle();
+	});
+});
+</script>
+
 </head>
 
 <body>
@@ -544,7 +540,7 @@ $(document).ready(function(){
 	
 <!-- The first layer with logo and search -->
 
-	<div class="navbar-fixed-top">
+	<div class="navbar-fixed-top" id="container">
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2">
@@ -555,7 +551,12 @@ $(document).ready(function(){
 				
 				<div class="col-md-5">	
 						<br>
+						<div class="searchForm" id="searchForm">
 						  <input style="margin-top:5px" id="search" type="text" name="keyword" class="form-control" id="funkystyling" placeholder=" Search for a product category or brand"> 
+						  <ul class="dropdown-menu" id="searchoption" style="width:580px; z-index:1000">
+						  
+						  </ul>
+						</div>	
 				</div>
 				
 				<div class="col-md-3">

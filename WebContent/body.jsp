@@ -17,7 +17,7 @@
 	<!-- Carousel -->
 	
  <form action="Start_page" method="post" enctype="multipart/form-data">
-	<div class="col-md-2 "></div>
+	<div class="col-md-2"></div>
 	
 	<div class="col-md-7">
 					<div id="myCarousel" class="carousel slide">
