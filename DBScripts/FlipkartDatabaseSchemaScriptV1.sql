@@ -101,17 +101,12 @@ CREATE  TABLE `FlipKartDatabase`.`Order` (
 
 
 
-CREATE  TABLE `FlipKartDatabase`.`Feedback` (
-  `userId` INT NOT NULL ,
-  `comment` VARCHAR(500) NOT NULL ,
-  `feedbackDate` DATE NOT NULL ,
-  INDEX `fk_Feedback_userId` (`userId` ASC) ,
-  CONSTRAINT `fk_Feedback_userId`
-    FOREIGN KEY (`userId` )
-    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
+CREATE TABLE `FlipKartDatabase`.`feedback` (
+  `email` VARCHAR(50) NULL,
+  `mobileNumber` VARCHAR(50) NULL,
+  `category` VARCHAR(50) NULL,
+  `message` VARCHAR(500) NULL,
+  `feedbackDate` DATETIME NULL);
 
 
 

@@ -7,19 +7,21 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.CompareCartProduct;
+import edu.iiitb.model.FeedbackModel;
 import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.customerCartDetail;
 import edu.iiitb.model.custometAddressDetail;
-import freemarker.core.ParseException;
 
 
 	/**
@@ -1209,6 +1211,31 @@ public class DBHandlerForUser {
 		st.executeUpdate(query);
 		
 	}	
+	
+	//Function to insert feedback comments into database
+	public void insertFeedback(FeedbackModel feedbck) throws SQLException
+	{
+		
+		Connection con = db.createConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		System.out.println("It came here as well");
+		System.out.println(feedbck.getEmail());
+		System.out.println("It came here as well");
+		//System.out.println((Date) new java.util.Date());
+		String query = "Insert into Feedback values(?,?,?,?,?)";
+		System.out.println(query);
+		PreparedStatement prepStmnt = con.prepareStatement(query);
+		prepStmnt.setString(1,feedbck.getEmail());
+		prepStmnt.setString(2, feedbck.getMobileNumber());
+		prepStmnt.setString(3, feedbck.getCategory());
+		prepStmnt.setString(4, feedbck.getMessage());
+		prepStmnt.setString(5, date);
+		
+		prepStmnt.execute();
+		System.out.println("Feedback submitted!!");
+		con.close();
+	}
 
 }
 

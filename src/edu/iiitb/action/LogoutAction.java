@@ -29,6 +29,7 @@ private Map<String,Object> session;
 		HttpServletResponse response=null;
 		 response=ServletActionContext.getResponse();
 		session.remove("user");
+		session.remove("email");
 		return "success";
 	}
 
