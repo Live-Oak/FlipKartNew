@@ -22,9 +22,6 @@ import edu.iiitb.model.User;
 
 public class cardPayment  extends ActionSupport implements SessionAware , ServletRequestAware , ServletResponseAware
 {
-	/**
-	 * 
-	 */
 	private String cardNumber;
 	private String expireMonth;
 	private String expireYear;
@@ -37,236 +34,92 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 	private HttpServletRequest servletRequest;
 	private Map session;
 	private String valid; 
-	
-	
 	Date paymentDate = new Date ();
-
 	
-	/**
-	 * 
-	 */
-	public cardPayment() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-
 	public String getCardNumber() {
 		return cardNumber;
 	}
-
-
-
-
-
-
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-
-
-
-
-
-
 	public String getExpireMonth() {
 		return expireMonth;
 	}
-
-
-
-
-
-
 	public void setExpireMonth(String expireMonth) {
 		this.expireMonth = expireMonth;
 	}
-
-
-
-
-
-
 	public String getExpireYear() {
 		return expireYear;
 	}
-
-
-
-
-
-
 	public void setExpireYear(String expireYear) {
 		this.expireYear = expireYear;
 	}
-
-
-
-
-
-
 	public String getCvv() {
 		return cvv;
 	}
-
-
-
-
-
-
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
 	}
-
-
-
-
-
-
 	public String getGrandTotal() {
 		return grandTotal;
 	}
-
-
-
-
-
-
 	public void setGrandTotal(String grandTotal) {
 		this.grandTotal = grandTotal;
 	}
-
-
-
-
-
-
 	public String getBankName() {
 		return bankName;
 	}
-
-
-
-
-
-
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
-
-
-
-
-
-
 	public String getUserEmail() {
 		return userEmail;
 	}
-
-
-
-
-
-
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-
-
-
-
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
-
-
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public Map getSession() {
 		return session;
 	}
-
-
-
-
-
-
 	public void setSession(Map session) {
 		this.session = session;
 	}
-
-
-
-
-
-
 	public String getValid() {
 		return valid;
 	}
-
-
-
-
-
-
 	public void setValid(String valid) {
 		this.valid = valid;
 	}
-
-
-
-
-
-
 	public Date getPaymentDate() {
 		return paymentDate;
 	}
-
-
-
-
-
-
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
-
-
-
-
-
-
+	@Override
+	public void setServletResponse(HttpServletResponse servletResponse)
+	{
+		// TODO Auto-generated method stub
+		this.servletResponse = servletResponse;		
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest servletRequest) 
+	{
+		// TODO Auto-generated method stub
+		this.servletRequest = servletRequest;		
+	}
+	
 	public String execute() throws SQLException
 	{
 		DBHandlerForUser db = new DBHandlerForUser();		
 		System.out.println("Paras");
-		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);	
-		System.out.println("Mittal"+bankName+" Mittal");
+		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);			
 		session.put("bankName", bankName);
 		System.out.println("Catch");
 		if ( bankName != null)
@@ -339,24 +192,4 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 		}			
 		return "success";		
 	}
-
-
-	@Override
-	public void setServletResponse(HttpServletResponse servletResponse) {
-		// TODO Auto-generated method stub
-		this.servletResponse = servletResponse;
-		
-	}
-
-
-	@Override
-	public void setServletRequest(HttpServletRequest servletRequest) {
-		// TODO Auto-generated method stub
-		this.servletRequest = servletRequest;
-		
-	}
-
-
-
-
 }

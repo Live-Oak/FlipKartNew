@@ -23,20 +23,10 @@ import edu.iiitb.model.*;
 public class placeOrderUserSessionCheck extends ActionSupport implements SessionAware,
 ServletResponseAware, ServletRequestAware 
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private float grandTotal;
-	//Map <String, Object> session1;
 	
-	/*public Map<String, Object> getSession1() {
-		return session1;
-	}
-	public void setSession1(Map<String, Object> session1) {
-		this.session1 = session1;
-	}*/
 	private HttpServletResponse servletResponse;
 	private HttpServletRequest servletRequest;
 
@@ -107,14 +97,12 @@ ServletResponseAware, ServletRequestAware
 			{						
 				grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
 			}
-			System.out.println("Table GrandTotal = Rs." + grandTotal);
 		}	
 		else
 		{			
 			addressDetails = new custometAddressDetail();
 			String content = null;
-			DBHandlerForUser db = new DBHandlerForUser();
-			
+			DBHandlerForUser db = new DBHandlerForUser();			
 			try
 			{
 				for (Cookie c : servletRequest.getCookies()) 
@@ -153,12 +141,7 @@ ServletResponseAware, ServletRequestAware
 		catch(Exception e)
 		{
 			System.out.println(e);
-		}
-		System.out.println("Session value in grandTotal : " +session.get("grandTotal") );		
+		}			
 		return "success";
 	}
-	
-	
-	
-	
 }

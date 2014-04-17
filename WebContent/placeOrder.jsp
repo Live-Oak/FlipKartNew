@@ -140,8 +140,7 @@
 																								"#emailInput")
 																								.val(),
 																				success : function(
-																						data) {
-																					//alert(data.addressDetails.name);						    	
+																						data) {						    	
 																					$(
 																							"#name")
 																							.val(
@@ -184,7 +183,6 @@
 																			.show();
 
 																} else {
-																	//alert("Invalid email id or password");
 																	$(
 																			"#check_email_password")
 																			.html(
@@ -268,8 +266,6 @@
 										+ '&phoneNumber=' + $("#phone").val()
 										+ '&city=' + $("#city").val(),
 								success : function(data) {
-									/* Success wala kaam here...*/
-									//alert("Order Place : Address tak Ho gaya");
 								}
 							});
 							/* Ajax call for place order ends here */
@@ -315,7 +311,6 @@
 																	"#validDetails")
 																	.html();
 															if (valid1 == 1) {
-																alert("Credir Card Payment Valdated");
 																$(
 																		"#validDetails")
 																		.html(
@@ -344,23 +339,15 @@
 															}
 															else if(valid1 == 2)
 															{
-																alert("Account does not contains sufficient balance");
 																$("#validDetails").html("Insufficient Account Balance");
 																$("#validDetails").css("color","#ff0000");
 															}
 															else {
-																alert("Details not Valid");
-																$("#validDetails").html("Invalid Card Details");
-																$("#validDetails").css("color","#ff0000");
+																	$("#validDetails").html("Invalid Card Details");
+																	$("#validDetails").css("color","#ff0000");
 															}
 														}
 													});
-											/* Ajax Call for payment via Credit Card Ends Here*/
-
-											// $("#editOrder").hide(); 
-											// $("#editAddress").hide();
-											// $("#editEmailid").hide();
-											//  $("#panel4").slideUp();
 										});
 					});
 </script>
@@ -384,8 +371,6 @@
 										+ '&phoneNumber=' + $("#phone").val()
 										+ '&city=' + $("#city").val(),
 								success : function(data) {
-									/* Success wala kaam here...*/
-									//alert("Order Place : Address tak Ho gaya");
 								}
 							});
 							/* Ajax call for place order ends here */
@@ -404,7 +389,6 @@
 
 		$("#bankLogin").click(function() {
 			var bankSelected = $('input[name=bank]:checked').val();
-			alert(bankSelected);
 			window.location = "bankLogin.jsp?bankName=" + bankSelected;
 		});
 	});
@@ -442,8 +426,7 @@
 																	"#validDetailsD")
 																	.html();
 															if (valid1 == 1) 
-															{
-																alert("Credir Card Payment Valdated");
+															{																
 																$("#validDetailsD").html(' ');
 																$.ajax(
 																{
@@ -465,14 +448,11 @@
 																});
 															} 														
 															else if(valid1==2)
-																{
-																	alert("Low balance in account");
-																	$("#validDetailsD").html("Invalid Card Details");
+																{																																	$("#validDetailsD").html("Invalid Card Details");
 															$("#validDetailsD").css("color","#ff0000");
 																}
 															
 															else {
-																alert("Details not Valid");
 																$(
 																		"#validDetailsD")
 																		.html(

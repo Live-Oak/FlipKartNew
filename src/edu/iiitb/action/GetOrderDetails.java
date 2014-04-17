@@ -14,12 +14,9 @@ public class GetOrderDetails extends ActionSupport implements SessionAware{
 	
 	private String Email;
     int OrderId;
-	String message;
-	
-	private Map<String, Object> session;
-	
-	private GetOrderDetailsModel GOD = new GetOrderDetailsModel();
-	
+	String message;	
+	private Map<String, Object> session;	
+	private GetOrderDetailsModel GOD = new GetOrderDetailsModel();	
 	
 	public GetOrderDetailsModel getGOD() {
 		return GOD;
@@ -54,27 +51,23 @@ public class GetOrderDetails extends ActionSupport implements SessionAware{
 	
 	public String Validate() throws SQLException
 	{
-		DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();
-		
+		DBHandlerForMyOrders dbHandler = new DBHandlerForMyOrders();		
 		try{
-		if(dbHandler.chkForEmail_OrderIdExist(getEmail(), getOrderId() ))
-		{
-			message = "available";
-		}
-		else
-		{
-			message = "notavailable";
-		}
+			if(dbHandler.chkForEmail_OrderIdExist(getEmail(), getOrderId() ))
+			{
+				message = "available";
+			}
+			else
+			{
+				message = "notavailable";
+			}
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "error";
-		}
-		
-		return "success";
-		
-				
+		}		
+		return "success";				
 	}
 	
 	public String execute()
@@ -84,16 +77,10 @@ public class GetOrderDetails extends ActionSupport implements SessionAware{
 		
 	          try {
 				dbHandler.GetOrderdetails(GOD, Email, OrderId);
-				System.out.println(GOD.getQuantity());
-				System.out.println(GOD.getCity());
-				System.out.println(GOD.getCust_name());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-		
-		
 		return "success";
 	}
 	

@@ -30,8 +30,5 @@ public class getUserCartDetails {
 					
 		cartDetailsList = db.getCartTableDetail(email);
 		return "success";
-		
 	}
-	
-
 }

@@ -35,17 +35,11 @@ ServletResponseAware, ServletRequestAware
 	private String email;
 	private String phoneNumber;
 	private String addressLine1;
-	private String addressLine2;
-	
-	private int orderId =0;
-	
+	private String addressLine2;	
+	private int orderId =0;	
 	private HttpServletResponse servletResponse;
-	private HttpServletRequest servletRequest;
-	
+	private HttpServletRequest servletRequest;	
 	private Map<String, Object> session;
-	
-	
-
 	ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
     
 	public ArrayList<customerCartDetail> getCartDetailsList() 
@@ -55,8 +49,7 @@ ServletResponseAware, ServletRequestAware
 	public void setCartDetailsList(ArrayList<customerCartDetail> cartDetailsList) 
 	{
 		this.cartDetailsList = cartDetailsList;
-	}
-			
+	}			
 	public Map<String, Object> getSession()
 	{
 		return session;
@@ -65,7 +58,6 @@ ServletResponseAware, ServletRequestAware
 	{
 		this.session = session;
 	}
-
 	public HttpServletResponse getServletResponse() {
 		return servletResponse;
 	}
@@ -77,8 +69,7 @@ ServletResponseAware, ServletRequestAware
 	}
 	public void setServletRequest(HttpServletRequest servletRequest) {
 		this.servletRequest = servletRequest;
-	}	
-	
+	}		
 	public String getName() {
 		return name;
 	}
@@ -127,7 +118,6 @@ ServletResponseAware, ServletRequestAware
 	public void setAddressDetails(custometAddressDetail addressDetails) {
 		this.addressDetails = addressDetails;
 	}
-
 	private Map<String, Object> session1;
 	public String getUserEmail() {
 		return userEmail;
@@ -197,13 +187,11 @@ ServletResponseAware, ServletRequestAware
 			{
 				e.printStackTrace();
 			}					
-		}
-		
+		}		
 		for (customerCartDetail cart : cartDetailsList) 
 		{
 			db.saveUserOrderDescription(cart);	
-		}	
-		
+		}		
 		return "success";
 	}
 	
