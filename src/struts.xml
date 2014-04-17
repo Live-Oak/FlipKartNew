@@ -520,7 +520,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>	
 		
 		<action name="insertReview" class="edu.iiitb.action.InsertReviews">
-			<result name="success" type="tiles">RatingPage</result>
+			<result name="success" type="redirectAction">
+			<param name="actionName">reviewandrating</param>
+				<param name="namespace">/</param>
+			</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
