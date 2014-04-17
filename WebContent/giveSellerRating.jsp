@@ -14,32 +14,15 @@
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	
 <!--  -->	
 	<link rel="stylesheet" href="asset/CSS/reveal.css">
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	<script src="asset/JavaScripts/jquery.dataTables.min.js"></script>
-<!--For Star Rating  -->
-	<script src="asset/JavaScripts/star-rating.min.js" type="text/javascript"></script>
-	<script src="asset/JavaScripts/star-rating.js" type="text/javascript"></script>
-	<link href="asset/CSS/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
-	<link href="asset/CSS/star-rating.min.css" media="all" rel="stylesheet" type="text/css"/>
-	
-	
-	
-	<script>
-        $("#input-21").on('rating.change', function (event, value, caption) {
-            $('#input-21').attr('disabled', true);
-            $('#input-21').rating('refresh');
-			alert(value);
-        });
-        $("#input-21").rating({
-            clearButtonBaseClass: 'my-clear',
-            clearButtonActiveClass: 'my-clear-active',
-        });
-    </script>
-	
+	<script src="asset/JavaScripts/jquery.raty.js"></script>
 
+	
 	 
 	
 	<script type="text/javascript">
@@ -79,15 +62,13 @@
 								 		<option><s:property/></option>
 								 	</s:iterator>
 								 	</select>
+								 	<br><br>
 									<label>Star Rating*</label>
-									<select name="rating">
-							
-								 		<option>1</option>
-								 		<option>2</option>
-								 		<option>3</option>
-								 		<option>4</option>
-								 		<option>5</option>
-								 	</select>
+									<input type="hidden" id="star" name="rating"/>
+								 	
+								<div id="sellerRating" style="cursor: pointer; width: 100px; margin-left: 100px;" >
+			
+									</div>
 									
 									<!-- <input id="input-21" type="number" class="rating" min="1" max="5" step="1"> -->
 								</div>
@@ -108,5 +89,16 @@
 			 <br><br> <br><br> <br><br> <br><br> <br><br> <br><br><br><br> <br><br><br><br>
 		</div>
 	</div>
+	<script type="text/javascript">
+	
+		$('#sellerRating').raty({
+			  path: 'asset/Images',
+			  click: function(score, evt) {
+			   
+			    $("#star").val(score);
+			  }
+			});
+
+</script>
 </body>
 </html>
