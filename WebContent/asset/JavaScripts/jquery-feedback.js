@@ -34,6 +34,7 @@ $(document).on('click','#feedbackSub',function(){
 				$("#mobileText").val("");
 				$("#dropbox").val("");
 				$("#messageText").val("");
+				$("#msg").html("");
 		    	$("#slideout_inner").toggleClass("out_inner");
 		    	$("#Thankyou").toggleClass("out_inner");
 		    }
@@ -41,7 +42,7 @@ $(document).on('click','#feedbackSub',function(){
 			}
 		else
 			{
-			$("#msg").html("<h3>Please fill all the required details<h3>");
+			$("#msg").html("<h3>*Please fill all the required details<h3>");
 			}
 	});
 	

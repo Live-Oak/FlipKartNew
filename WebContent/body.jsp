@@ -291,14 +291,14 @@
 			else 
 			{
 		%>
-		<input id="emailText" value="<%= session.getValue("email")%>" type="email" pattern="[^ @]*@[^ @]*" autocomplete="off" style="border-color:black" name="email" required="required" size="30">
+		<input id="emailText" value="<%= session.getValue("email")%>" type="email" pattern="[^ @]*@[^ @]*" autocomplete="off" style="border-color:black" name="email" required="true" size="30">
 		<% 
 			} 
 		%>
 	
 		<br><br>
 		<label class="label2">Mobile Number<span style="color:red;"> *</span></label>&nbsp;&nbsp;&nbsp;
-		<input id="mobileText" type="tel" pattern="[0-9]{10,10}" maxlength="10"  autocomplete="off" style="border-color:black" name="mobileNumber" required="required"  size="22">
+		<input id="mobileText" type="tel" pattern="[0-9]{10,10}" maxlength="10"  autocomplete="off" style="border-color:black" name="mobileNumber" required="true"  size="22">
 		<br><br>
 		<label class="label2">Category<span style="color:red;"> *</span></label>
 		<select class="label2" id="dropbox" name="category">
