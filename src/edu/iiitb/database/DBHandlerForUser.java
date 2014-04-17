@@ -1149,7 +1149,7 @@ public class DBHandlerForUser {
 		return cartDetailsList;
 	}
 	
-	public void insertOrderPaymentDetails(String orderId, String bankName, String grandTotal) throws SQLException {
+	public void insertOrderPaymentDetails(String orderId, String bankName, String grandTotal, String paymentType) throws SQLException {
 		// TODO Auto-generated method stub
 		DBConnectivity db = new DBConnectivity();
 		Connection con = db.createConnection();
@@ -1160,7 +1160,7 @@ public class DBHandlerForUser {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
 		prep.setInt(1, Integer.parseInt(orderId) );
 		prep.setString(2, bankName);
-		prep.setString(3, "Credit Card" );
+		prep.setString(3, paymentType );
 		prep.setFloat(4, Float.parseFloat( grandTotal ) );
 		prep.setString(5, sdf.format(new java.util.Date()));
 		prep.execute();	
@@ -1226,23 +1226,6 @@ public class DBHandlerForUser {
 		return bankName;
 	}
 
-	public void insertOrderPaymentDetails(String orderId, String bankName, String grandTotal, String paymentType) throws SQLException {
-		// TODO Auto-generated method stub
-		DBConnectivity db = new DBConnectivity();
-		Connection con = db.createConnection();
-		String query1 = " INSERT INTO  FlipKartDatabase.Payment " +
-						" (orderID, bank, paymentType, amount, paymentDate)" +
-						" VALUES (?, ?, ?, ?, ?);" ;
-		PreparedStatement prep = con.prepareStatement(query1);		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
-		prep.setInt(1, Integer.parseInt(orderId) );
-		prep.setString(2, bankName);
-		prep.setString(3, paymentType );
-		prep.setFloat(4, Float.parseFloat( grandTotal ) );
-		prep.setString(5, sdf.format(new java.util.Date()));
-		prep.execute();	
-		con.close();			
-	}	
 	
 	public void updatePaymentInAccount(String cardNumber, String grandTotal) throws SQLException {
 

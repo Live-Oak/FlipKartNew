@@ -464,7 +464,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="getUserAddressDetails" class="edu.iiitb.action.getUserAddressDetails">
 				<result name="success" type="json" />
 			</action>
-			
+						
 			<action name="placeOrderUserSessionCheck" class="edu.iiitb.action.placeOrderUserSessionCheck">
 			 <result name="success" >/placeOrder.jsp </result> 
 			</action>
@@ -546,6 +546,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="makePaymentCreditCard" class="edu.iiitb.action.cardPayment" method="makeCreditCardPayment">
 			<result name="success" type="json"/>
 		</action>
+		<action name="cashOnDeliveryOderPayment" class="edu.iiitb.action.cashOnDeliveryOderPayment" >
+			<result name="success" type="redirect">clearUserCartDetails</result>
+		</action>
+		
 			
 	</package>
 </struts>
