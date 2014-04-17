@@ -6,19 +6,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Body</title>
-	<!-- Custom styles for this template -->
-	<link href="asset/CSS/Index.css" rel="stylesheet">
-	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-	
-	<!-- Bootstrap core CSS -->
-	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	<!-- CSS for Feedback designing  -->
 	<link href="asset/CSS/feedback.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
-	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<!-- Script to run Feedback jquery and ajax call  -->
 	<script src="asset/JavaScripts/jquery-feedback.js"></script>
 

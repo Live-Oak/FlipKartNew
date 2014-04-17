@@ -101,3 +101,13 @@ html, body {
     -moz-box-sizing: content-box;
 }
 
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  padding:0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  border-width: 0 0 1px;
+  background-color: #005387;
+  height:75px;
+}
