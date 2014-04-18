@@ -50,8 +50,8 @@ public class cashOnDeliveryOderPayment  extends ActionSupport implements Session
 		String bankName = "Flipkart";
 		String paymentType = "Cash On Delivery";		
 		db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType, accountNumber);
-		db.updateProductQuantityAfterPurchase(orderId);			
+		db.updateProductQuantityAfterPurchase(orderId);
+		System.out.println("order id cod : " + orderId);
 		return "success";
 	}
-
 }

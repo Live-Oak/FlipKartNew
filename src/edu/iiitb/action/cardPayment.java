@@ -117,8 +117,7 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 	
 	public String execute() throws SQLException
 	{
-		DBHandlerForUser db = new DBHandlerForUser();		
-		System.out.println("Paras");
+		DBHandlerForUser db = new DBHandlerForUser();			
 		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);			
 		session.put("bankName", bankName);
 		System.out.println("Catch");
