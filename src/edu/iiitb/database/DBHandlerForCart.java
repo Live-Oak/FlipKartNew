@@ -79,7 +79,7 @@ public class DBHandlerForCart {
 	public static void updateToCart(int userId, int productId, int quantity) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection con = db.createConnection();
-		String query="UPDATE cart SET quantity = ? WHERE userId = ? AND productId = ? ;";
+		String query="UPDATE Cart SET quantity = ? WHERE userId = ? AND productId = ? ;";
 		PreparedStatement prep =con.prepareStatement(query);	
 		prep.setInt(1,quantity);
 		prep.setInt(2,userId);

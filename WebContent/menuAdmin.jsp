@@ -81,6 +81,7 @@
 								<li><a href="viewProduct">Products</a></li>
 								<li><a href="viewCategory">Category</a></li>
 								<li><a href="viewSubCategory">Sub-Category</a></li>
+								<li><a href="viewFeedback">Feed-Back</a></li>
 							</ul>
 						</li> 
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">StockInfo <span class="caret"></span></a>

@@ -69,7 +69,6 @@ public class SearchAction extends ActionSupport{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			int counter;
 			categoryList = new ArrayList<String>();
 			categoryListtemp = new ArrayList<String>();
 			
