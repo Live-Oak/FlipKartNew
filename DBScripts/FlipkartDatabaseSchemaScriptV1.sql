@@ -129,20 +129,21 @@ CREATE  TABLE `FlipKartDatabase`.`Cart` (
 
 CREATE UNIQUE INDEX cartindex ON `FlipKartDatabase`.`Cart` (`userId`, `productId`);
 
-CREATE  TABLE `FlipKartDatabase`.`Payment` (
-  `transactionId` INT NOT NULL AUTO_INCREMENT ,
-  `orderId` INT NOT NULL ,
-  `bank` VARCHAR(100) NOT NULL ,
-  `paymentType` VARCHAR(45) NOT NULL ,
-  `amount` FLOAT NOT NULL ,
-  `paymentDate` DATE NOT NULL ,
-  PRIMARY KEY (`transactionId`) ,
-  INDEX `fk_Payment_orderId` (`orderId` ASC) ,
-  CONSTRAINT `fk_Payment_orderId`
-    FOREIGN KEY (`orderId` )
-    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+
+CREATE TABLE FlipKartDatabase.Payment (
+    transactionId INT NOT NULL AUTO_INCREMENT,
+    orderId INT NOT NULL,
+    bank VARCHAR(100) NOT NULL,
+    paymentType VARCHAR(45) NOT NULL,
+    amount FLOAT NOT NULL,
+    paymentDate DATE NOT NULL,
+    payeeAccountNumber INT NOT NULL,
+    PRIMARY KEY (transactionId),
+    INDEX fk_Payment_orderId (orderId ASC),
+    CONSTRAINT fk_Payment_orderId FOREIGN KEY (orderId)
+        REFERENCES FlipKartDatabase.Order (orderId)
+        ON DELETE NO ACTION ON UPDATE NO ACTION 
+ );
 
 
 

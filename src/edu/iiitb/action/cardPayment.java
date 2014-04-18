@@ -138,7 +138,7 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 		String bankName = String.valueOf(session.get("bankName"));	
 		String paymentType = "Card";
 		try {
-			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType);	
+			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType, cardNumber);	
 			db.updatePaymentInAccount(cardNumber, grandTotal);
 			db.updateProductQuantityAfterPurchase(orderId);
 		}
