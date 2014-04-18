@@ -17,6 +17,7 @@ import edu.iiitb.database.DBConnectivity;
 import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.model.User;
 import edu.iiitb.model.customerCartDetail;
+import edu.iiitb.util.SendMailSSL;
 
 public class generateReceipt extends ActionSupport implements SessionAware 
 {
@@ -68,15 +69,19 @@ public class generateReceipt extends ActionSupport implements SessionAware
 	}
 	
 	public String execute() throws SQLException
-	{
-		orderId = (Integer) session.get("orderId");
-		System.out.println("orderId " + orderId);
+	{	ArrayList<String> receipt = new ArrayList<String>();	
+		orderId = (Integer) session.get("orderId");		
 		DBHandlerForUser db = new DBHandlerForUser();		
 		buyedProductList =  db.generateReceipt(orderId);		
 		for (customerCartDetail buyedProduct : buyedProductList)
 		{
 			grandTotal = ( buyedProduct.getQuantity()  * Integer.parseInt( buyedProduct.getPrice() )  );
-		}	
+		}
+		receipt = db.getUserEmailIdForOrder(orderId);
+		
+		SendMailSSL sm = new SendMailSSL();
+		sm.sendMailReceiptGenerated(receipt.get(0), receipt.get(1), receipt.get(2), orderId);
+		
 		session.remove("orderId");
 		session.remove("grandTotal");
 		session.remove("bankName");
