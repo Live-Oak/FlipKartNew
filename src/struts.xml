@@ -111,10 +111,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<result name="login">/index.jsp</result>
 		</action>
 		
-		<action name="Notifications">
-		<result type="tiles">NotificationsTile</result>
-		<result name="login">/index.jsp</result>
-		</action>
 
 		<action name="Admin">
 			<interceptor-ref name="secureStack"></interceptor-ref>
@@ -553,6 +549,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="success" type="redirect">clearUserCartDetails</result>
 		</action>
 		
+		<action name="check_notification" class="edu.iiitb.action.MyOrdersAction" method="executeForNotification">
+			<result name="success" type="json"/>
+		</action>
+		
+		<action name="Notifications" class="edu.iiitb.action.MyOrdersAction" method="executeForNotification">
+			<result name="success" type="tiles">NotificationsTile</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
 			
 	</package>
 </struts>

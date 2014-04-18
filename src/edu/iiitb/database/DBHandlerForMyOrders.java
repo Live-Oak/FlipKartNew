@@ -262,7 +262,7 @@ public class DBHandlerForMyOrders {
 	                   " ON O.orderId = P.orderId "+
                        " Inner Join FlipKartDatabase.OrderShipingAddress as SA "+
 	                   " On O.orderId = SA.orderId "+ 
-                       " Where SA.email = '" + email + "' "+
+                       " Where SA.customerEmail = '" + email + "' "+
                        " Order By deliveryDate, /*dispatchDate,*/orderDate  desc ";
 		
 		ResultSet rs=db.executeQuery(query, con);
@@ -311,5 +311,6 @@ public class DBHandlerForMyOrders {
 		System.out.println("helloNotification");
 		return notification;
 	}
+
 
 }
