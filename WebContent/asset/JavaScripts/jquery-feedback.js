@@ -1,7 +1,6 @@
 $(document).on('click','#butt',function(){
 	$("#slideout_inner").toggleClass("out_inner");
 	$("#butt").toggleClass("butt_out");
-	
 });
 
 
@@ -33,7 +32,6 @@ $(document).on('click','#feedbackSub',function(){
 		    success: function(data){
 		    	$("#emailText").val("");
 				$("#mobileText").val("");
-				
 				$("#messageText").val("");
 				$("#msg").html("");
 		    	$("#slideout_inner").toggleClass("out_inner");
