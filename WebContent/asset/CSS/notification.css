@@ -2,26 +2,34 @@
 {
     display:none;
 }
+.popover{
+	height: 280px;
+	width: 360px;
+}
 .no-notifications
 {
 	color: #007FB8;
 	font-size: 15px;
 	font-weight: bold;
+	
 }
 .notification-popup-header
 {
-	border-bottom: 1px solid #EOE4E7;
-	font-size: 13px;
+	border-bottom: 1px solid;
+	font-size: 15px;
 	font-weight: bold;
-	padding: 7px;
+	color: red;
+	
 }
 .whatrnotif1
 {
 	color: #565656;
+	
 }
 .whatrnotif2
 {
 	color: #848484;
+	
 }
 .displayData
 {
