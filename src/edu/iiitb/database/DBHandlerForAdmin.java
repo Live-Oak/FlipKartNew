@@ -56,7 +56,6 @@ public class DBHandlerForAdmin {
 		String[] splitedDate=user.getDate().split("T");
 		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
-		
 		prep.setString(1, user.getFirstName());
 		prep.setString(2, user.getLastName());
 		prep.setString(3, user.getPassword());
