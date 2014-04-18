@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="edu.iiitb.model.UserEntry"%>
+<%@page import="edu.iiitb.model.MyOrdersModel"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -15,6 +16,7 @@
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 <!-- 	<link rel="stylesheet" href="asset/CSS/login.css"> -->
 <link rel="stylesheet" href="asset/CSS/reveal.css">	
+<link rel="stylesheet" href="asset/CSS/notification.css">	
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
@@ -41,10 +43,42 @@ li.padding {color: #848484;
     cursor: pointer;
     color: #666666;
     }
-    td{
-    text-align:center;
-    padding:10px;
-   }
+    .notification-read {
+    background-color: #F6F6F6;
+}
+.line, .lastUnit {
+    overflow: hidden;
+}
+.rpadding10 {
+    padding-right: 10px;
+}
+.bpadding10 {
+    padding-bottom: 10px;
+}
+.lpadding15 {
+    padding-left: 15px;
+}
+.tpadding10 {
+    padding-top: 10px;
+}
+.lastUnit {
+    float: none;
+    width: auto;
+}
+.notification-text {
+    color: #000000;
+    float: left;
+}
+.tpadding5 {
+    padding-top: 5px;
+}
+.notification-timestamp {
+    color: #808080;
+    float: right;
+    font: 13px arial;
+}
+    
+ 
 </style>
 
 
@@ -78,6 +112,26 @@ li.padding {color: #848484;
 		<div class="col-md-6">
 			<h3> Notifications</h3>
 			<br>
+			
+			<s:iterator value="Orders">
+			<div class="line tpadding10 bpadding10 lpadding15 rpadding10 notification-content notification-read ">
+		    <div class="lastUnit">
+            <span class="notification-text">Your Flipkart order# <strong> <s:property value="oredrNo"/> </strong> has been <strong> <s:property value="status"/> </strong>.</span>
+            </div>
+            <div class="line tpadding5">
+            <div class="notification-timestamp lastUnit"><s:property value="days_ago"/> days ago</div>
+            </div>
+            </div>
+            </s:iterator>
+			
+			<%-- 
+			<table class="table">
+			<s:iterator value="Orders">
+			<tr><td>Your Flipkart order <strong> <s:property value="oredrNo"/> </strong> has been <strong> <s:property value="status"/> </strong> <br> <s:property value="days_ago"/> </td></tr><hr>
+			
+			</s:iterator>
+			</table>
+			--%>
 			
 		</div>
 		</div>

@@ -54,10 +54,10 @@ $(document).ready(function(){
 			{
 		$.ajax({
 		    type: 'POST',	    
-		    url:'useravailable?email='+$("#email").val(),
+		    url:'useravailable?email='+$("#userEmail").val(),
 		    success: function(data){
 		    	
-		    	$("#notify").html(data.message);
+		    	$("#notifyUser").html(data.message);
 		     }});	
 	});
 });
@@ -65,12 +65,16 @@ $(document).ready(function(){
 
 </script>
 
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#change_email").click(function()
+	$("#change_emailid").click(function()
 			{
     	
-		var status=$("#notify").html();
+		var status=$("#notifyUser").html();
 		if(status=="Enjoy Flipkart User Experience")
 		{
 			
@@ -78,7 +82,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			$("#notify").html("Please check Email id availabilty");
+			$("#notifyUser").html("Please check Email id availabilty");
 		}
 			
 	});
@@ -124,12 +128,12 @@ $(document).ready(function(){
 					out.print(u.getEmail());%></label> 
 			</td> </tr>
 			<tr> <td style="text-align:left">New Email ID </td> 
-			<td> <input type="email" id="email" name="newEmail" class="textbox"  required ></td> </tr>
+			<td> <input type="text" id="userEmail" name="newEmail" class="textbox"  required=true ></td> </tr>
 			<tr> <td> </td> <td><p id="checking">Check for availability</p></td>
-			<tr><td> </td><td><label id="notify"></label> </td> </tr>
+			<tr><td> </td><td><label id="notifyUser"> </label> </td> </tr>
 			
 			<tr> <td></td>
-			<td><input type="button" id="change_email" class="btn btn-primary" value="SAVE CHANGES" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td><input type="button" id="change_emailid" class="btn btn-primary" value="SAVE CHANGES" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
 		    </form>
