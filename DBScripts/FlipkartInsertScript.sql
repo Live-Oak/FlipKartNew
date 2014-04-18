@@ -10,7 +10,7 @@ INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gend
 
 
 INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (1, 4, 'Prashant Ruwali is one of Indias largest online retailers, dealing in genuine and brand new products across multiple categories like books, electronics, fashion and lifestyle. ');
-INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (2, 5, 'Devesh Rawat is one of Indias largest online retailers, dealing in genuine and brand new products across multiple categories like books, electronics, fashion and lifestyle. ');
+INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (2, 6, 'Devesh Rawat is one of Indias largest online retailers, dealing in genuine and brand new products across multiple categories like books, electronics, fashion and lifestyle. ');
 
 
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('01', 'Electronics','asset/Images/mobile.jpg');
