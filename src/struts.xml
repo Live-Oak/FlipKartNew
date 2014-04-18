@@ -209,7 +209,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 			<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
 				<result name="success" type="tiles">Browse_SearchPage</result>
-				<result name="error">/error.jsp</result>
+				<result name="error" type="tiles">noItemFound</result>
 			</action>
 
 			<action name="getSearchresult" class="edu.iiitb.action.SearchAction">
