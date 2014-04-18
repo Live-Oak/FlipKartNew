@@ -6,12 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Body</title>
-	<!-- CSS for Feedback designing  -->
-	<link href="asset/CSS/feedback.css" rel="stylesheet">
 	
-	<!-- Script to run Feedback jquery and ajax call  -->
-	<script src="asset/JavaScripts/jquery-feedback.js"></script>
-
 </head>
 <body>
 	<!-- Carousel -->
@@ -248,70 +243,7 @@
 		</div>
 	</form>
 	<br><br><br><br>
-	
-	
-	
-		<input id="butt" class="btnFeedback" type="image" src="asset/Images/suggest-post.png" alt="Feedback"/>
-	<div id = "Thankyou">
-  		
-		<div class="thankyouStyle">Thank you for your feedback 
-			<img height="20px" width="20px" alt="image-logo" src="asset/Images/smiley.jpg">
-  		</div>
-		<br>
-  		<input class="closebuttonStyle" type="button" value="Close" id="closeFeedback"><br><br><br>
-  		<img style="margin-left: 300px;" alt="image-logo" src="asset/Images/flipkartLogoFeedback.png">
-  		
-	</div>
-  
-	<div  id="slideout_inner">
-	
-		<h3><label class="label1">Tell us What you Think.</label></h3>
-		<p style="font-size: 12px;color: #555555;margin-left: 15px;margin-right: 15px;">Love us / have suggestions / ideas / feature requests?
-		Tell us how we can improve our website.</p>
-		<hr style="border-style: solid none;border-width: 1px 0;">
-		<label class="label2">Email<span style="color:red;"> *</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
-		<% 
-			if(session.getValue("email")==null)
-			{ 
-		%>
-		<input id="emailText" value="" type="email" pattern="[^ @]*@[^ @]*" autocomplete="off" style="border-color:black" name="email" required="true" size="30">
-		<%
-			}
-			else 
-			{
-		%>
-		<input id="emailText" value="<%= session.getValue("email")%>" type="email" pattern="[^ @]*@[^ @]*" autocomplete="off" style="border-color:black" name="email" required="true" size="30">
-		<% 
-			} 
-		%>
-	
-		<br><br>
-		<label class="label2">Mobile Number<span style="color:red;"> *</span></label>&nbsp;&nbsp;&nbsp;
-		<input id="mobileText" type="tel" pattern="[0-9]{10,10}" maxlength="10"  autocomplete="off" style="border-color:black" name="mobileNumber" required="true"  size="22">
-		<br><br>
-		<label class="label2">Category<span style="color:red;"> *</span></label>
-		<select class="label2" id="dropbox" name="category">
-		<option>Improve this page</option>
-		<option>Suggest new features/ideas</option>
-		<option>Shopping Experience</option>
-		<option>I love Flipkart</option>
-		<option>Others - General Feedback</option>
-		<option>Flipkart offers zone feedback</option>
-		</select>
-		<br><br>
-		<label class="label2">Message<span style="color:red;"> *</span></label>
-		<br>
-		<s:textarea id="messageText" cssClass="" cssStyle="margin-left:15px;border-color:black" name="message" 
-		required="true" rows="4" cols="52"></s:textarea>
-		<br><br>
-		<input  class="feedbackSubmit" type="button" value="Submit" id="feedbackSub">
-		<img style="margin-left: 145px" alt="image-logo" src="asset/Images/flipkartLogoFeedback.png">
-		<hr style="border-style: solid none;border-width: 1px 0;">
-		<div id="msg" style="color: red;text-align: center;"></div>
-		
-	</div>
-	
 	
 		<script>
    $(function(){
