@@ -589,7 +589,7 @@ $(document).ready(function(){
 				{ 
 		%>
 	
-	<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title=""> 
+	<img src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title=""> 
 		 
 		 <div id ="popover_content_wrapper" class="hide">Hi Hello</div> 
 		 <div class="mycontent hide">
@@ -614,7 +614,7 @@ $(document).ready(function(){
 				{ 
 		%>
 		
-	<img id="notification_button" src="asset/Images/bell.JPG" data-contentwrapper=".mycontent"  rel="popover" data-title="">
+	<img id="notification_button" src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title="">
 		 
 		
 		 <div class="mycontent hide">
