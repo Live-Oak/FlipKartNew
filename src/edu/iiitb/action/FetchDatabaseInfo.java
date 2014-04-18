@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.FeedbackModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
 
@@ -19,7 +20,7 @@ public class FetchDatabaseInfo {
 	ArrayList<UserEntry> user;
 	ArrayList<ProductInfo> product;
 	ArrayList<CategoryModel> category;
-	
+	ArrayList<FeedbackModel> feedback;
 	
 
 	public String execute() {
@@ -89,7 +90,22 @@ public class FetchDatabaseInfo {
 		return "success";
 	}
 	
-
+	public String feedbackFetch()
+	{
+		feedback = new ArrayList<FeedbackModel>();
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		try
+		{
+			dbHandler.viewFeedbackData(feedback);
+		}catch(SQLException e)
+		{
+			System.out.println("Exception at subCategoryFetch() of FetchUser.java");
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+		
+	}
 
 	
 	/**
@@ -134,4 +150,19 @@ public class FetchDatabaseInfo {
 		this.category = category;
 	}
 
+	/**
+	 * @return the feedback
+	 */
+	public ArrayList<FeedbackModel> getFeedback() {
+		return feedback;
+	}
+
+	/**
+	 * @param feedback the feedback to set
+	 */
+	public void setFeedback(ArrayList<FeedbackModel> feedback) {
+		this.feedback = feedback;
+	}
+
+	
 }
