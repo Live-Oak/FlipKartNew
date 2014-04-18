@@ -167,30 +167,7 @@
 		});
 	});
 </script>
-<script>
-	$(document).ready(function() 
-	{
-		$("#nextPaymentPage").click(function() 
-		{
-			/* Ajax Call for place order Starts Here*/
-			$.ajax(
-			{
-				type : 'GET',
-				url : 'placeOrder?email='+ $("#emailInput").val() + '&name='+ $("#name").val() + '&pinCode='+ $("#pin").val() + '&addressLine1='
-						+ $("#address").val()+ '&addressLine2='+ $("#address2").val()+ '&phoneNumber=' + $("#phone").val()+ '&city=' + $("#city").val(),
-				success : function(data) 
-				{
-				}
-			});
-			/* Ajax call for place order ends here */
-			$("#panel4").slideDown();
-			$("#panel3").slideUp();
-			$("#editOrder").show();
-			$("#editEmailid").show();
-			$("#editAddress").show();
-		});
-	});
-</script>
+
 <script>
 	$(document).ready(function() 
 	{
@@ -585,7 +562,7 @@
 					<br> <br> <br> <br>
 				</div>
 			</div>
-			<input type="submit" id="nextOrderPage" value="SAVE & CONTINUE" align="middle" class="mysubmit2">
+			<input type="submit" id="nextOrderPage" value="SAVE ADDRESS & CONTINUE" align="middle" class="mysubmit2">
 		</div>
 		<div id="flip3">
 			<label class="mylabel">3.ORDER SUMMARY</label> 
@@ -619,7 +596,7 @@
 				</tr>
 			</table>
 			<br />
-			<button id="nextPaymentPage" name="nextPaymentPage" align="middle"class="mysubmit2">CONTINUE</button>
+			<button id="nextPaymentPage" name="nextPaymentPage" align="middle" class="mysubmit2">CONFIRM  ORDER</button>
 			<br />
 		</div>
 		<div id="flip4">
@@ -669,7 +646,7 @@
 						</div>
 						<button name="bankLogin" id="bankLogin" style="background-color: #FFA500; border: 1px solid #FFA500; color: #FFFFFF; 
 							font-size: large; height: 40px; left: 350px; margin-top: 20px; position: none; width: 234px;">
-						CONTINUE</button>
+						SELECT BANK</button>
 						<br>
 					</div>
 				</div>

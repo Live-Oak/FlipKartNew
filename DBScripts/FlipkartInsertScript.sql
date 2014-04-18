@@ -307,7 +307,7 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(19, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', 'UPTO 25% OFF ON CAMERA', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(05, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/mclp.jpg', '2014-03-31 19:26:38', 'GET YOUR HAND ON MOTO G', 'carousel');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT Rs.5000 OFF', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(33, 'asset/Images/motog.jpg', '2014-04-02 19:26:38', 'UPGRADE TO MOTOG RS.2000 OFF', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(36, 'asset/Images/juicer.jpg', '2014-04-03 19:26:38', 'EXTRA 15% OFF ON JUICER', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(35, 'asset/Images/toy.jpg', '2014-04-03 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF', 'carousel');
