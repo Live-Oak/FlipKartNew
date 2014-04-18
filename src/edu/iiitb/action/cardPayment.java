@@ -135,14 +135,12 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 		DBHandlerForUser db = new DBHandlerForUser();		
 		String orderId =  String.valueOf(session.get("orderId"));
 		String grandTotal = String.valueOf(session.get("grandTotal"));
-		String bankName = String.valueOf(session.get("bankName"));		
-
+		String bankName = String.valueOf(session.get("bankName"));	
+		String paymentType = "Card";
 		try {
-			db.insertOrderPaymentDetails(orderId, bankName, grandTotal);	
+			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType);	
 			db.updatePaymentInAccount(cardNumber, grandTotal);
 			db.updateProductQuantityAfterPurchase(orderId);
-			db.updateProductQuantityAfterPurchase(orderId);
-			
 		}
 		catch(Exception e)
 		{
