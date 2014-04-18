@@ -52,6 +52,12 @@
    			<put-attribute name="body" value="/category.jsp"></put-attribute>
    		</definition>
    		
+   		
+   		<definition name="FeedbackData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/feedback.jsp"></put-attribute>
+   		</definition>
+   		
    		<definition name="UserData" extends="Administrator">
    			<put-attribute name="title" value="Users Info"/>
    			<put-attribute name="body" value="/users.jsp"></put-attribute>

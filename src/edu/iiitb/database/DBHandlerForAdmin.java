@@ -16,6 +16,7 @@ import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.FeedbackModel;
 import edu.iiitb.model.MyOrdersModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
@@ -616,6 +617,22 @@ public class DBHandlerForAdmin {
 			st.executeUpdate(query);
 			con.close();
 		}
+	}
+
+	public void viewFeedbackData(ArrayList<FeedbackModel> feedback) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from FlipKartDatabase.Feedback";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			FeedbackModel model = new FeedbackModel();
+			model.setEmail(rs.getString("email"));
+			model.setMobileNumber(rs.getString("mobileNumber"));
+			model.setCategory(rs.getString("category"));
+			model.setMessage(rs.getString("message"));
+			feedback.add(model);
+		}
+		con.close();
 	}
 	
 	

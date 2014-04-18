@@ -1,3 +1,4 @@
+DROP DATABASE FlipKartDatabase;
 CREATE DATABASE FlipKartDatabase;
 
 
@@ -101,7 +102,7 @@ CREATE  TABLE `FlipKartDatabase`.`Order` (
 
 
 
-CREATE TABLE `FlipKartDatabase`.`feedback` (
+CREATE TABLE `FlipKartDatabase`.`Feedback` (
   `email` VARCHAR(50) NULL,
   `mobileNumber` VARCHAR(50) NULL,
   `category` VARCHAR(50) NULL,
