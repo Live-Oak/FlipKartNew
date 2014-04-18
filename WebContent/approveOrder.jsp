@@ -61,7 +61,7 @@
 					<!-- <option> --Select-- </option> -->
 				
 						<option>DISPATCHED</option>
-						<option>CONFIRMED</option>
+						<option>DELIVERED</option>
 					
 				</select><br>
 			</h3>

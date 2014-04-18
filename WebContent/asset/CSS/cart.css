@@ -22,7 +22,7 @@
 
 .cart-revealmodel {
 		visibility: hidden;
-		top: 100px; 
+		top: 100px !important; 
 		left: 50%;
 		margin-left: -440px;
 		width: 800px;

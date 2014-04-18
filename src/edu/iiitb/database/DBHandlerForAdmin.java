@@ -596,9 +596,26 @@ public class DBHandlerForAdmin {
 
 	public void confirmPurchaseOrder(int orderID, String orderStatus) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
-		Statement st=(Statement) con.createStatement();
-		st.executeUpdate(query);
+		if(orderStatus.equalsIgnoreCase("DISPATCHED"))
+		{
+			String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
+			Statement st=(Statement) con.createStatement();
+			st.executeUpdate(query);
+			con.close();
+		}
+		else
+		{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			String date = sdf.format(new java.util.Date());
+			String query = " Update FlipKartDatabase.Order "
+						+  " Set status = '" + orderStatus + "' ,"
+						+  " deliveryDate = '"+date+"' "
+						+  " Where orderId = " + orderID + "";
+			
+			Statement st=(Statement) con.createStatement();
+			st.executeUpdate(query);
+			con.close();
+		}
 	}
 	
 	

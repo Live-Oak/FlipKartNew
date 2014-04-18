@@ -52,26 +52,7 @@ public class onlineBankingPaymentAction extends ActionSupport implements Session
 		// TODO Auto-generated method stub
 		this.servletRequest = servletRequest;
 		
-	}	
-	public String execute()  throws SQLException
-	{
-		DBHandlerForUser db = new DBHandlerForUser();		
-		String orderId =  String.valueOf(session.get("orderId"));
-		String grandTotal = String.valueOf(session.get("grandTotal"));	
-		try
-		{
-			String paymentType = "Internet Banking";
-			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType);				
-			db.updatePaymentInAccount(accountNumber, grandTotal);
-			db.updateProductQuantityAfterPurchase(orderId);					
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}	 	
-		return "success";
 	}
-
 	public String getAccountNumber() {
 		return accountNumber;
 	}
@@ -86,5 +67,23 @@ public class onlineBankingPaymentAction extends ActionSupport implements Session
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
+	}	
+	public String execute()  throws SQLException
+	{
+		DBHandlerForUser db = new DBHandlerForUser();		
+		String orderId =  String.valueOf(session.get("orderId"));
+		String grandTotal = String.valueOf(session.get("grandTotal"));	
+		try
+		{
+			String paymentType = "Internet Banking";
+			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType, accountNumber);				
+			db.updatePaymentInAccount(accountNumber, grandTotal);
+			db.updateProductQuantityAfterPurchase(orderId);					
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}	 	
+		return "success";
 	}
 }

@@ -51,7 +51,7 @@
 												+ "</tr>"
 												+ "<tr> <th colspan='4'> Your order id for above order is : "
 												+ data.orderId
-												+ "and transaction id is : "
+												+ " and transaction id is : "
 												+ transactionId + "</th></tr>"
 												+ "</table>";
 										$("#generateReceipt").append(query);
