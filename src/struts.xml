@@ -474,7 +474,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 						
 			<action name="placeOrderUserSessionCheck" class="edu.iiitb.action.placeOrderUserSessionCheck">
-			 <result name="success" >/placeOrder.jsp </result> 
+			 <result name="success" type = "tiles">PlaceOrder</result> 
 			</action>
 			
 			<action name="getUserCartDetails" class="edu.iiitb.action.getUserCartDetails">

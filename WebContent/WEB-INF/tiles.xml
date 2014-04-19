@@ -102,6 +102,12 @@
    			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
    		</definition>
+   		
+   		<definition name="PlaceOrder" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
+   			<put-attribute name="menu"   value="/placeOrderHeader.jsp"/>
+   			<put-attribute name="body"   value="/placeOrder.jsp"/>
+   		</definition>
 
 		<definition name="CompareProductsTiles" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Compare Products"/>
