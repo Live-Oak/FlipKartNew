@@ -41,13 +41,17 @@ public class CompareProductAjax
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
+		if(productInfoAdded.get(0).getOffer()!=0)
+		{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		long diff = (productInfoAdded.get(0).getOfferValidity().getTime() - date.getTime());
 		int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
 		productInfoAdded.get(0).setValid(diffDays);
-		
+		}
 		int discount = 100 - (((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice());
+		System.out.println("discount of staying"+discount);
+		
 		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
 		{
 			setMessagestock("Out of Stock");

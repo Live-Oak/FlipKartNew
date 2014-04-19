@@ -184,10 +184,14 @@ ServletResponseAware, ServletRequestAware
 								{
 								DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 								Date date = new Date();
+								if(productinfo.get(i).getOffer()!=0)
+								{
 								long diff = (productinfo.get(i).getOfferValidity().getTime() - date.getTime());
 								int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
 								productinfo.get(i).setValid(diffDays);
+								}
 								int discount = 100 - (((productinfo.get(i).getPrice()-productinfo.get(i).getOffer())*100)/productinfo.get(i).getPrice());
+								System.out.println("discount of coming"+discount);
 								productinfo.get(i).setDiscount(discount);
 								}
 								categoryproducts=dbHandlerForUser.getproductsforcomparison(categoryList);
