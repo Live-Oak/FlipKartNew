@@ -285,7 +285,7 @@ public class DBHandlerForMyOrders {
 			
 			
 			cal2.setTime(date2);
-			cal2.setTime(date3);
+			cal3.setTime(date3);
 			long diff_in_days1 = ( (cal1.getTimeInMillis() - cal2.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
 			long diff_in_days2 = ( (cal1.getTimeInMillis() - cal3.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
 
@@ -293,7 +293,7 @@ public class DBHandlerForMyOrders {
 				
 				obj.setOredrNo(rs.getInt("orderId"));
 			    obj.setStatus(rs.getString("status"));
-			    if(rs.getString("status").equals("PLACE") || rs.getString("status").equals("PLACE") )
+			    if(rs.getString("status").equals("PLACED") || rs.getString("status").equals("DISPATCHED") )
 			    {
 			    	obj.setDays_ago(diff_in_days1);
 			    }
