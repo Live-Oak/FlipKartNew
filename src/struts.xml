@@ -252,6 +252,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
+			
+			
+			<action name="viewFeedback" class="edu.iiitb.action.FetchDatabaseInfo"
+				method="feedbackFetch">
+				<interceptor-ref name="secureStack"></interceptor-ref>
+				<result name="success" type="tiles">FeedbackData</result>
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
 
 			<action name="viewSubCategory" class="edu.iiitb.action.FetchDatabaseInfo"
 				method="subCategoryFetch">
@@ -465,7 +474,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 						
 			<action name="placeOrderUserSessionCheck" class="edu.iiitb.action.placeOrderUserSessionCheck">
-			 <result name="success" >/placeOrder.jsp </result> 
+			 <result name="success" type = "tiles">PlaceOrder</result> 
 			</action>
 			
 			<action name="getUserCartDetails" class="edu.iiitb.action.getUserCartDetails">

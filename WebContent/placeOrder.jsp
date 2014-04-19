@@ -12,8 +12,10 @@
 	type="text/css">
 <link href="./asset/CSS/placeOrder.css" rel="stylesheet" type="text/css">
 
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Place Order</title>
+
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <script src="asset/JavaScripts/jquery-ui.js"></script>
 
@@ -139,6 +141,12 @@
 						$("#panel1").slideUp();
 						$("#editEmailid").show();
 					}
+					else
+					{
+						$("#emailInput").html("");
+						$("#emailInput").css("border","1px solid #ff0000");		
+						$("#emailInput").focus();
+					}
 				});
 		});
 </script>
@@ -146,11 +154,12 @@
 	$(document).ready(function() 
 	{
 		$("#nextOrderPage").click(function()
-		{
+		{			
 			var name = $("#name");
 			var pin = $("#pin");
 			var add = $("#address");
-			var phn = $("#phone");
+			var phn = $("#phone"); 
+			
 			var city = $("#city");
 			if (		(name.val().length > 0)
 					&&  (pin.val().length > 0)
@@ -158,39 +167,36 @@
 					&&  (phn.val().length > 0)
 					&&  (city.val().length > 0)
 				) 
-			{
-				$("#panel2").slideUp();
-				$("#panel3").slideDown();
-				$("#editAddress").show();
-				$("#editEmailid").show();
-			}
+			{	
+						
+				if ( (pin.val().length == 6) && (pin.val() >= 100000) && (pin.val()<= 999999) ) 
+					{
+						
+						if (	(phn.val().length == 10) && (phn.val() >= 7000000000) && (phn.val() <= 9999999999)	)
+						 { 
+							 $("#panel2").slideUp();
+							$("#panel3").slideDown();
+							$("#editAddress").show();
+							$("#editEmailid").show();						 
+						 }
+						 else
+							{
+							 	$("#phone").html("");
+								$("#phone").css("border","1px solid #ff0000");		
+								$("#phone").focus();
+							}
+					}
+					else
+					{
+						$("#pin").html("");
+						$("#pin").css("border","1px solid #ff0000");				
+						$("#pin").focus();	
+					};				
+				};
 		});
 	});
 </script>
-<script>
-	$(document).ready(function() 
-	{
-		$("#nextPaymentPage").click(function() 
-		{
-			/* Ajax Call for place order Starts Here*/
-			$.ajax(
-			{
-				type : 'GET',
-				url : 'placeOrder?email='+ $("#emailInput").val() + '&name='+ $("#name").val() + '&pinCode='+ $("#pin").val() + '&addressLine1='
-						+ $("#address").val()+ '&addressLine2='+ $("#address2").val()+ '&phoneNumber=' + $("#phone").val()+ '&city=' + $("#city").val(),
-				success : function(data) 
-				{
-				}
-			});
-			/* Ajax call for place order ends here */
-			$("#panel4").slideDown();
-			$("#panel3").slideUp();
-			$("#editOrder").show();
-			$("#editEmailid").show();
-			$("#editAddress").show();
-		});
-	});
-</script>
+
 <script>
 	$(document).ready(function() 
 	{
@@ -469,31 +475,7 @@
 		width: 40em;
 	}
 </style>
-<style>
-	table {
-		width: auto;
-		height: height;
-		border: 1px solid #990000;
-		margin: auto;
-	}	
-	table th {
-		width: auto;
-		height: auto;
-		border: 2px solid #660000;
-		text-align: center;
-		font-weight: bold;		
-	}	
-	.last {
-		text-align: right;
-		padding-right: 20px;
-	}	
-	table td {
-		width: 150px;
-		height: 80px;
-		border: 2px solid #660000;
-		text-align: center;
-	}
-</style>
+
 <style>
 	.box {
 		float: left;
@@ -508,9 +490,9 @@
 <style>
 	.captcha {
 		width: 250px;
-		height: 100px;
+		height: 120px;
 		border: 1px solid red;
-		/*margin-right:10px;*/
+		margin-right :10px;
 		float: left;
 	}
 	
@@ -524,75 +506,90 @@
 			
 </head>
 <body>
-
+<br><br><br>
 	<div id="screenSize" class="myscreenSize">
 		<div id="flip1" align="left">
-			<label class="mylabel">1.EMAIL ID</label> <input type="submit"
-				id="editEmailid" value="Edit Email" class="mysubmit3">
+			<label class="mylabel"><font color="#ffffff">&nbsp;&nbsp;1.SIGN IN</font></label> 
+			<input type="submit" id="editEmailid" value="Edit Email" class="mysubmit3">
 		</div>
 
 		<div id="panel1">
-			<label class="mylabel1">Email Address*</label> <br>
-			<form name="login_po" id="login_po" method="post">
-
-				<input type="email" id="emailInput" name="email" required="true"
-					class="mytext1" value='<s:property value="addressDetails.email"/>'>
-				<br> <br> <input id="show" type="checkbox"
-					name="registeredUser"> <label class="mylabel1">I
-					have a Flipkart account</label> <br>
+			Email Address* <br><br>
+				<input type="email" id="emailInput" name="email" required="true" class="form-control input-sm"  style="width:400px" value='<s:property value="addressDetails.email"/>'>
+				<br> <br> 
+				<input id="show" type="checkbox" name="registeredUser"> 
+				I have a Flipkart account <br>
 				<div id="pwd">
-					<br> <label class="mylabel1"></label> <br> <input
-						type="password" id="password" name="password" class="mytext1"><br />
+					<br> Password <br> <br> 
+					<input type="password" id="password" name="password" class="form-control input-sm"  style="width:400px"><br />
 					<label id="check_email_password" width="200px"></label>
 				</div>
 				<br>
-				<button id="nextAddressPage" type="button" value="CONTINUE"
-					align="middle" class="mysubmit1">CONTINUE</button>
-				<!--  </form> -->
+				<button id="nextAddressPage" type="button" value="CONTINUE" align="middle" class="mysubmit1">CONTINUE</button>
 		</div>
 
 		<div id="flip2">
-			<label class="mylabel">2.DELIVERY ADDRESS</label> <input
+			<label class="mylabel"><font color="#ffffff">&nbsp;&nbsp;2.DELIVERY ADDRESS</font></label> <input
 				type="submit" id="editAddress" value="Edit Address"
 				class="mysubmit3">
 		</div>
 		<div id="panel2">
 			<div>
 				<div>
-					<label class="mylabel2">Name*</label> 
-					<input type="text" name="name" id="name" class="mytext2" pattern="[A-Z a-z]+"required="true" 
-						   title="Please provid valid name" placeholder="Please Enter Name"value='<s:property value="addressDetails.name"/>'> <br>
-					<br> <br> <br> 
-					<label class="mylabel2">Pincode*</label>
-					<input type="text" name="pincode" id="pin" class="mytext2" 	required="true" pattern="[1-9]{1}[0-9]{5}" title="Please provide valid 6 digit pin" 	
-					       placeholder="Please Enter 6 Digit Pincode" value='<s:property	value="addressDetails.pinCode"/>'> <br>
-					<br> <br> <br> 
-					<label class="mylabel2">Address	Line 1*</label> 
-					<input type="text" name="addressLine1" id="address" class="mytext2" required="true" title="Please provide valid City name"
+					<table class="table table-striped">
+						<tr>
+							<td>Name*
+							</td>
+							<td><input type="text" name="name" id="name" class="form-control input-sm"  style="width:400px" pattern="[A-Z a-z]+"required="true" 
+						   title="Please provid valid name" placeholder="Please Enter Name"value='<s:property value="addressDetails.name"/>'>
+							</td>
+						</tr>
+						<tr>
+							<td>Pincode*
+							</td>
+							<td><input minlength="6" maxlength ="6" type="text" name="pincode" id="pin" class="form-control input-sm"  style="width:400px" required="true" pattern="[1-9]{1}[0-9]{5}" title="Please provide valid 6 digit pin" 	
+					       placeholder="Please Enter 6 Digit Pincode" value='<s:property	value="addressDetails.pinCode"/>'>
+							</td>
+						</tr>
+						<tr>
+							<td>Address	Line 1*
+							</td>
+							<td><input type="text" name="addressLine1" id="address" class="form-control input-sm" style="width:400px" required="true" title="Please provide valid City name"
 						placeholder="Please Enter Address Line 1" value='<s:property value="addressDetails.addressLine1"/>'>
-					<br> <br> <br> <br> 
-					<label class="mylabel2">Address Line 2</label> 
-					<input type="text" id="address2" name="addressLine2" class="mytext2" placeholder="Please Enter Address Line 2"
+							</td>
+						</tr>
+						<tr>
+							<td>Address	Line 2*
+							</td>
+							<td><input type="text" id="address2" name="addressLine2" class="form-control input-sm" style="width:400px" placeholder="Please Enter Address Line 2"
 						value='<s:property value="addressDetails.addressLine2"/>'>
-					<br> <br> <br> <br> 
-					<label class="mylabel2">City*</label>
-					<input type="text" name="city" id="city" class="mytext2" required="true" pattern="[A-Z a-z]+" title="Please provide valid City name"
+							</td>
+						</tr>
+						<tr>
+							<td>City*
+							</td>
+							<td><input type="text" name="city" id="city" class="form-control input-sm" style="width:400px" required="true" pattern="[A-Z a-z]+" title="Please provide valid City name"
 						placeholder="Please Enter City Name" value='<s:property value="addressDetails.city"/>'> 
-					<br><br> <br> <br> 
-					<label class="mylabel2">Phone*</label>
-					<input type="text" name="phone" required="true" id="phone" class="mytext2" pattern="[7-9]{1}[0-9]{9}"
+							</td>
+						</tr>
+						<tr>
+							<td>Phone*
+							</td>
+							<td><input type="text" minlength="10" maxlength ="10" name="phone" required="true" id="phone" class="form-control input-sms" style="width:400px" pattern="[7-9]{1}[0-9]{9}"
 						title="Please provide valid Prone number" value='<s:property value="addressDetails.phoneNumber"/>'>
-					<br> <br> <br> <br>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
-			<input type="submit" id="nextOrderPage" value="SAVE & CONTINUE" align="middle" class="mysubmit2">
+			<input type="submit" id="nextOrderPage" value="SAVE ADDRESS & CONTINUE" align="middle" class="mysubmit2">
 		</div>
 		<div id="flip3">
-			<label class="mylabel">3.ORDER SUMMARY</label> 
-			<input type="submit" id="editOrder" value="Edit Order" class="mysubmit3">
+			<label class="mylabel"><font color="#ffffff">&nbsp;&nbsp;3.ORDER SUMMARY</font></label> 
+			<input type="submit" id="editOrder" value="Edit Order" class="mysubmit3"> 
 		</div>
 		<div id="panel3">
-			<table>
+			<table class="table table-striped">
 				<tr>
 					<th>&nbsp;</th>
 					<th>Item</th>
@@ -604,7 +601,7 @@
 				<s:iterator value="cartDetailsList">
 					<tr>
 						<td id="cardCol1"><img src="<s:property value="image"/>"
-							width="100px" height="100px"
+							width="auto" height="100px"
 							alt="<s:property value="productName"/>"></td>
 						<td id="cardCol2"><s:property value="productName" /></td>
 						<td id="cardCol3"><s:property value="quantity" />
@@ -619,59 +616,65 @@
 				</tr>
 			</table>
 			<br />
-			<button id="nextPaymentPage" name="nextPaymentPage" align="middle"class="mysubmit2">CONTINUE</button>
+			<button id="nextPaymentPage" name="nextPaymentPage" align="middle" class="mysubmit2">CONFIRM  ORDER</button>
 			<br />
 		</div>
 		<div id="flip4">
-			<label class="mylabel">4.PAYMENT METHOD</label>
+			<label class="mylabel"><font color="#ffffff">&nbsp;&nbsp;4.PAYMENT METHOD</font></label>
 		</div>
+		<div class="background" style="background-color:#ffffff">
 		<div id="panel4">
 			<div id="tabs">
-				<ul style="text-align: left;">
+				<div class="span2">
+				<div class="span3 bs-docs-sidebar">
+				<ul class="nav nav-pills nav-stacked">
 					<li><a href="#COD">Cash On Delivery</a></li>
 					<li><a href="#NetBanking">Net Banking</a></li>
 					<li><a href="#CreditCard">Credit Card</a></li>
 					<li><a href="#DebitCard">Debit Card</a></li>
 				</ul>
+				<div>
+				<div class="span5">
 				<div id="COD" style="width: 600px; height: 300px;">					
-					
+					<h4>Cash on Delivery</h4><br><br>
 					<div onload="DrawCaptcha();">
-						<h3>Cash on Delivery</h3>
 						<div class="captcha">
 							<br /> 
-							<label id="captchaError"></label>
+							<label id="captchaError"></label><br/>
 							<input type="text" id="txtCaptcha" style="background-image: url(1.jpg); width: 130px; text-align: 
 									center; border: none; font-weight: bold; font-family: Modern" />
 							<input type="submit" name="button1" id="btnrefresh" class="btn"	value="Refresh" onclick="DrawCaptcha();"> 
 							<br /> 
-							<input type="text" id="captchaInput" placeholder="Please Enter Number Above" /> <br /> <br />
+							<input type="text" id="captchaInput" class="form-control input-sm" placeholder="Please Enter Number Above" /> <br /> <br />
 						</div>
-						<div class="captcha" style="margin-left: 20px; width: 300px; text-align: left;">
-							Verify Order<br /> <br /> 
-							Type the numbers you see in the image on the left.
+						<div class="captcha" style = "float: left;">
+							<p style="padding: 10px;"><br/><b>Verify Order</b><br />
+							Type the numbers you see in the image on the left.</p>
 						</div>
-						<input id="Button1" type="submit" value="CONFIRM ORDER" style="background-color: #FFA500; border: 1px solid #FFA500; 
-								color: #FFFFFF; font-size: large; height: 40px; left: 350px; margin-top: 20px; position: none; width: 234px;"
-							onclick="ValidCaptcha();" />
+						<br><br><br>
+						<input id="Button1" type="submit" value="CONFIRM ORDER" class="mysubmit1" onclick="ValidCaptcha();" />
 					</div>
 				</div>
 				<div id="NetBanking" style="height: 300px;">
-					<div align="center">
 						<br>
-						<div class="box">
-							<input type="radio" id="bankRadio1" name="bank" value="SBI"> SBI<br>
+						<div class="span4">
+							<div class="box">
+								<input type="radio" id="bankRadio1" name="bank" value="SBI"> SBI<br>
+							</div>
 						</div>
-						<div class="box">
-							<input type="radio" id="bankRadio2" name="bank" value="ICICI"> ICICI<br>
+						<div class="span4">
+							<div class="box">
+								<input type="radio" id="bankRadio2" name="bank" value="ICICI"> ICICI<br>
+							</div>
 						</div>
-						<div class="box">
-							<input type="radio" id="bankRadio3" name="bank" value="HDFC"> HDFC<br>
+						<div class="span4">
+							<div class="box">
+								<input type="radio" id="bankRadio3" name="bank" value="HDFC"> HDFC<br>
+							</div>
 						</div>
-						<button name="bankLogin" id="bankLogin" style="background-color: #FFA500; border: 1px solid #FFA500; color: #FFFFFF; 
-							font-size: large; height: 40px; left: 350px; margin-top: 20px; position: none; width: 234px;">
-						CONTINUE</button>
+						<button name="bankLogin" id="bankLogin" class="mysubmit1">
+						SELECT BANK</button>
 						<br>
-					</div>
 				</div>
 				<div id="CreditCard" style="text-align: left;">
 					<section>					
@@ -682,7 +685,7 @@
 					<div>
 							<label>Card Number</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
 							<input type="text" id="cardNumber" name="card_number"  name="card_number" pattern="[0-9]{13,16}"
-							placeholder="9842 9472 9457 9472" class="full gr-input" required />
+							placeholder="9842 9472 9457 9472" class="form-control input-sm" required />
 					</div><br/>
 					<div>
 						<label>Expiration</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 														
@@ -718,12 +721,11 @@
 			             </div><br/>
 			             <div>
 			             	<label>CVC Code</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							<input type="password" id="cvv" name="cvc_code" placeholder="174" size="10" class="gr-input" required />
+							<input type="password" id="cvv" name="cvc_code" placeholder="174" size="10" class="form-control input-sm" required />
 						</div><br/>
 						<div>
 						<center>
-							<button id="makePaymentCreditCard" align="middle" style="background-color: #FFA500; border: 1px solid #FFA500; 
-								color: #FFFFFF; font-size: large; height: 40px; left: 350px; margin-top: 20px; position: none; width: 234px;">MAKE PAYMENT</button>
+							<button id="makePaymentCreditCard" align="middle" class="mysubmit1">MAKE PAYMENT</button>
 						</center>
 					</div><br/>
 					<div>
@@ -743,7 +745,7 @@
 					<div>
 							<label>Card Number</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
 							<input type="text" id="cardNumberD" name="card_number"  name="card_number" pattern="[0-9]{13,16}"
-							placeholder="9842 9472 9457 9472" class="full gr-input" required />
+							placeholder="9842 9472 9457 9472" class="form-control input-sm" required />
 					</div><br/>
 					<div>
 						<label>Expiration</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 														
@@ -779,12 +781,11 @@
 			             </div><br/>
 			             <div>
 			             	<label>CVC Code</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							<input type="password" id="cvvD" name="cvc_code" placeholder="174" size="10" class="gr-input" required />
+							<input type="password" id="cvvD" name="cvc_code" placeholder="174" size="10" class="form-control input-sm" required />
 						</div><br/>
 						<div>
 						<center>
-							<button id="makePaymentDebitCard" align="middle" style="background-color: #FFA500; border: 1px solid #FFA500; 
-								color: #FFFFFF; font-size: large; height: 40px; left: 350px; margin-top: 20px; position: none; width: 234px;">MAKE PAYMENT</button>
+							<button id="makePaymentDebitCard" align="middle" class="mysubmit1">MAKE PAYMENT</button>
 						</center>
 					</div><br/>
 					<div>
@@ -795,7 +796,9 @@
 					<!-- </form> --->					
 					</section>
 				</div>
+				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	

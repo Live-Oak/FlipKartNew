@@ -118,6 +118,51 @@ public static void sendUpdatedEmail(String to , String name) {
 			throw new RuntimeException(e);
 		}
 	}
-
-
+	public void sendMailReceiptGenerated(String recipientEmail, String name, String transactionId, int orderId) 
+	{
+		Config.loadProperties();
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+ 
+		Session session = Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(Config.USERNAME,Config.MAILIDPASSWORD);
+				}
+			});
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(Config.EMAILID));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(recipientEmail));
+			message.setSubject("FlipKart Team : Order Summary ");
+			message.setText("Dear "+name+" ," +
+					"\n \n " +
+					"\n   You have successfully placed order at flipkart. " +
+					"\n   Your Order Id is : " + orderId  +
+					"\n   Your Transaction Id is :  " + transactionId +
+					"\n \n "+
+					"\n   Your order will be delivered to you in 5-8 days." +
+					"\n   Thank you for shopping with Flipkart." +
+					"\n \n \n " +
+					"----------" +
+					"\n Thanks and Regards" +
+					"\n Team Flipkart" );
+ 
+			Transport.send(message);
+ 
+			System.out.println("User updated email Done");
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 }

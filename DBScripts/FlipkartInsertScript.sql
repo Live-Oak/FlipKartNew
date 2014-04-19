@@ -5,8 +5,12 @@ INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gend
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Nikhil', 'Agrawal', 'Male', 'nikhil', 'User', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'nikhil.agrawal@iiitb.org', '7829607021', '2014-04-03');
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Prashant', 'Ruwali', 'Male', 'prashant', 'Seller', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'prashant.ruwali@iiitb.org', '9481133281', '2014-04-03');
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Venkatesh', 'Vishwarup', 'Male', 'venki', 'User', '1991-05-02', 'IIITB', 'EC ', 'Bangalore', 'India', 560100, 'venkatesh.vishwarup@iiitb.org', '8951139300', '2014-04-03');
+INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `gender`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Devesh', 'Rawat', 'Male', 'devesh', 'Seller', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'devesh.rawat@iiitb.org', '7829607021', '2014-04-03');
 
-INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (1, 4, 'Good');
+
+
+INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (1, 4, 'Prashant Ruwali is one of Indias largest online retailers, dealing in genuine and brand new products across multiple categories like books, electronics, fashion and lifestyle. ');
+INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (2, 6, 'Devesh Rawat is one of Indias largest online retailers, dealing in genuine and brand new products across multiple categories like books, electronics, fashion and lifestyle. ');
 
 
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('01', 'Electronics','asset/Images/mobile.jpg');
@@ -303,7 +307,7 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(19, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', 'UPTO 25% OFF ON CAMERA', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(05, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/mclp.jpg', '2014-03-31 19:26:38', 'GET YOUR HAND ON MOTO G', 'carousel');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT Rs.5000 OFF', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(33, 'asset/Images/motog.jpg', '2014-04-02 19:26:38', 'UPGRADE TO MOTOG RS.2000 OFF', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(36, 'asset/Images/juicer.jpg', '2014-04-03 19:26:38', 'EXTRA 15% OFF ON JUICER', 'carousel');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(35, 'asset/Images/toy.jpg', '2014-04-03 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF', 'carousel');
@@ -452,7 +456,7 @@ INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('46', 
 
 insert into `FlipKartDatabase`.`Stock` values (1 , 10 , 3 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (2 , 0 , 5 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (3 , 20 , 10 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (3 , 20 , 10 , 1000 , 2 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (4 , 5 , 7 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (5 , 0 , 1 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (6 , 10 , 12 , 1000 , 1 , '2014-04-03');
@@ -460,7 +464,7 @@ insert into `FlipKartDatabase`.`Stock` values (7 , 10 , 0 , 1000 , 1 , '2014-04-
 insert into `FlipKartDatabase`.`Stock` values (8 , 0 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (9 , 0 , 1 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (10 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (11 , 5 , 2 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (11 , 5 , 2 , 1000 , 2 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (12 , 2 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (13 , 3 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (14 , 5 , 7 , 1000 , 1 , '2014-04-03');

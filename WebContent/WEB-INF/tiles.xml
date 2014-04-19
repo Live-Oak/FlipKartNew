@@ -27,10 +27,7 @@
    			<put-attribute name="body" value="/viewOrder.jsp"/>
    		</definition>
    		
-   		<definition name="RatingPage" extends="start">
-   			<put-attribute name="title" value="Rating and Reviews"/>
-   			<put-attribute name="body" value="/giveSellerRating.jsp"/>
-		</definition>
+   		
    		
    		<definition name="ConfirmPurchaseOrder" extends="Administrator">
    			<put-attribute name="title" value="Approve Order"/>
@@ -50,6 +47,12 @@
    		<definition name="CategoryData" extends="Administrator">
    			<put-attribute name="title" value="Users Info"/>
    			<put-attribute name="body" value="/category.jsp"></put-attribute>
+   		</definition>
+   		
+   		
+   		<definition name="FeedbackData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/feedback.jsp"></put-attribute>
    		</definition>
    		
    		<definition name="UserData" extends="Administrator">
@@ -91,10 +94,21 @@
 		    <put-attribute name="footer"   value="/footer.jsp"/>
    		</definition>
    		
+   		<definition name="RatingPage" extends="start">
+   			<put-attribute name="title" value="Rating and Reviews"/>
+   			<put-attribute name="body" value="/giveSellerRating.jsp"/>
+		</definition>
+   		
    		<definition name="Personal-infoTile" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
    			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
+   		</definition>
+   		
+   		<definition name="PlaceOrder" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
+   			<put-attribute name="menu"   value="/placeOrderHeader.jsp"/>
+   			<put-attribute name="body"   value="/placeOrder.jsp"/>
    		</definition>
 
 		<definition name="CompareProductsTiles" extends="start">

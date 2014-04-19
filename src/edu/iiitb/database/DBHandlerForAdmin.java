@@ -16,6 +16,7 @@ import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.FeedbackModel;
 import edu.iiitb.model.MyOrdersModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
@@ -55,7 +56,6 @@ public class DBHandlerForAdmin {
 		String[] splitedDate=user.getDate().split("T");
 		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
-		
 		prep.setString(1, user.getFirstName());
 		prep.setString(2, user.getLastName());
 		prep.setString(3, user.getPassword());
@@ -596,9 +596,42 @@ public class DBHandlerForAdmin {
 
 	public void confirmPurchaseOrder(int orderID, String orderStatus) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
-		Statement st=(Statement) con.createStatement();
-		st.executeUpdate(query);
+		if(orderStatus.equalsIgnoreCase("DISPATCHED"))
+		{
+			String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
+			Statement st=(Statement) con.createStatement();
+			st.executeUpdate(query);
+			con.close();
+		}
+		else
+		{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			String date = sdf.format(new java.util.Date());
+			String query = " Update FlipKartDatabase.Order "
+						+  " Set status = '" + orderStatus + "' ,"
+						+  " deliveryDate = '"+date+"' "
+						+  " Where orderId = " + orderID + "";
+			
+			Statement st=(Statement) con.createStatement();
+			st.executeUpdate(query);
+			con.close();
+		}
+	}
+
+	public void viewFeedbackData(ArrayList<FeedbackModel> feedback) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from FlipKartDatabase.Feedback";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			FeedbackModel model = new FeedbackModel();
+			model.setEmail(rs.getString("email"));
+			model.setMobileNumber(rs.getString("mobileNumber"));
+			model.setCategory(rs.getString("category"));
+			model.setMessage(rs.getString("message"));
+			feedback.add(model);
+		}
+		con.close();
 	}
 	
 	

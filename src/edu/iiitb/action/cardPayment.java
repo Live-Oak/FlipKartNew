@@ -117,11 +117,9 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 	
 	public String execute() throws SQLException
 	{
-		DBHandlerForUser db = new DBHandlerForUser();		
-		System.out.println("Paras");
+		DBHandlerForUser db = new DBHandlerForUser();			
 		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);			
 		session.put("bankName", bankName);
-		System.out.println("Catch");
 		if ( bankName != null)
 		{	
 			valid = "1";
@@ -138,7 +136,7 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 		String bankName = String.valueOf(session.get("bankName"));	
 		String paymentType = "Card";
 		try {
-			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType);	
+			db.insertOrderPaymentDetails(orderId, bankName, grandTotal, paymentType, cardNumber);	
 			db.updatePaymentInAccount(cardNumber, grandTotal);
 			db.updateProductQuantityAfterPurchase(orderId);
 		}

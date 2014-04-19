@@ -4,6 +4,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
+<!-- Bootstrap core CSS -->
+<link href="asset/CSS/bootstrap.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -43,22 +48,25 @@ $(document).ready(
 					});
 		});
 </script>
+
 <body>
 <br><br><br><br>
- <input type="hidden" id = "bankName"  value="<%= request.getParameter("bankName") %>" /><br/>
- <input type="hidden" id = "grandTotal"  value="<%=session.getAttribute("grandTotal")%>" /><br/>
-Welcome to <%= request.getParameter("bankName") %> Bank Online Banking<br><br>
+ 	<div style=" width:600px; height:auto ; margin : auto; ">
+		<h3> Welcome to <%= request.getParameter("bankName") %> Bank Online Banking</h3><br><br>
 
-   <div style=" float:left;width:300px; height:170px; border: solid 3px black;  ">
-   	<label id="validDetails" width="300px"></label>
-   		
-   			<br>
-			<label>Username*</label>
-			<input type="text" id ="bankLoginId" name="bankLoginId" ><br><br>
-			<label>Password*</label>
-			<input type="password" id="bankPassword" name="bankPassword" ><br><br>
-			<button id="login">LOGIN</button>
-		
-	</div>	
+	    	<input type="hidden" id = "bankName"  value="<%= request.getParameter("bankName") %>" /><br/>
+ 			<input type="hidden" id = "grandTotal"  value="<%=session.getAttribute("grandTotal")%>" /><br/>   
+	
+	    	<label id="validDetails" width="300px"></label>
+	        <div class="form-group">
+	            <label for="inputUsername">Username</label>
+	            <input type="text" class="form-control" id ="bankLoginId" name="bankLoginId"  placeholder="Please enter username">
+	        </div>
+	        <div class="form-group">
+	            <label for="inputPassword">Password</label>
+	            <input type="password" class="form-control"  id="bankPassword" name="bankPassword" placeholder="Please enter password">
+	        </div>
+	        <button  class="btn btn-info" id="login">Login</button>
+    </div>
 </body>
 </html>

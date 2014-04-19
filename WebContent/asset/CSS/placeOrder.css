@@ -1,12 +1,8 @@
 
-.mytext1
-{
-width: 272px;height: 38px;
-}
 
 .mylabel1{
 width: 112px;height: 19px; font-size:large;
-
+ font-family::calligraphic;
 }
 
 .mysubmit1{
@@ -15,11 +11,12 @@ width: 112px;height: 19px; font-size:large;
  width:234px; 
  height:40px;
  font-size:large;
-  background-color:orange;
+  background-color:#f66822;
+  margin-top:20px;
 }
 
 .myscreenSize{
-color:Black;
+color:#000000;
  border:1px white solid; 
  width:1024px; 
  height:500px;
@@ -30,29 +27,23 @@ position:absolute;
 
 }
 
-.mytext2
-{
-width: 272px;height: 38px;
-left:350px;
 
-position:absolute;
-}
 .mylabel2{
 width: 200px;height:150px;
-
+padding-left:30px;
  font-size:large;
  left:1px;
-
-
+ font-family:calibre;
 position:absolute;
 }
+
 .mysubmit2{
  color:white;
  border:1px orange solid; 
- width:234px; 
+ width:270px; 
  height:40px;
  font-size:large;
-  background-color:orange;
+  background-color:#f66822;
   left:350px;
 
 position:absolute;
@@ -62,62 +53,24 @@ position:absolute;
  border:1px white solid; 
  width:100px; 
  height:25px;
-  background-color:orange;
+  background-color:#f66822;
  float:right;
 }
 
 
 
-#panel1,#flip1
+#panel1,#flip1,#panel2,#flip2,#panel3,#flip3,#panel4,#flip4
 {
 padding:5px;
-text-align:center;
-background-color:#388E8E;
+background-color:#16B594;
 border:solid 1px #c3c3c3;
 }
-#panel1
+#panel1,#panel2,#panel3,#panel4
 {
-padding:50px;
-background-color:white;
-display:none;
-}
-#panel2,#flip2
-{
-padding:5px;
-text-align:center;
-background-color:#388E8E;
-border:solid 1px #c3c3c3;
-}
-#panel2
-{
-padding:50px;
-background-color:white;
-display:none;
-}
-
-#panel3,#flip3
-{
-padding:5px;
-text-align:center;
-background-color:#388E8E;
-border:solid 1px #c3c3c3;
-}
-#panel3
-{
-padding:50px;
-background-color:white;
-display:none;
-}
-#panel4,#flip4
-{
-padding:5px;
-text-align:center;
-background-color:#388E8E;/* #b0ead9 */
-}
-#panel4
-{
-padding:0 px;
-background-color:white;
-display:none;
+	padding-top:30px;
+	padding-left:80px;
+	padding-bottom:50px;
+	background-color:white;
+	display:none;
 }
 
