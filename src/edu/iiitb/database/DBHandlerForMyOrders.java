@@ -289,7 +289,7 @@ public class DBHandlerForMyOrders {
 			long diff_in_days1 = ( (cal1.getTimeInMillis() - cal2.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
 			long diff_in_days2 = ( (cal1.getTimeInMillis() - cal3.getTimeInMillis() ) / (24 * 60 * 60 * 1000) );
 
-			
+			diff_in_days2 = 0 - diff_in_days2;
 				
 				obj.setOredrNo(rs.getInt("orderId"));
 			    obj.setStatus(rs.getString("status"));
