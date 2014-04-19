@@ -53,7 +53,11 @@ li.padding {color: #848484;
 // Form validation code will come here.
 function validate()
 {
- 
+   if( document.form_changepassword.newpassword.value == "" || document.form_changepassword.retype_newpassword.value == "")
+   {
+	   alert( "password fields can not have Null value");
+	   return false;
+   }
    if( document.form_changepassword.newpassword.value != document.form_changepassword.retype_newpassword.value )
    {
      alert( "Password change failed. New Passwords do not match" );

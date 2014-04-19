@@ -52,13 +52,21 @@ li.padding {color: #848484;
 $(document).ready(function(){
 	$("p").click(function()
 			{
+		var userId= $("#userEmail").val();
+		if(userId=="")
+			{
+			$("#notifyUser").html("Enter the correct Email-id");
+			}
+		else
+			{
 		$.ajax({
 		    type: 'POST',	    
 		    url:'useravailable?email='+$("#userEmail").val(),
 		    success: function(data){
 		    	
 		    	$("#notifyUser").html(data.message);
-		     }});	
+		     }});
+			}
 	});
 });
 
@@ -128,7 +136,7 @@ $(document).ready(function(){
 					out.print(u.getEmail());%></label> 
 			</td> </tr>
 			<tr> <td style="text-align:left">New Email ID </td> 
-			<td> <input type="text" id="userEmail" name="newEmail" class="textbox"  required=true ></td> </tr>
+			<td> <input type="text" id="userEmail" name="newEmail" class="textbox"  required="true" placeholder="enter email"></td> </tr>
 			<tr> <td> </td> <td><p id="checking">Check for availability</p></td>
 			<tr><td> </td><td><label id="notifyUser"> </label> </td> </tr>
 			
