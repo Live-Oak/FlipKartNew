@@ -120,7 +120,6 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 		DBHandlerForUser db = new DBHandlerForUser();			
 		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);			
 		session.put("bankName", bankName);
-		System.out.println("Catch");
 		if ( bankName != null)
 		{	
 			valid = "1";

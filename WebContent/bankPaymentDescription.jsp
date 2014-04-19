@@ -27,6 +27,7 @@
 	<br/><br/>
 	<% String address = "onlineBankingPayment?bankName=" + request.getParameter("bankName") +"&accountNumber="+request.getParameter("accountNumber");%>
 	<a href= "<%= address  %>"><button class="btn btn-info" id="onlineBankingPayment" >Make Payment</button> </a>
+	<a href= "Start_page"><button class="btn btn-danger" id="onlineBankingPayment" >Cancel Payment</button> </a>
 </div>
 </body>
 </html>

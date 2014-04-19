@@ -1417,6 +1417,26 @@ public class DBHandlerForUser {
 		return balance;
 	}
 
+	public ArrayList<String> getUserEmailIdForOrder(int orderId) throws SQLException
+	{
+		ArrayList<String> receipt = new ArrayList<String>();
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();		
+		String query = " SELECT SA.customerEmail, SA.customerName, P.transactionId   " +
+				       " FROM FlipKartDatabase.OrderShipingAddress as SA " +
+				       " Inner Join FlipKartDatabase.Payment as P " +
+				       " 	On P.orderId = SA.orderId" +				       
+				       " Where SA.orderId ='"+ orderId + "';";		
+		ResultSet rs = db.executeQuery(query, con);
+		while(rs.next())
+		{
+			receipt.add(rs.getString("customerEmail"));
+			receipt.add(rs.getString("customerName"));
+			receipt.add(rs.getString("transactionId"));
+		}			
+		return receipt;
+	}
+
 
 }
 

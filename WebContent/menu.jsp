@@ -582,117 +582,59 @@ $(document).ready(function(){
 									}
 								%> 
 							
-							<!-- Second is notification track order -->
+			<!-- Second is notification track order -->
+			
+			<!-- Notification div starts here -->		
 							
-							
-							<% 
+			<% 
 				if(session.getAttribute("user") == null) 
 				{ 
-		%>
+			%>
 	
-	<img src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title=""> 
+			<img src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title=""> 
 		 
-		 <div id ="popover_content_wrapper" class="hide">Hi Hello</div> 
-		 <div class="mycontent hide">
-		 		<div class="notification-popup-header">Notifications</div>
-		 		<hr>
-  				<div class="no-notifications">Get notifications on price drops!</div>
-  				<br>
-   				<div class="whatrnotif1">What are Notifications??</div>
-				<br>
-   				<div class="whatrnotif2">
-   					Notifications are timely alerts including updates to your order status
-   		  			and price drops on products you are interested in.
-   		 			<br>
-   		 			Sign in now to start receiving notifications. 
-   			  	</div>
+		 	
+		 		<div class="mycontent hide" >
+		 	
+		 			<div class="notification-popup-header">Notifications</div>
+		 				<br>
+  					<div class="no-notifications">Get notifications on order's placed!</div>
+  						<br>
+   					<div class="whatrnotif1">What are Notifications??</div>
+						<br>
+   					<div class="whatrnotif2">
+   							Notifications are timely alerts on your order status!!
+   		 				<br>	
+   		 					<strong><b>Sign-in</b></strong> now to start receiving notifications. 
+   			  		</div>
    					 
-		</div>
-		
-		<% 
+				</div>
+			
+			<% 
 				}
 				else 
 				{ 
-		%>
+			%>
 		
-	<img id="notification_button" src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title="">
-		 
-		
-		 <div class="mycontent hide">
-		 		<div  class="notification-popup-header">Notifications</div><hr>
-		 		
-		 		
-  				  <div id="get_notification">
-  				  
-  				  <div id="noti"></div>
-   					 
-   					 
-   					 </div>
-   					 
-   					 
-		</div>	
-		<%  } %>
+			<img id="notification_button" src="asset/Images/bell.JPG" height="25px" data-contentwrapper=".mycontent"  rel="popover" data-title="">
+
+		 	<div class="mycontent hide">
+		 	
+		 			<div  class="notification-popup-header">Notifications</div>
+						<br>		 			
+  					<div id="get_notification">  
+  				  			<div id="noti"></div>
+   					</div>
+   					 		 
+			</div>	
+			<%
+				}
+			%>
 			
-							
-							
-							
-							
-							
-							
-							
-							
-							
-				<%-- 				 <%
-									if (session.getAttribute("user") == null) {
-								%>
+			<!-- Notification div ends here -->		
 			
-								<a href="#"><img src="asset/Images/bell.JPG" height="25px"
-									data-contentwrapper=".mycontent" rel="popover" data-title="">
-								</a>
+					
 			
-								<div id="popover_content_wrapper" class="hide">Hi Hello</div>
-								<div class="mycontent hide">
-									<div class="notification-popup-header">Notifications</div>
-									<hr>
-									<div class="no-notifications">Get notifications on price
-										drops!</div>
-									<br>
-									<div class="whatrnotif1">What are Notifications??</div>
-									<br>
-									<div class="whatrnotif2">
-										Notifications are timely alerts including updates to your order
-										status and price drops on products you are interested in. <br>
-										Sign in now to start receiving notifications.
-									</div>
-			
-								</div>
-			
-								<%
-									} else {
-								%>
-			
-								<img src="asset/Images/bell.JPG" data-contentwrapper=".mycontent" height="25px"
-									rel="popover" data-title="">
-			
-								<div id="popover_content_wrapper" class="hide">Hi Hello</div>
-								<div class="mycontent hide">
-									<div class="notification-popup-header">Notifications</div>
-			
-									<table class="table" style="background-color: #F6F6F6;">
-										<s:iterator value="Orders">
-											<tr>
-												<td>Your Flipkart order <strong> <s:property
-															value="oredrNo" />
-												</strong> has been <strong> <s:property value="status" />
-												</strong> <br> (<s:property value="days_ago" /> days ago)
-												</td>
-											</tr>
-										</s:iterator>
-									</table>
-			
-								
-								</div> 
-								<%  } %>    --%>
 						<button  id="button" type="button" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>	
 						
