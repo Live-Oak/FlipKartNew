@@ -167,11 +167,18 @@ public class getProductList  extends ActionSupport
 			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilter(brandnames,pricelist,categoryList,count,countprice);
 			for(int i=0; i<productinfofilter.size(); i++)
 			{
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date date = new Date();
-				long diff = (productinfofilter.get(i).getOfferValidity().getTime() - date.getTime());
-				int diffDays =(int)  Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
-				productinfofilter.get(i).setValid(diffDays);
+				if(productinfofilter.get(i).getOffer() != 0)
+				{
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					Date date = new Date();
+					long diff = (productinfofilter.get(i).getOfferValidity().getTime() - date.getTime());
+					int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+					productinfofilter.get(i).setValid(diffDays);
+				}
+				else
+				{
+					productinfofilter.get(i).setValid(-1);
+				}
 				
 				int discount = 100 - (((productinfofilter.get(i).getPrice()-productinfofilter.get(i).getOffer())*100)/productinfofilter.get(i).getPrice());
 				productinfofilter.get(i).setDiscount(discount);
