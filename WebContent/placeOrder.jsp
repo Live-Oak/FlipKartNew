@@ -141,6 +141,12 @@
 						$("#panel1").slideUp();
 						$("#editEmailid").show();
 					}
+					else
+					{
+						$("#emailInput").html("");
+						$("#emailInput").css("border","1px solid #ff0000");		
+						$("#emailInput").focus();
+					}
 				});
 		});
 </script>
@@ -176,13 +182,15 @@
 						 else
 							{
 							 	$("#phone").html("");
-								$("#phone").css("border","1px solid #ff0000");							
+								$("#phone").css("border","1px solid #ff0000");		
+								$("#phone").focus();
 							}
 					}
 					else
 					{
 						$("#pin").html("");
-						$("#pin").css("border","1px solid #ff0000");					
+						$("#pin").css("border","1px solid #ff0000");				
+						$("#pin").focus();	
 					};				
 				};
 		});
