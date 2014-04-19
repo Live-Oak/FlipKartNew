@@ -14,8 +14,7 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-
+<title>Place Order</title>
 
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -149,11 +148,12 @@
 	$(document).ready(function() 
 	{
 		$("#nextOrderPage").click(function()
-		{
+		{			
 			var name = $("#name");
 			var pin = $("#pin");
 			var add = $("#address");
-			var phn = $("#phone");
+			var phn = $("#phone"); 
+			
 			var city = $("#city");
 			if (		(name.val().length > 0)
 					&&  (pin.val().length > 0)
@@ -161,12 +161,30 @@
 					&&  (phn.val().length > 0)
 					&&  (city.val().length > 0)
 				) 
-			{
-				$("#panel2").slideUp();
-				$("#panel3").slideDown();
-				$("#editAddress").show();
-				$("#editEmailid").show();
-			}
+			{	
+						
+				if ( (pin.val().length == 6) && (pin.val() >= 100000) && (pin.val()<= 999999) ) 
+					{
+						
+						if (	(phn.val().length == 10) && (phn.val() >= 7000000000) && (phn.val() <= 9999999999)	)
+						 { 
+							 $("#panel2").slideUp();
+							$("#panel3").slideDown();
+							$("#editAddress").show();
+							$("#editEmailid").show();						 
+						 }
+						 else
+							{
+							 	$("#phone").html("");
+								$("#phone").css("border","1px solid #ff0000");							
+							}
+					}
+					else
+					{
+						$("#pin").html("");
+						$("#pin").css("border","1px solid #ff0000");					
+					};				
+				};
 		});
 	});
 </script>
@@ -464,9 +482,9 @@
 <style>
 	.captcha {
 		width: 250px;
-		height: 100px;
+		height: 120px;
 		border: 1px solid red;
-		/*margin-right:10px;*/
+		margin-right :10px;
 		float: left;
 	}
 	
@@ -521,7 +539,7 @@
 						<tr>
 							<td>Pincode*
 							</td>
-							<td><input type="text" name="pincode" id="pin" class="form-control input-sm"  style="width:400px" required="true" pattern="[1-9]{1}[0-9]{5}" title="Please provide valid 6 digit pin" 	
+							<td><input minlength="6" maxlength ="6" type="text" name="pincode" id="pin" class="form-control input-sm"  style="width:400px" required="true" pattern="[1-9]{1}[0-9]{5}" title="Please provide valid 6 digit pin" 	
 					       placeholder="Please Enter 6 Digit Pincode" value='<s:property	value="addressDetails.pinCode"/>'>
 							</td>
 						</tr>
@@ -549,7 +567,7 @@
 						<tr>
 							<td>Phone*
 							</td>
-							<td><input type="text" name="phone" required="true" id="phone" class="form-control input-sms" style="width:400px" pattern="[7-9]{1}[0-9]{9}"
+							<td><input type="text" minlength="10" maxlength ="10" name="phone" required="true" id="phone" class="form-control input-sms" style="width:400px" pattern="[7-9]{1}[0-9]{9}"
 						title="Please provide valid Prone number" value='<s:property value="addressDetails.phoneNumber"/>'>
 							</td>
 						</tr>
@@ -614,16 +632,16 @@
 					<div onload="DrawCaptcha();">
 						<div class="captcha">
 							<br /> 
-							<label id="captchaError"></label>
+							<label id="captchaError"></label><br/>
 							<input type="text" id="txtCaptcha" style="background-image: url(1.jpg); width: 130px; text-align: 
 									center; border: none; font-weight: bold; font-family: Modern" />
 							<input type="submit" name="button1" id="btnrefresh" class="btn"	value="Refresh" onclick="DrawCaptcha();"> 
 							<br /> 
 							<input type="text" id="captchaInput" class="form-control input-sm" placeholder="Please Enter Number Above" /> <br /> <br />
 						</div>
-						<div class="captcha" style="margin-left: 20px; width: 300px; text-align: left;">
-							Verify Order<br /> <br /> 
-							Type the numbers you see in the image on the left.
+						<div class="captcha" style = "float: left;">
+							<p style="padding: 10px;"><br/><b>Verify Order</b><br />
+							Type the numbers you see in the image on the left.</p>
 						</div>
 						<br><br><br>
 						<input id="Button1" type="submit" value="CONFIRM ORDER" class="mysubmit1" onclick="ValidCaptcha();" />
