@@ -104,7 +104,7 @@ function name()
 				    		{
 				    			if(stock.availableQuantity >= stock.minimumQuantity)
 				    			{
-				    				if(stock.valid<0 || offer==0)
+				    				if(stock.valid<0)
 				    				{
 				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
 				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
