@@ -78,10 +78,15 @@ public class generateReceipt extends ActionSupport implements SessionAware
 			grandTotal = ( buyedProduct.getQuantity()  * Integer.parseInt( buyedProduct.getPrice() )  );
 		}
 		receipt = db.getUserEmailIdForOrder(orderId);
-		
-		SendMailSSL sm = new SendMailSSL();
-		sm.sendMailReceiptGenerated(receipt.get(0), receipt.get(1), receipt.get(2), orderId);
-		
+		try
+		{
+			SendMailSSL sm = new SendMailSSL();
+			sm.sendMailReceiptGenerated(receipt.get(0), receipt.get(1), receipt.get(2), orderId);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		session.remove("orderId");
 		session.remove("grandTotal");
 		session.remove("bankName");
