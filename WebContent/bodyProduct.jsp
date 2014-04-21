@@ -52,7 +52,7 @@
 							</s:iterator>
 						<hr>
 						<div class="container">
-							<s:if test="%{valid==0}">
+							<s:if test="%{valid<0}">
 								<font size="5" color="#76553B">
 									Rs. <s:property value="price"/><br>
 								</font>
@@ -60,7 +60,19 @@
 							<s:if test="%{valid>0}">
 								<font size="5" color="#76553B">
 									<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
-										Rs. ${price-offer} 
+										Rs. ${price-offer} <br>
+								</font>
+								<font color="#E40000">
+								Hurry !!! This offer is valid only for <s:property value="valid"/> more days. 
+								</font>
+							</s:if>
+							<s:if test="%{valid==0}">
+								<font size="5" color="#76553B">
+									<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
+										Rs. ${price-offer} <br>
+								</font>
+								<font color="#E40000">
+								This offer ends today. Hurry!!! 
 								</font>
 							</s:if>
 						<hr>
