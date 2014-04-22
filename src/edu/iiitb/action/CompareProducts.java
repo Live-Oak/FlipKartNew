@@ -22,6 +22,7 @@ import edu.iiitb.model.CompareCartProduct;
 import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.User;
 import edu.iiitb.database.DBHandlerForCart;
+import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.database.DBHandlerforComparison;
 
 public class CompareProducts extends ActionSupport implements SessionAware,
@@ -37,8 +38,11 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 	private HttpServletResponse servletResponse;
 	private HttpServletRequest servletRequest;
 	private String category;
+	private String category1;
 	private String messageCount;
 	private String messageCategoryMismatch;
+	DBHandlerForUser dbHandler = new DBHandlerForUser();
+	private ArrayList<Integer> pidRetrieve= new ArrayList <Integer>();
 	public CompareProducts() {
 
 	}
@@ -118,6 +122,9 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getProductDetails() {
 			try {
+					System.out.println("CategoryID : "+category1);
+					category=dbHandler.getidonname(category1);
+					System.out.println("category is : "+category);
 					String content = null;
 					boolean cookieFound = false;
 					if(productId!=0 && category!=null)
@@ -234,7 +241,14 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 						c.setValue(content);
 						c.setMaxAge(60*60*24*2);
 						servletResponse.addCookie(c);
-						products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
+						pidRetrieve = dbHandler.getProductIdForRetrieval(cookie.getProductList());
+						System.out.println(pidRetrieve);
+						if(pidRetrieve.size()>0)
+						{
+							//System.out.println("1 bach gaya");
+							products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
+						}
+						
 						break;
 					}
 				}
@@ -263,5 +277,21 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public void setMessageCategoryMismatch(String messageCategoryMismatch) {
 		this.messageCategoryMismatch = messageCategoryMismatch;
+	}
+
+	public String getCategory1() {
+		return category1;
+	}
+
+	public void setCategory1(String category1) {
+		this.category1 = category1;
+	}
+
+	public ArrayList<Integer> getPidRetrieve() {
+		return pidRetrieve;
+	}
+
+	public void setPidRetrieve(ArrayList<Integer> pidRetrieve) {
+		this.pidRetrieve = pidRetrieve;
 	}
 }
