@@ -136,8 +136,7 @@ public class SearchAction extends ActionSupport{
 					}
 				}
 			}
-				
-
+	
 			// Function to get me all sub category id
 			productinfo = dbHandlerForUser.getproductlistoncategory(categoryList); 
 			// To get the List of all the product and their details
