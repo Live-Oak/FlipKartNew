@@ -153,317 +153,137 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var categoryid=1;
 		var temp="";
-		var parentcategory;
+		var index=0;
 			$.ajax({
 			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
+			    url:'getCatagories',
 			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    url:'getSubCatagories?parentcategory=' + parentcategory,
-						    success: function(data){
-						    	$.each(data.categoryModel11, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
-						    	});
-						    	 $("#electronics").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
+			    	$.each(data.categoryModel[0], function(count, stock) {
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    		$.each(data.subcategoryModel[index], function(count, stock1) {
+							    temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						 });
+			    		index = index + 1;
+						 $("#electronics").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
 			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
 			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
+			 			 var currentTrarget = e.currentTarget;
+			 			 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 			 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
 			    	});
 			    	
-			     }
-			});
-			
-			
-		});
+					$.each(data.categoryModel[1], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					    });
+			    	index = index + 1;
+					 $("#men").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+					
+
+					$.each(data.categoryModel[2], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+
+			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
+				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+				    });
+			    	 index = index + 1;
+
+					 $("#women").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+					
+
+					$.each(data.categoryModel[3], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+
+	    			 $.each(data.subcategoryModel[index], function(count, stock1) {
+				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+				    });
+	    			 index = index + 1;
+
+					 $("#baby").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+					
+
+					$.each(data.categoryModel[4], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+
+			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					 });
+			    	 index = index + 1;
+					 $("#books").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+
+
+					$.each(data.categoryModel[5], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+
+			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					 });
+			    	 index = index + 1;
+					 $("#home").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+					
+
+					$.each(data.categoryModel[6], function(count, stock) {
+			    		
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+
+			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
+					   	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					 });
+			    	 index = index + 1;
+					 $("#more").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
+			   		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+	    			 $(".dropdown-submenu").hover(function(e){
+			 		 var currentTrarget = e.currentTarget;
+			 		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			 		 $(currentTrarget).find(".dropdown-menu").show();
+			    	});
+			    	});
+			    }});
+			});	
 </script> 
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=12;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    data : {
-						    	parentcategory : parentcategory,
-						    	ancestorid : categoryid
-						    },
-						    url:'getSubCatagorieslevel',
-						    success: function(data){
-						    	$.each(data.categoryModel12, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';    
-						    	});
-						    	 $("#men").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script> 
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=13;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    data : {
-						    	parentcategory : parentcategory,
-						    	ancestorid : categoryid
-						    },
-						    url:'getSubCatagorieslevel',
-						    success: function(data){
-						    	$.each(data.categoryModel12, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';    
-						    	});
-						    	 $("#women").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script> 
-
-	
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=14;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    url:'getSubCatagories?parentcategory=' + parentcategory,
-						    success: function(data){
-						    	$.each(data.categoryModel11, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
-						    	});
-						    	 $("#baby").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script> 
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=3;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    url:'getSubCatagories?parentcategory=' + parentcategory,
-						    success: function(data){
-						    	$.each(data.categoryModel11, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
-						    	});
-						    	 $("#books").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script> 
-
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=34;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    url:'getSubCatagories?parentcategory=' + parentcategory,
-						    success: function(data){
-						    	$.each(data.categoryModel11, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
-						    	});
-						    	 $("#home").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script> 
-   
- 
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=41;
-		var temp="";
-		var parentcategory;
-			$.ajax({
-			    type: 'POST',
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel1, function(count, stock) {
-			    		
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
-			    		
-			    		parentcategory = stock.categoryName;
-			    		temp += '<ul class="dropdown-menu" >';
-			    		 $.ajax({
-						    type: 'POST',
-						    async : false,
-						    url:'getSubCatagories?parentcategory=' + parentcategory,
-						    success: function(data){
-						    	$.each(data.categoryModel11, function(count, stock1) {
-						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
-						    	});
-						    	 $("#more").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
-						     }
-						});
-			    		
-			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
-			    		 $(".dropdown-submenu").hover(function(e){
-			 				var currentTrarget = e.currentTarget;
-			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
-			 				$(currentTrarget).find(".dropdown-menu").show();
-			 				
-			 			});
-			    	});
-			    	
-			     }
-			});
-			
-			
-		});
-</script>       
-
 
 <script type="text/javascript">
 $(document).ready(function(){
