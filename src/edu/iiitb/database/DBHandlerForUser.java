@@ -1157,12 +1157,17 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		DBConnectivity db = new DBConnectivity();	
 		
-		String query = " SELECT P.image as image, P.productName as productName,P.productId  as productId, C.quantity as quantity, (P.price -P.offer) as price" +
-				       " FROM FlipKartDatabase.UserCredantials AS U " +
-				       " INNER JOIN FlipKartDatabase.Cart AS C " +
-				       " 	ON C.useriD = U.userId " +
-				       " INNER JOIN FlipKartDatabase.ProductInfo AS P    " +
-				       "	ON P.productId = C.productId WHERE email =  '" + email + "' " ;
+		String query = 	" SELECT  P.image as image, P.productName as productName,P.productId  as productId, C.quantity as quantity, " + 
+		        		"	CASE	" + 
+		                "		WHEN P.offerValidity >= CURDATE() THEN (P.price -P.offer) " + 
+		                "		ELSE P.price " + 
+		                "	END as price " +
+		                " FROM FlipKartDatabase.UserCredantials AS U " + 
+		                " INNER JOIN FlipKartDatabase.Cart AS C " + 
+		                "		ON C.userId = U.userId " + 
+		                " INNER JOIN FlipKartDatabase.ProductInfo AS P " +    
+		                " 		ON P.productId = C.productId " +
+		                " WHERE email =   '" + email + "' " ;
 		ResultSet rs = db.executeQuery(query, con);			
 		while(rs.next())
 		{
