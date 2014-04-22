@@ -234,9 +234,8 @@ public class DBHandlerForUser {
 		return advertize;
 	}
 	
-	public ArrayList<CategoryModel> getsubcategorylist(int parentcategoryId) throws SQLException, IOException
+	public void getsubcategorylist(int parentcategoryId,  ArrayList<CategoryModel> categoryModel) throws SQLException, IOException
 	{
-		ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
 		DBConnectivity db=new DBConnectivity();
 		Connection con= db.createConnection();																
 		
@@ -255,7 +254,6 @@ public class DBHandlerForUser {
 			categoryModel.add(obj);
 		}
 		db.closeConnection(con);
-		return categoryModel;
 	}
 	
 	public ArrayList<CategoryModel> getsubcategorylistancestor(String parentcategoryId, String ancestorname) throws SQLException, IOException
@@ -283,16 +281,15 @@ public class DBHandlerForUser {
 		return categoryModel;
 	}
 	
-	public ArrayList<CategoryModel> getsubsubcategorylist(String parentcategoryname) throws SQLException, IOException
+	public ArrayList<CategoryModel> getsubsubcategorylist(String parentcategoryid) throws SQLException, IOException
 	{
 		ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
 		DBConnectivity db=new DBConnectivity();
 		Connection con= db.createConnection();																
-		
 		String query= " SELECT c2.categoryName as subcategory, c2.categoryId as subcategoryid " +
 				" FROM Category as c1, Category as c2, CategoryRelation " +
 				" WHERE c2.categoryId = CategoryRelation.subCategoryId " +
-				" AND c1.categoryName = '" + parentcategoryname + "' " +
+				" AND c1.categoryId = '" + parentcategoryid + "' " +
 						" AND c1.categoryId = CategoryRelation.categoryId";  
 	
 		ResultSet rs=db.executeQuery(query, con);

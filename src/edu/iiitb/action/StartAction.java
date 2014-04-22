@@ -12,12 +12,37 @@ public class StartAction extends ActionSupport
 {
 	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook, dealoftheday, advertizementsidebar;
 	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
-	ArrayList<CategoryModel> categoryModel1, categoryModel11, categoryModel12;
 	int[] value = new int[4];
 	int category;
-	String parentcategory, ancestorid, ancestorname, parentcategoryid, categoryname;
+	String parentcategoryname;
 	ArrayList<String> categoryList, categoryListtemp;
+	ArrayList<CategoryModel>[] categoryModel = (ArrayList<CategoryModel>[])new ArrayList[7];
+	ArrayList<CategoryModel>[] subcategoryModel = (ArrayList<CategoryModel>[])new ArrayList[50];
 	
+	public String getParentcategoryname() {
+		return parentcategoryname;
+	}
+
+	public void setParentcategoryname(String parentcategoryname) {
+		this.parentcategoryname = parentcategoryname;
+	}
+
+	public ArrayList<CategoryModel>[] getCategoryModel() {
+		return categoryModel;
+	}
+
+	public void setCategoryModel(ArrayList<CategoryModel>[] categoryModel) {
+		this.categoryModel = categoryModel;
+	}
+
+	public ArrayList<CategoryModel>[] getSubcategoryModel() {
+		return subcategoryModel;
+	}
+
+	public void setSubcategoryModel(ArrayList<CategoryModel>[] subcategoryModel) {
+		this.subcategoryModel = subcategoryModel;
+	}
+
 	public ArrayList<String> getCategoryList() {
 		return categoryList;
 	}
@@ -32,46 +57,6 @@ public class StartAction extends ActionSupport
 
 	public void setCategoryListtemp(ArrayList<String> categoryListtemp) {
 		this.categoryListtemp = categoryListtemp;
-	}
-
-	public String getCategoryname() {
-		return categoryname;
-	}
-
-	public void setCategoryname(String categoryname) {
-		this.categoryname = categoryname;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel12() {
-		return categoryModel12;
-	}
-
-	public void setCategoryModel12(ArrayList<CategoryModel> categoryModel12) {
-		this.categoryModel12 = categoryModel12;
-	}
-	
-	public String getParentcategoryid() {
-		return parentcategoryid;
-	}
-
-	public void setParentcategoryid(String parentcategoryid) {
-		this.parentcategoryid = parentcategoryid;
-	}
-
-	public String getAncestorname() {
-		return ancestorname;
-	}
-
-	public void setAncestorname(String ancestorname) {
-		this.ancestorname = ancestorname;
-	}
-
-	public String getAncestorid() {
-		return ancestorid;
-	}
-
-	public void setAncestorid(String ancestorid) {
-		this.ancestorid = ancestorid;
 	}
 
 	public ArrayList<Advertizement> getAdvertizementsidebar() {
@@ -123,23 +108,6 @@ public class StartAction extends ActionSupport
 		this.category = category;
 	}
 	
-	
-	public ArrayList<CategoryModel> getCategoryModel1() {
-		return categoryModel1;
-	}
-
-	public void setCategoryModel1(ArrayList<CategoryModel> categoryModel1) {
-		this.categoryModel1 = categoryModel1;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel11() {
-		return categoryModel11;
-	}
-
-	public void setCategoryModel11(ArrayList<CategoryModel> categoryModel11) {
-		this.categoryModel11 = categoryModel11;
-	}
-
 	public ArrayList<Advertizement> getAdvertizement() {
 		return advertizement;
 	}
@@ -164,14 +132,6 @@ public class StartAction extends ActionSupport
 	public void setAdvertizementfashion(
 			ArrayList<Advertizement> advertizementfashion) {
 		this.advertizementfashion = advertizementfashion;
-	}
-
-	public String getParentcategory() {
-		return parentcategory;
-	}
-
-	public void setParentcategory(String parentcategory) {
-		this.parentcategory = parentcategory;
 	}
 
 	public ArrayList<Advertizement> getAdvertizementbook() {
@@ -259,10 +219,56 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
-	
-	
-	public String getMenuCatagory()
+	public String getMenu()
 	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		int k,j=0,prev=0;
+		int [] categoryidlist = {1, 12, 13, 14, 3, 34, 41};
+		try
+		{
+			for(int i=0; i<categoryidlist.length; i++)
+			{
+				categoryModel[i] = new ArrayList<CategoryModel>();					
+				dbHandlerForUser.getsubcategorylist(categoryidlist[i],categoryModel[i]);						
+				// This level will calculate value for the first level
+				k=0;
+				while(j<(categoryModel[i].size()+prev))
+				{
+					// This level will calculate value for the second level
+					subcategoryModel[j] = new ArrayList<CategoryModel>();
+					if(categoryidlist[i] == 12)
+					{
+						// Check for men
+						parentcategoryname = dbHandlerForUser.getnameonid("12");
+						subcategoryModel[j] = dbHandlerForUser.getsubcategorylistancestor(categoryModel[i].get(k).getCategoryId(), parentcategoryname);
+					}
+					else if(categoryidlist[i] == 13)
+					{
+						// Check for women
+						parentcategoryname = dbHandlerForUser.getnameonid("13");
+						subcategoryModel[j] = dbHandlerForUser.getsubcategorylistancestor(categoryModel[i].get(k).getCategoryId(), parentcategoryname);
+					}
+					else
+					{
+						// for any other menu
+						subcategoryModel[j] = dbHandlerForUser.getsubsubcategorylist(categoryModel[i].get(k).getCategoryId());
+					}
+					k++;
+					j++;
+				}
+				prev = j;
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception at getMenu() of StartAction.java");
+			return "error";
+		}
+		return "success";
+	}
+	
+	/*public String getMenuCatagory()
+	{ 
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
@@ -299,8 +305,6 @@ public class StartAction extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			//System.out.println("id is " +ancestorid);
-			//System.out.println("parent category is : "+parentcategory);
 			ancestorname = dbHandlerForUser.getnameonid(ancestorid);
 			parentcategoryid = dbHandlerForUser.getidonname(parentcategory);
 			categoryModel12 = dbHandlerForUser.getsubcategorylistancestor(parentcategoryid, ancestorname);
@@ -311,6 +315,6 @@ public class StartAction extends ActionSupport
 			return "error";
 		}
 		return "success";
-	}
+	}*/
 	
 }
