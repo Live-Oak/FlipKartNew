@@ -919,16 +919,68 @@ public class DBHandlerForUser {
 		return companyname;
 	}
 	
-	public ArrayList<ProductInfo> getproductinfoforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException
+	public ArrayList<ProductInfo> getproductinfoforcomparison(ArrayList<String> category,ArrayList<Integer> pidRetrieved) throws SQLException
 	{
+
+		Connection con = db.createConnection();
+		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
+		String query = "";
+		
+		for(int i=0; i<category.size(); i++)
+		{
+			String categoryid = category.get(i);
+			System.out.println("category id in ques is : "+categoryid);
+			query += "select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + categoryid + "'";    
+			if(i<(category.size()-1))
+				query += " Union ";
+		}
+		
+		ResultSet rs=db.executeQuery(query, con);
+			
+		while(rs.next())
+		{
+			for(int i=0;i<pidRetrieved.size();i++)
+			{
+				if(rs.getInt("productId")==pidRetrieved.get(i))
+				{
+					ProductInfo obj = new ProductInfo();
+					obj.setProductID(rs.getInt("productId"));
+					obj.setProductName(rs.getString("productName"));
+					obj.setPrice(rs.getInt("price"));
+					obj.setImage(rs.getString("image"));
+					obj.setOffer(rs.getInt("offer"));
+					obj.setCategoryID(rs.getString("categoryId"));
+					obj.setDescription(rs.getString("description"));
+					obj.setBrand(rs.getString("brand"));
+					obj.setWarranty(rs.getInt("warranty"));
+					obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+					obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+					ProductInfo.add(obj);
+	
+				}
+			}
+		}
+		
+		db.closeConnection(con);
+		for(int i=0;i<ProductInfo.size();i++)
+		{
+			System.out.println("db wala"+ProductInfo.get(i).getImage());
+		}
+		System.out.println("helllo");
+		return ProductInfo;
+		
+	
+
+		
+		
+/*		
+		
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 		
 		for(CompareCartProduct p : cartProducts)
 		{
-		//System.out.println("db category"+p.getCategory());
-		//System.out.println("db product"+p.getProductId());
-		String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + p.getCategory() + "' and ProductInfo.productId = '" + p.getProductId() + "'" ;       
+		String query="select distinct(ProductInfo.productId), ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and ProductInfo.productId = '" + p.getProductId() + "'" ;       
 		ResultSet rs=db.executeQuery(query, con);
 		
 			
@@ -955,9 +1007,10 @@ public class DBHandlerForUser {
 		/*for(int i=0;i<ProductInfo.size();i++)
 		{
 			System.out.println("db wala"+ProductInfo.get(i).getImage());
-		}*/
-		return ProductInfo;
+		}
+		return ProductInfo;*/
 	}
+	
 	
 	public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
 	{
@@ -993,31 +1046,35 @@ public class DBHandlerForUser {
 		return productInfoAdded;		
 	}
 
-	public ArrayList<String>  getproductsforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException 
+	public ArrayList<String>  getproductsforcomparison(ArrayList<String> category) throws SQLException 
 	{
 		Connection con = db.createConnection();
-					
 		ArrayList<String> categoryproducts = new ArrayList<String>();	
+		String query = "";
 		
-		for(CompareCartProduct p : cartProducts)
-		{	
-			
-		String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + p.getCategory() ;       
+		for(int i=0; i<category.size(); i++)
+		{
+			String categoryid = category.get(i);
+			System.out.println("category id in ques is : "+categoryid);
+			query += "select ProductInfo.productName from ProductInfo where ProductInfo.categoryId = '" + categoryid + "'";    
+			if(i<(category.size()-1))
+				query += " Union ";
+		}
+		System.out.println(query);
 		ResultSet rs=db.executeQuery(query, con);
-		//System.out.println("hello1");
+			
 		while(rs.next())
 		{
-			categoryproducts.add(rs.getString("productName"));
+			categoryproducts.add(rs.getString("productName"));		
 		}
-		break;
-		}
-		//System.out.println("hello2");
+		System.out.println("hello2");
 		for (String i : categoryproducts)
-		//System.out.println(i);
+		System.out.println("products"+i);
 		
 		db.closeConnection(con);
 		
 		return categoryproducts;		
+	
 	}
 	
 	public void savePlaceOrderDetails() 
@@ -1431,6 +1488,26 @@ public class DBHandlerForUser {
 			receipt.add(rs.getString("transactionId"));
 		}			
 		return receipt;
+	}
+	public String getCategoryIdForRetrieval(ArrayList<CompareCartProduct> cartProducts) 
+	{
+		String category=null;
+		for(CompareCartProduct p : cartProducts)
+		{
+			category = p.getCategory();			
+		}
+		System.out.println("category to be retrieved is"+category);
+		return category;
+		}
+
+	public ArrayList<Integer> getProductIdForRetrieval(ArrayList<CompareCartProduct> cartProducts) 
+	{
+		ArrayList<Integer> pidRetrieved= new ArrayList <Integer>();
+		for(CompareCartProduct p : cartProducts)
+		{
+			pidRetrieved.add(p.getProductId());			
+		}
+		return pidRetrieved;
 	}
 
 

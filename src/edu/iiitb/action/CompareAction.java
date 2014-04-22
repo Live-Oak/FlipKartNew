@@ -39,6 +39,7 @@ ServletResponseAware, ServletRequestAware
 	private int productId;
 	private String productname;
 	private HttpServletResponse servletResponse;
+	private ArrayList<String> categoryList, categoryListtemp;
 	public HttpServletResponse getServletResponse() {
 		return servletResponse;
 	}
@@ -53,7 +54,8 @@ ServletResponseAware, ServletRequestAware
 	ArrayList<Integer> pid= new ArrayList <Integer>(); 
 	ArrayList<ProductInfo> productinfo=new ArrayList<ProductInfo>();
 	ArrayList<String> description;
-	
+	ArrayList<String> categoryproducts;
+	private ArrayList<Integer> pidRetrieved= new ArrayList <Integer>();
 	public ArrayList<String> getCategoryproducts() {
 		return categoryproducts;
 	}
@@ -61,7 +63,6 @@ ServletResponseAware, ServletRequestAware
 		this.categoryproducts = categoryproducts;
 	}
 
-	ArrayList<String> categoryproducts;
 	
 	public ArrayList<String> getDescription() {
 		return description;
@@ -92,10 +93,13 @@ ServletResponseAware, ServletRequestAware
 	}
 	public String execute()
 	{
+	    String  categoryRetrieved=null;
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();	 
 		try {
+			    String categoryname;
 				String content = null;
 				boolean cookieFound = false;
+				int counter;
 				for (Cookie c : servletRequest.getCookies()) {
 					
 					if (c.getName().equals("comparecart")) {
@@ -105,12 +109,78 @@ ServletResponseAware, ServletRequestAware
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 								.deserialize(content);
 						 pop.populateObject(cookie, map);
-						 
-						productinfo=dbHandlerForUser.getproductinfoforcomparison(cookie.getProductList()); 
-						
-						categoryproducts=dbHandlerForUser.getproductsforcomparison(cookie.getProductList());
-						
-						
+						categoryRetrieved = dbHandlerForUser.getCategoryIdForRetrieval(cookie.getProductList());
+						pidRetrieved = dbHandlerForUser.getProductIdForRetrieval(cookie.getProductList());
+						categoryList = new ArrayList<String>();
+						categoryListtemp = new ArrayList<String>();
+						categoryname = dbHandlerForUser.getnameonid(categoryRetrieved);
+
+						// get id of the product we have
+			
+						categoryList.add(categoryRetrieved);
+						// add it to the main list
+			
+						categoryListtemp = dbHandlerForUser.getCategoryList(categoryRetrieved);
+						// get the sub category list for the first time
+			
+						for(int i=0; i<categoryListtemp.size(); i++)
+						{
+							//System.out.println("value in category list is : " + categoryList.get(i));
+							categoryList.add(categoryListtemp.get(i));
+						}
+						// add it to the main list
+			
+			
+						if(categoryname.equalsIgnoreCase("Men") || categoryname.equalsIgnoreCase("Women"))
+						{
+							int count = categoryList.size();
+							for(int i=1; i<count; i++)
+							{
+								categoryListtemp = dbHandlerForUser.getCategoryListwithcategory(categoryList.get(i), categoryname);
+								if(categoryListtemp.size() > 0)
+									categoryList.add(categoryListtemp.get(0));
+							}
+							// getting value for the level where we have to decide the path
+							// adding it to the main side again
+				
+							// get the sub-sub category list if present
+							for(int i=count-1; i<categoryList.size(); i++)
+							{
+								//System.out.println("It is here");
+								categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i));
+								if(categoryListtemp.size() > 0)
+								{
+									for(int j=0; j<categoryListtemp.size(); j++)
+									{
+										// add it to the main list
+										categoryList.add(categoryListtemp.get(j));
+									}
+								}
+							}
+						}
+					else
+					{
+						// get the sub-sub category list if present
+						for(int i=0; i<categoryList.size()-1; i++)
+						{
+							categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i+1));
+							if(categoryListtemp.size() > 0)
+							{
+								for(int j=0; j<categoryListtemp.size(); j++)
+								{
+									// add it to the main list
+									categoryList.add(categoryListtemp.get(j));
+								}
+							}
+						}
+					}
+				
+
+								// Function to get me all sub category id
+								productinfo = dbHandlerForUser.getproductinfoforcomparison(categoryList,pidRetrieved); 
+								categoryproducts=dbHandlerForUser.getproductsforcomparison(categoryList);
+								// To get the List of all the product and their details
+						System.out.println();
 						cookieFound = true;
 						break;
 					}
@@ -123,22 +193,31 @@ ServletResponseAware, ServletRequestAware
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		setCount(productinfo.size());		
+		System.out.println("category retrieved is "+categoryRetrieved);
+		setCount(productinfo.size());	
+		
+		for(ProductInfo p : productinfo)
+		System.out.println(p.getProductID());
 		ArrayList<String> productStringList= new ArrayList <String>();
 		for(ProductInfo p : productinfo)
 		{
 			productStringList.add(p.getProductName());
 		}
-
 		for(ProductInfo p : productinfo)
 		{
 			for(int i=0;i<categoryproducts.size();i++)
 			{
 				if(p.getProductName().equals(categoryproducts.get(i)))
 				{
+					System.out.println("inside");
+					System.out.println("removed product"+p.getProductName());
 					categoryproducts.remove(p.getProductName());
 				}
 			}
+		}
+		for(int i=0;i<categoryproducts.size();i++)
+		{
+				System.out.println("products in category product"+categoryproducts.get(i));
 		}
 		return "success";	
 	}
@@ -169,6 +248,24 @@ ServletResponseAware, ServletRequestAware
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public ArrayList<String> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(ArrayList<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+	public ArrayList<String> getCategoryListtemp() {
+		return categoryListtemp;
+	}
+	public void setCategoryListtemp(ArrayList<String> categoryListtemp) {
+		this.categoryListtemp = categoryListtemp;
+	}
+	public ArrayList<Integer> getPidRetrieved() {
+		return pidRetrieved;
+	}
+	public void setPidRetrieved(ArrayList<Integer> pidRetrieved) {
+		this.pidRetrieved = pidRetrieved;
 	}
 	
 }
