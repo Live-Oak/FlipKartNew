@@ -270,9 +270,7 @@ function name()
 								});
 								if(data.count==0)
 									{
-										$("#products_to_compare").hide();
-										$("#emptyComparediv").show();
-										$("#compare_button").attr("disabled",true);
+									$("#close_compare").click();
 									}		
 								if(data.count==1)
 									{
