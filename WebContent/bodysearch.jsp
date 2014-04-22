@@ -182,7 +182,6 @@ function name()
 </script>
 
 
-
 <script type="text/javascript">
 	var product_id_to_send;
 	$("#comparecart").show();
@@ -271,6 +270,7 @@ function name()
 								if(data.count==0)
 									{
 									$("#close_compare").click();
+									
 									}		
 								if(data.count==1)
 									{
@@ -284,12 +284,22 @@ function name()
 				if($(".addtocompare").is(':checked'))
 					{
 				var pId = $(event.target).attr("pid");
-				var categoryId = $("#category").val();
-				categoryId = categoryId.trim();
+				var categoryname = $("#categoryname").val();
+				var keyword = $("#keyword").val();
+				var categoryID;
+				if(keyword=="")
+					{
+					categoryID=categoryname;
+					}
+				else
+					{
+					categoryID=keyword;
+					}
+				alert(categoryID);
 				$.ajax({
 						type : 'GET',
 						contentType : "application/x-www-form-urlencoded; charset=utf-8",
-						url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
+						url : 'getProductToCompare?productId='+ pId+ '&category1='+ categoryID,
 						success : function(data) {
 							if(data.messageCount=="hello")
 								{
@@ -404,6 +414,8 @@ function name()
 
 
 
+
+
 </head>
 <body>
 	<div class="container">
@@ -437,9 +449,10 @@ function name()
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
-				<input type="hidden" id="category"
-					value="<s:property value="productinfo.get(2).categoryID"/>">
+				
 					<input type="hidden" id="categoryname" value="<s:property value="categoryname"/>">
+					
+					<input type="hidden" id="keyword" value="<s:property value="keyword"/>">
 					<s:iterator value="companyList">
 						<input type="checkbox" id="brand" class="filters" name="checkbox"
 							brandname="<s:property />">
