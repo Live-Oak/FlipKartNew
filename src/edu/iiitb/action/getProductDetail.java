@@ -55,11 +55,8 @@ public class getProductDetail  extends ActionSupport
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date date = new Date();
 				long diff = (productinfo.get(i).getOfferValidity().getTime() - date.getTime());
-				int diffDays =(int) diff / (24 * 60 * 60 * 1000);
-				if (diffDays > 0)
-					productinfo.get(i).setValid(diffDays);
-				else
-					productinfo.get(i).setValid(0);
+				int diffDays =(int)Math.ceil( diff / (24.0 * 60.0 * 60.0 * 1000.0));
+				productinfo.get(i).setValid(diffDays);
 				
 				int discount = 100 - (((productinfo.get(i).getPrice()-productinfo.get(i).getOffer())*100)/productinfo.get(i).getPrice());
 				productinfo.get(i).setDiscount(discount);
