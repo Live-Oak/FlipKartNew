@@ -363,25 +363,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="login">/index.jsp</result>
 			</action>
 
-			<action name="getCatagories" class="edu.iiitb.action.StartAction"
-				method="getMenu">
+			<action name="getCatagories" class="edu.iiitb.action.StartAction" method="getMenu">
 				<result name="success" type="json" />
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
 			
-			<action name="getSubCatagorieslevel" class="edu.iiitb.action.StartAction" method="getSubMenuCatagorylevel">
-				<result name="success" type="json" />
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="getSubCatagories" class="edu.iiitb.action.StartAction"
-				method="getSubMenuCatagory">
-				<result name="success" type="json" />
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
 
 			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
 				<interceptor-ref name="secureStack"></interceptor-ref>
