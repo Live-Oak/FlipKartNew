@@ -181,6 +181,7 @@ ServletResponseAware, ServletRequestAware
 
 								// Function to get me all sub category id
 								productinfo = dbHandlerForUser.getproductinfoforcomparison(categoryList,pidRetrieved); 
+								// Function to fill product info that is to be displayed to the compare products sections
 								for(int i=0;i<productinfo.size();i++)
 								{
 								DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -193,7 +194,6 @@ ServletResponseAware, ServletRequestAware
 								}
 								categoryproducts=dbHandlerForUser.getproductsforcomparison(categoryList);
 								// To get the List of all the product and their details
-						System.out.println();
 						cookieFound = true;
 						break;
 					}
@@ -206,11 +206,9 @@ ServletResponseAware, ServletRequestAware
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		System.out.println("category retrieved is "+categoryRetrieved);
+		
 		setCount(productinfo.size());	
 		
-		for(ProductInfo p : productinfo)
-		System.out.println(p.getProductID());
 		ArrayList<String> productStringList= new ArrayList <String>();
 		for(ProductInfo p : productinfo)
 		{
@@ -222,16 +220,11 @@ ServletResponseAware, ServletRequestAware
 			{
 				if(p.getProductName().equals(categoryproducts.get(i)))
 				{
-					System.out.println("inside");
-					System.out.println("removed product"+p.getProductName());
 					categoryproducts.remove(p.getProductName());
 				}
 			}
 		}
-		for(int i=0;i<categoryproducts.size();i++)
-		{
-				System.out.println("products in category product"+categoryproducts.get(i));
-		}
+		
 		return "success";	
 	}
 	@Override
