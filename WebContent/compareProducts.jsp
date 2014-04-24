@@ -61,9 +61,9 @@
 	      	    					    						"<div> <style>'-webkit-line-clamp: 1;'</style> <font size='3' color='black'>"+productcompare.productName+"</font><br></div><hr>"+
 	      	    					    						"<strong> <font size='4px' color='#BB0000'>"+productcompare.price+"</strong><hr><font size='2px' color='#BB0000'>"  
 	      	    					    						+data.messagestock+"<br><hr><font size='3px' color='#76553B'>"+data.messageoffer+"</font><hr><font size='2px' color='#000000'>"+productcompare.brand+
-	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><br><br><hr><font size='2px' color='#000000'>"+data.messagewarranty+"<hr>");		
-	      	    						    			
-	      	    						    		});
+	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><br><br><hr><font size='2px' color='#000000'>"+data.messagewarranty+"</font><hr>"+
+	      	    					    						"<input type='hidden' id='productId' pid='"+productcompare.productID+"' /><button type='button' class='btn btn-danger buyNow'>BUY NOW</button>");		
+	      	    						    					});
 	      	    		    					
 
 	      	    		   }});	

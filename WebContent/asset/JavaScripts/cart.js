@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#buyNow , .buyNow").click(function(e){
+	$(document).on('click','#buyNow , .buyNow',function(e){
 		var currentTarget = e.currentTarget;
 		var pId = $(currentTarget).parent().find("#productId").attr("pid");
 		var qty = 1;
