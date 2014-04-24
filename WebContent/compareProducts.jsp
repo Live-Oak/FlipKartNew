@@ -141,14 +141,15 @@
 																</font>
 													</s:if>
 												<hr>	
-													<s:if test="%{offer==0}">
+												
+													<s:if test="%{discount==0}">
 														<font size="3px" color="#76553B">
 															No offers Available<br>
 														</font>
 													</s:if>
-													<s:if test="%{offer>0}">
+													<s:if test="%{discount>0}">
 														<font size="3px" color="#76553B">
-															Rs. ${offer} off!!
+															 ${discount}% off!!
 														</font>
 													</s:if>
 												<hr>	
