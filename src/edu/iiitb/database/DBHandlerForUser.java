@@ -59,7 +59,6 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
-		System.out.println(user.getDate());
 		String[] splitedDate=user.getDate().split("T");
 		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
@@ -90,16 +89,13 @@ public class DBHandlerForUser {
 		String role=null;
 		String query="select email,password,role from UserCredantials";
 		ResultSet rs=db.executeQuery(query, con);
-		//System.out.println(email+password);
 		while(rs.next())
 		{
 			if(rs.getString("email").equals(email)&&rs.getString("password").equals(password))
 				role=rs.getString("role");
 		}
-		//System.out.println(role);
 		if (role==null)
 		{
-			System.out.println(role);
 			return "invalid";
 		}
 		con.close();
@@ -114,16 +110,13 @@ public class DBHandlerForUser {
 		String role=null;
 		String query="select email,role from UserCredantials";
 		ResultSet rs=db.executeQuery(query, con);
-		//System.out.println(email);
 		while(rs.next())
 		{
 			if(rs.getString("email").equals(email))
 				role=rs.getString("role");
 		}
-		//System.out.println(role);
 		if (role==null)
 		{
-			System.out.println(role);
 			return "invalid";
 		}
 		con.close();
@@ -345,7 +338,6 @@ public class DBHandlerForUser {
 			
 				}
 			}
-			//System.out.println(fName);
 			con.close();
 			return fName;
 		
@@ -407,7 +399,6 @@ public class DBHandlerForUser {
 		prep1.setString(3, user.getGender());
 		prep1.setString(4, user.getPhonenumber());
 		prep1.setString(5, user.getEmail());
-		System.out.println("in db handler for user");
 		
 		prep1.execute();
 		con.close();
@@ -422,7 +413,6 @@ public class DBHandlerForUser {
 		PreparedStatement prep1 =con.prepareStatement(query1);
 		prep1.setString(1, user.getPassword());
 		prep1.setString(2, user.getEmail());
-		System.out.println("update password");
 		
 		prep1.execute();
 		con.close();
@@ -443,7 +433,6 @@ public class DBHandlerForUser {
 		prep1.setInt(6, user.getPinCode());
 		prep1.setString(7, user.getCity());
 		prep1.setString(8, user.getEmail());
-		System.out.println("update address");
 		
 		prep1.execute();
 		con.close();
@@ -458,7 +447,6 @@ public class DBHandlerForUser {
 		PreparedStatement prep1 =con.prepareStatement(query1);
 		prep1.setString(1, user.getNewemail());
 		prep1.setString(2, user.getEmail());
-		System.out.println("update email");
 		
 		prep1.execute();
 		con.close();
@@ -929,7 +917,6 @@ public class DBHandlerForUser {
 		for(int i=0; i<category.size(); i++)
 		{
 			String categoryid = category.get(i);
-			System.out.println("category id in ques is : "+categoryid);
 			query += "select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, ProductInfo.offerValidity, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + categoryid + "'";    
 			if(i<(category.size()-1))
 				query += " Union ";
@@ -963,12 +950,7 @@ public class DBHandlerForUser {
 		}
 		
 		db.closeConnection(con);
-		for(int i=0;i<ProductInfo.size();i++)
-		{
-			System.out.println("db wala"+ProductInfo.get(i).getImage());
-		}
-		System.out.println("helllo");
-		return ProductInfo;
+			return ProductInfo;
 		
 		}
 	
@@ -1017,21 +999,16 @@ public class DBHandlerForUser {
 		for(int i=0; i<category.size(); i++)
 		{
 			String categoryid = category.get(i);
-			System.out.println("category id in ques is : "+categoryid);
 			query += "select ProductInfo.productName from ProductInfo where ProductInfo.categoryId = '" + categoryid + "'";    
 			if(i<(category.size()-1))
 				query += " Union ";
 		}
-		System.out.println(query);
 		ResultSet rs=db.executeQuery(query, con);
 			
 		while(rs.next())
 		{
 			categoryproducts.add(rs.getString("productName"));		
 		}
-		System.out.println("hello2");
-		for (String i : categoryproducts)
-		System.out.println("products"+i);
 		
 		db.closeConnection(con);
 		
@@ -1269,12 +1246,7 @@ public class DBHandlerForUser {
 		Connection con = db.createConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
-		System.out.println("It came here as well");
-		System.out.println(feedbck.getEmail());
-		System.out.println("It came here as well");
-		//System.out.println((Date) new java.util.Date());
 		String query = "Insert into Feedback values(?,?,?,?,?)";
-		System.out.println(query);
 		PreparedStatement prepStmnt = con.prepareStatement(query);
 		prepStmnt.setString(1,feedbck.getEmail());
 		prepStmnt.setString(2, feedbck.getMobileNumber());
@@ -1283,7 +1255,6 @@ public class DBHandlerForUser {
 		prepStmnt.setString(5, date);
 		
 		prepStmnt.execute();
-		System.out.println("Feedback submitted!!");
 		con.close();
 	}
 	
@@ -1458,7 +1429,6 @@ public class DBHandlerForUser {
 		{
 			category = p.getCategory();			
 		}
-		System.out.println("category to be retrieved is"+category);
 		return category;
 		}
 

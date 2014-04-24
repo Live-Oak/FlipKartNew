@@ -128,7 +128,6 @@ ServletResponseAware, ServletRequestAware
 			
 						for(int i=0; i<categoryListtemp.size(); i++)
 						{
-							//System.out.println("value in category list is : " + categoryList.get(i));
 							categoryList.add(categoryListtemp.get(i));
 						}
 						// add it to the main list
@@ -149,7 +148,6 @@ ServletResponseAware, ServletRequestAware
 							// get the sub-sub category list if present
 							for(int i=count-1; i<categoryList.size(); i++)
 							{
-								//System.out.println("It is here");
 								categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i));
 								if(categoryListtemp.size() > 0)
 								{
