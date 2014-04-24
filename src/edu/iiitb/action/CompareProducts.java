@@ -122,9 +122,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getProductDetails() {
 			try {
-					System.out.println("CategoryID : "+category1);
 					category=dbHandler.getidonname(category1);
-					System.out.println("category is : "+category);
 					String content = null;
 					boolean cookieFound = false;
 					if(productId!=0 && category!=null)
@@ -138,8 +136,6 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 							Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 									.deserialize(content);
 							 pop.populateObject(cookie, map);
-							 if(!(cookie.getProductList().isEmpty()))
-							 System.out.println("well hello"+cookie.getProductList().get(0).getCategory());
 							 if(cookie.getProductList().size()<4)
 							 {
 								 if(cookie.getProductList().isEmpty()||cookie.getProductList().get(0).getCategory().equals(getCategory()))
@@ -242,10 +238,8 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 						c.setMaxAge(60*60*24*2);
 						servletResponse.addCookie(c);
 						pidRetrieve = dbHandler.getProductIdForRetrieval(cookie.getProductList());
-						System.out.println(pidRetrieve);
 						if(pidRetrieve.size()>0)
 						{
-							//System.out.println("1 bach gaya");
 							products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
 						}
 						

@@ -41,7 +41,6 @@ public class CompareProductAjax
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
-		System.out.println("offer valid till: "+productInfoAdded.get(0).getOfferValidity());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		long diff = (productInfoAdded.get(0).getOfferValidity().getTime() - date.getTime());
@@ -49,8 +48,6 @@ public class CompareProductAjax
 		productInfoAdded.get(0).setValid(diffDays);
 		
 		int discount = 100 - (((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice());
-		//productInfoAdded.get(0).setDiscount(discount);
-		System.out.println("Discount is : "+productInfoAdded.get(0).getDiscount());
 		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
 		{
 			setMessagestock("Out of Stock");
