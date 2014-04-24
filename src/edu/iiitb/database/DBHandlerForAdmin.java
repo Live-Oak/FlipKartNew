@@ -228,9 +228,11 @@ public class DBHandlerForAdmin {
 	
 	public void registerProduct(ProductInfo prod) throws SQLException
 	{
+		
+		String[] splitedDate=prod.getLastOfferDate().split("T");
 		String query = "Insert into ProductInfo(`productId`,`productName`,`price`,`image`,`offer`" +
-				",`categoryId`,`keywords`,`description`,`brand`,`warranty`) " +
-				" values(?,?,?,?,?,?,?,?,?,?)";
+				",`categoryId`,`keywords`,`description`,`brand`,`warranty`,`offerValidity`) " +
+				" values(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
 		stmnt.setInt(1, prod.getProductID());
 		stmnt.setString(2, prod.getProductName());
@@ -242,6 +244,7 @@ public class DBHandlerForAdmin {
 		stmnt.setString(8,prod.getDescription());
 		stmnt.setString(9,prod.getBrand());
 		stmnt.setInt(10,prod.getWarranty());
+		stmnt.setString(11, splitedDate[0]);
 		stmnt.execute();	
 		// Update Stock table
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
