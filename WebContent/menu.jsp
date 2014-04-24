@@ -694,12 +694,13 @@ $(document).ready(function(){
         			}
 			    </script>
 			<br><br>
-			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required>
+			<label id="notify"></label><br>
 			<p id="checking">Check for availability</p>
-			<label id="notify"></label>
-			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required="true" onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
+			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required="true" onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;">
 			<label id="phoneRequired"></label>    
 			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
+			<br><br>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
         			specialKeys.push(8); //Backspace
