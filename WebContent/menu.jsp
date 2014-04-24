@@ -119,10 +119,18 @@ $(document).ready(function(){
 			{
     	
 		var status=$("#notify").html();
+		if($("#firstName").val()=="")
+			{
+				$("#firstNameRequired").html("please fill this field");
+			}
+		else
+			{
+				
+			}
 		if(status=="Enjoy Flipkart User Experience")
 		{
 			
-			$("#form_signup").submit();
+			//$("#form_signup").submit();
 		}
 		else
 		{
@@ -617,25 +625,25 @@ $(document).ready(function(){
 		      	<hr>
 		<br>
 		<form id="form_signup" name="form_signup" action="signmeup" onsubmit="return(validate());" method="post">
-			<input type="text" class="textbox" name="firstName" placeholder="Enter First Name" required><br>
-			<label id="firstNameRequired"></label>
-			<input type="text" class="textbox" name="lastName" placeholder="Enter Last Name" required><br>
-			<label id="lastNameRequired"></label>
-			<input type="text" id="DOB" name="date" class="textbox" placeholder="Enter Date of Birth"  required><br><br>
-			<label id="DOBRequired"></label>
-			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br>
-			<label id="passwordRequired"></label>
-			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
-		    <label id="reenter_passwordRequired"></label>    
-			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
-			<label id="address1Required"></label>    
-			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
-			<label id="address2Required"></label>    
-			<input type="text" id="city" name="city" class="textbox" placeholder="Enter City"  required><br>
-			<label id="cityRequired"></label>    
-			<input type="text" id="country" name="country" class="textbox" placeholder="Enter Country"  required><br>
-			<label id="countryRequired"></label>    
-			<input type="text" id="pincode" name="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<input type="text" class="textbox" name="firstName" id="firstName" placeholder="Enter First Name" required>
+			<label id="firstNameRequired"></label><br>
+			<input type="text" class="textbox" name="lastName" id="lastName" placeholder="Enter Last Name" required>
+			<label id="lastNameRequired"></label><br>
+			<input type="text" id="DOB" name="date" id="date" class="textbox" placeholder="Enter Date of Birth"  required>
+			<label id="DOBRequired"></label><br><br>
+			<input type="password" class="textbox" name="password" id="password" placeholder="Enter Password" required>
+			<label id="passwordRequired"></label><br>
+			<input type="password" class="textbox" name="reenter_password" id="reenter_password" placeholder="Re-Enter Password" required>
+		    <label id="reenter_passwordRequired"></label><br><br>    
+			<textarea rows="2" cols="18" name="address1" id="address1" class="textbox" placeholder="Enter Address 1" required></textarea>
+			<label id="address1Required"></label>    <br>
+			<textarea rows="2" cols="18" name="address2" id="address2" class="textbox" placeholder="Enter Address 1" required></textarea>
+			<label id="address2Required"></label>    <br>
+			<input type="text" id="city" name="city" id="city" class="textbox" placeholder="Enter City"  required>
+			<label id="cityRequired"></label>    <br>
+			<input type="text" id="country" name="country" id="country" class="textbox" placeholder="Enter Country"  required>
+			<label id="countryRequired"></label>    <br>
+			<input type="text" id="pincode" name="pincode" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 			<label id="pincodeRequired"></label>    
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
@@ -667,7 +675,7 @@ $(document).ready(function(){
             			return ret;
         			}
 			    </script>
-			<button type="submit" id="create_account">SIGN UP NOW!</button>
+			<button type="button" id="create_account">SIGN UP NOW!</button>
 			<button type="reset" id="create_account">RESET!</button><br>
 			<a href="#" class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>	
 		</form>
