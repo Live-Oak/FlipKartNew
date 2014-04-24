@@ -159,20 +159,18 @@
 														
 												<hr>
 													
+													<div class=giveMeEllipsisForDescription>
 														<font size="2px" color="#000000">
-													<div class=giveMeEllipsisForDescription>	
 															 <s:property value="description"/>
-														</div>
 														</font>
+													</div>
 														
 												<hr>
-													
-											<font size="2px" color="#000000">
-								<div class="giveMeEllipsisForWarranty">	
-													<s:property value="warranty"/> years.
-								</div>
-											</font>
-									
+													<div class="giveMeEllipsisForWarranty">				
+																<font size="2px" color="#000000">
+																		<s:property value="warranty"/> years.
+																</font>
+													</div>	
 								<hr>
 										
 								<br>
