@@ -166,7 +166,7 @@ $(document).ready(function(){
 		else if(status=="Enjoy Flipkart User Experience")
 		{
 			
-			//$("#form_signup").submit();
+			$("#form_signup").submit();
 		}
 		else
 		{
