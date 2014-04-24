@@ -618,17 +618,25 @@ $(document).ready(function(){
 		<br>
 		<form id="form_signup" name="form_signup" action="signmeup" onsubmit="return(validate());" method="post">
 			<input type="text" class="textbox" name="firstName" placeholder="Enter First Name" required><br>
+			<label id="firstNameRequired"></label>
 			<input type="text" class="textbox" name="lastName" placeholder="Enter Last Name" required><br>
+			<label id="lastNameRequired"></label>
 			<input type="text" id="DOB" name="date" class="textbox" placeholder="Enter Date of Birth"  required><br><br>
-
+			<label id="DOBRequired"></label>
 			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br>
+			<label id="passwordRequired"></label>
 			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
-		        
+		    <label id="reenter_passwordRequired"></label>    
 			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
+			<label id="address1Required"></label>    
 			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
+			<label id="address2Required"></label>    
 			<input type="text" id="city" name="city" class="textbox" placeholder="Enter City"  required><br>
+			<label id="cityRequired"></label>    
 			<input type="text" id="country" name="country" class="textbox" placeholder="Enter Country"  required><br>
+			<label id="countryRequired"></label>    
 			<input type="text" id="pincode" name="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<label id="pincodeRequired"></label>    
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
@@ -646,6 +654,7 @@ $(document).ready(function(){
 			<p id="checking">Check for availability</p>
 			<label id="notify"></label>
 			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required="true" onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
+			<label id="phoneRequired"></label>    
 			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
