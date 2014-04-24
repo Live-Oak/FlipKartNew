@@ -123,11 +123,47 @@ $(document).ready(function(){
 			{
 				$("#firstNameRequired").html("please fill this field");
 			}
-		else
-			{
-				
-			}
-		if(status=="Enjoy Flipkart User Experience")
+		else if($("#lastName").val()=="")
+		{
+			$("#lastNameRequired").html("please fill this field");
+		}
+		else if($("#DOB").val()=="")
+		{
+			$("#DOBRequired").html("please fill this field");
+		}	
+		else if($("#password").val()=="")
+		{
+			$("#passwordRequired").html("please fill this field");
+		}
+		else if($("#reenter_password").val()=="")
+		{
+			$("#reenter_passwordRequired").html("please fill this field");
+		}
+		else if($("#address1").val()=="")
+		{
+			$("#address1Required").html("please fill this field");
+		}
+		else if($("#address2").val()=="")
+		{
+			$("#address2Required").html("please fill this field");
+		}
+		else if($("#city").val()=="")
+		{
+			$("#cityRequired").html("please fill this field");
+		}
+		else if($("#country").val()=="")
+		{
+			$("#countryRequired").html("please fill this field");
+		}
+		else if($("#pincode").val()=="")
+		{
+			$("#pincodeRequired").html("please fill this field");
+		}
+		else if($("#phone").val()=="")
+		{
+			$("#phoneRequired").html("please fill this field");
+		}
+		else if(status=="Enjoy Flipkart User Experience")
 		{
 			
 			//$("#form_signup").submit();
