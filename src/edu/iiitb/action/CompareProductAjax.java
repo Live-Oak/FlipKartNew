@@ -1,7 +1,10 @@
 package edu.iiitb.action;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.iiitb.database.DBHandlerForUser;
 
@@ -39,6 +42,15 @@ public class CompareProductAjax
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
 		System.out.println("offer valid till: "+productInfoAdded.get(0).getOfferValidity());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		long diff = (productInfoAdded.get(0).getOfferValidity().getTime() - date.getTime());
+		int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+		productInfoAdded.get(0).setValid(diffDays);
+		
+		int discount = 100 - (((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice());
+		//productInfoAdded.get(0).setDiscount(discount);
+		System.out.println("Discount is : "+productInfoAdded.get(0).getDiscount());
 		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
 		{
 			setMessagestock("Out of Stock");
@@ -49,7 +61,7 @@ public class CompareProductAjax
 		}
 		int offerper;
 		offerper=((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice();
-		if(offerper==100)
+		if(productInfoAdded.get(0).getDiscount()==0)
 		{
 			setMessageoffer("No Avalilable Offers");
 		}
@@ -57,7 +69,7 @@ public class CompareProductAjax
 		{
 			
 			offerper=100-offerper;
-			setMessageoffer(offerper+"% off!!");			
+			setMessageoffer(productInfoAdded.get(0).getDiscount()+" % off!!");			
 		}
 		if(productInfoAdded.get(0).getWarranty()==0)
 		{
@@ -65,11 +77,11 @@ public class CompareProductAjax
 		}
 		else if(productInfoAdded.get(0).getWarranty()==1)
 		{
-			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+"year");
+			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+" year");
 		}
 		else
 		{
-			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+"years");
+			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+" years");
 		}
 		count=productInfoAdded.size();
 		return "success";

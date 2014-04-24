@@ -930,7 +930,7 @@ public class DBHandlerForUser {
 		{
 			String categoryid = category.get(i);
 			System.out.println("category id in ques is : "+categoryid);
-			query += "select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + categoryid + "'";    
+			query += "select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, ProductInfo.offerValidity, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + categoryid + "'";    
 			if(i<(category.size()-1))
 				query += " Union ";
 		}
@@ -953,6 +953,7 @@ public class DBHandlerForUser {
 					obj.setDescription(rs.getString("description"));
 					obj.setBrand(rs.getString("brand"));
 					obj.setWarranty(rs.getInt("warranty"));
+					obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 					obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 					obj.setAvailableQuantity(rs.getInt("availableQuantity"));
 					ProductInfo.add(obj);
@@ -1017,7 +1018,7 @@ public class DBHandlerForUser {
 		
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> productInfoAdded = new ArrayList<ProductInfo>();	
-		String query="select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, " +
+		String query="select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty,p.offerValidity, " +
 				" s.availableQuantity, s.minimumQuantity " +
 				" from ProductInfo as p, Stock as s " +
 				" where  p.productId = s.productId " +
@@ -1039,6 +1040,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			productInfoAdded.add(obj);
 		}
 		
