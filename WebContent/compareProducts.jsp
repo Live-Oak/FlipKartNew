@@ -50,7 +50,6 @@
 	      	    		    type: 'POST',	    
 	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
 	      	    		    success: function(data){
-	      	    		    				alert(obj.parent());
 	      	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
 	      	    						    		{ 	
 	      	    		    							
