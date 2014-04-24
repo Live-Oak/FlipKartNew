@@ -172,7 +172,7 @@
 										
 								<br>
 								<input type="hidden" pid="<s:property value="productID"/>" id="productId"/>
-								<button type="button" class="btn btn-danger"  id="buyNow">BUY NOW</button>
+								<button type="button" class="btn btn-danger buyNow">BUY NOW</button>
 								<br><br>
 							</center>
 							</div>

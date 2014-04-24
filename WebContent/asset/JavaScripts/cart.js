@@ -1,6 +1,7 @@
 $(document).ready(function(){
-	$("#buyNow").click(function(){
-		var pId = $("#productId").attr("pid");
+	$("#buyNow , .buyNow").click(function(e){
+		var currentTarget = e.currentTarget;
+		var pId = $(currentTarget).parent().find("#productId").attr("pid");
 		var qty = 1;
 		$.ajax({
 		    type: 'POST',
