@@ -970,47 +970,7 @@ public class DBHandlerForUser {
 		System.out.println("helllo");
 		return ProductInfo;
 		
-	
-
-		
-		
-/*		
-		
-		Connection con = db.createConnection();
-		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-		
-		for(CompareCartProduct p : cartProducts)
-		{
-		String query="select distinct(ProductInfo.productId), ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and ProductInfo.productId = '" + p.getProductId() + "'" ;       
-		ResultSet rs=db.executeQuery(query, con);
-		
-			
-		while(rs.next())
-		{
-			ProductInfo obj = new ProductInfo();
-			//System.out.println("product is : " +rs.getString("productName") );
-			obj.setProductID(rs.getInt("productId"));
-			obj.setProductName(rs.getString("productName"));
-			obj.setPrice(rs.getInt("price"));
-			obj.setImage(rs.getString("image"));
-			obj.setOffer(rs.getInt("offer"));
-			obj.setCategoryID(rs.getString("categoryId"));
-			obj.setDescription(rs.getString("description"));
-			obj.setBrand(rs.getString("brand"));
-			obj.setWarranty(rs.getInt("warranty"));
-			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
-			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
-			ProductInfo.add(obj);
 		}
-			
-		}
-		db.closeConnection(con);
-		/*for(int i=0;i<ProductInfo.size();i++)
-		{
-			System.out.println("db wala"+ProductInfo.get(i).getImage());
-		}
-		return ProductInfo;*/
-	}
 	
 	
 	public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
