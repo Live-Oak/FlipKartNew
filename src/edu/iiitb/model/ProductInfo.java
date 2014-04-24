@@ -2,6 +2,7 @@ package edu.iiitb.model;
 
 import java.io.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 
@@ -9,7 +10,7 @@ public class ProductInfo {
 	
 	
 	int productID,offer,warranty,price;
-	String productName,categoryID,keywords,description,brand;
+	String productName,categoryID,keywords,description,brand,lastOfferDate;
 	int discount;
 	String sellerFName, sellerLName;
 	String image;
@@ -25,6 +26,13 @@ public class ProductInfo {
 	}
 	public void setValid(int valid) {
 		this.valid = valid;
+	}
+	
+	public String getLastOfferDate() {
+		return lastOfferDate;
+	}
+	public void setLastOfferDate(String lastOfferDate) {
+		this.lastOfferDate = lastOfferDate;
 	}
 	public Timestamp getOfferValidity() {
 		return offerValidity;
@@ -186,6 +194,6 @@ public class ProductInfo {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+	
 	
 }
