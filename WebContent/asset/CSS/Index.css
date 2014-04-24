@@ -111,3 +111,24 @@ html, body {
   background-color: #005387;
   height:75px;
 }
+.giveMeEllipsisForWarranty {
+   overflow: hidden;
+   height:20px;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   line-height: 20px;        /* fallback */
+   max-height: 40px;       /* fallback */
+}
+.giveMeEllipsisForDescription {
+   overflow: hidden;
+   height:20px;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   line-height: 20px;        /* fallback */
+   max-height: 60px;       /* fallback */
+}
+

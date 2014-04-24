@@ -61,8 +61,8 @@
 	      	    					    						"<font size='3' color='black'><div class='giveMeEllipsis'>"+productcompare.productName+"</div></font><hr>"+
 	      	    					    						"<strong> <font size='4px' color='#BB0000'><p>Rs. "+productcompare.price+"</p></strong><hr><font size='2px' color='#BB0000'>"  
 	      	    					    						+data.messagestock+"<br><hr><font size='3px' color='#76553B'>"+data.messageoffer+"</font><hr><font size='2px' color='#000000'>"+productcompare.brand+
-	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><br><br><hr><font size='2px' color='#000000'>"+data.messagewarranty+"</font><hr>"+
-	      	    					    						"<input type='hidden' id='productId' pid='"+productcompare.productID+"' /><button type='button' class='btn btn-danger buyNow'>BUY NOW</button>");		
+	      	    					    						"<hr><font size='2px' color='#000000'><div class='giveMeEllipsisForDescription'>"+productcompare.description+"</div></font><hr><font size='2px' color='#000000'><div class='giveMeEllipsisForWarranty'>"+data.messagewarranty+"</div></font><hr>"+
+	      	    					    						"<br><input type='hidden' id='productId' pid='"+productcompare.productID+"' /><button type='button' class='btn btn-danger buyNow'>BUY NOW</button>");		
 	      	    						    					});
 	      	    		    					
 
@@ -96,7 +96,6 @@
 							<p>Brand</p>
 							<hr>
 							<p>Description</p>
-							<br><br><br><br><br><br><br>
 							<hr>
 							<p>Warranty</p>
 							<hr>
@@ -161,13 +160,19 @@
 												<hr>
 													
 														<font size="2px" color="#000000">
-															 <s:property value="description"/><br>
+													<div class=giveMeEllipsisForDescription>	
+															 <s:property value="description"/>
+														</div>
 														</font>
 														
 												<hr>
-											<font size="2px" color="#000000">												
-								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
+													
+											<font size="2px" color="#000000">
+								<div class="giveMeEllipsisForWarranty">	
+													<s:property value="warranty"/> years.
+								</div>
 											</font>
+									
 								<hr>
 										
 								<br>
