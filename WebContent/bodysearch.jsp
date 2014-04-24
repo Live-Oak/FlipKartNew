@@ -295,7 +295,6 @@ function name()
 					{
 					categoryID=keyword;
 					}
-				alert(categoryID);
 				$.ajax({
 						type : 'GET',
 						contentType : "application/x-www-form-urlencoded; charset=utf-8",
