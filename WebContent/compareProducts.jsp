@@ -45,7 +45,7 @@
 	      	    	  var obj = $(this);
 	      	    	  nameofproduct=$(this).val();
 	      	    	  
-	      	    	    alert(nameofproduct);
+	      	    	    
 	      	    		$.ajax({
 	      	    		    type: 'POST',	    
 	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
