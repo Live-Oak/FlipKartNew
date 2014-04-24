@@ -38,6 +38,7 @@ public class CompareProductAjax
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
+		System.out.println("offer valid till: "+productInfoAdded.get(0).getOfferValidity());
 		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
 		{
 			setMessagestock("Out of Stock");
@@ -58,8 +59,18 @@ public class CompareProductAjax
 			offerper=100-offerper;
 			setMessageoffer(offerper+"% off!!");			
 		}
-		setMessagewarranty("This item has manufacturer warranty of "+productInfoAdded.get(0).getWarranty()+" years");
-		
+		if(productInfoAdded.get(0).getWarranty()==0)
+		{
+		setMessagewarranty("No Warranty");
+		}
+		else if(productInfoAdded.get(0).getWarranty()==1)
+		{
+			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+"year");
+		}
+		else
+		{
+			setMessagewarranty(Integer.toString(productInfoAdded.get(0).getWarranty())+"years");
+		}
 		count=productInfoAdded.size();
 		return "success";
 	}
