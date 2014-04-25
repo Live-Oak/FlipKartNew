@@ -129,7 +129,7 @@
 														</font>
 													</strong>	
 												<hr>
-													<s:if test="%{availableQuantity < minimumQuantity}">
+													<s:if test="%{availableQuantity <= minimumQuantity}">
 																<font size="2px" color="#BB0000">
 																		Out of Stock<br>
 																</font>
