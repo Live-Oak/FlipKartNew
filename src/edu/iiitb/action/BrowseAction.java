@@ -1,6 +1,9 @@
 package edu.iiitb.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -79,6 +82,21 @@ public class BrowseAction extends ActionSupport
 			// To get the links for the side results
 			productinfo = dbHandlerForUser.getproductlist(keyword);
 			// get the list of products
+			for(int i=0; i<productinfo.size(); i++)
+			{
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = new Date();
+				long diff = (productinfo.get(i).getOfferValidity().getTime() - date.getTime());
+				int diffDays =(int) diff / (24 * 60 * 60 * 1000);
+				if (diffDays > 0)
+					productinfo.get(i).setValid(diffDays);
+				else
+					productinfo.get(i).setValid(0);
+				
+				int discount = 100 - (((productinfo.get(i).getPrice()-productinfo.get(i).getOffer())*100)/productinfo.get(i).getPrice());
+				productinfo.get(i).setDiscount(discount);
+			}
+			// calculating offer valid and discount
 			companyList = dbHandlerForUser.getCompanylist(keyword);
 			// get the list of company
 		}

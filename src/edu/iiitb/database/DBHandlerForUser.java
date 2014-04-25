@@ -473,7 +473,7 @@ public class DBHandlerForUser {
 	{
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-		String query=" Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, s.sellerId, " +
+		String query=" Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, s.sellerId, " +
 				" u.firstName, u.lastName " +
 				" from ProductInfo as p, Seller as s, Stock as st, UserCredantials as u " +
 				" where p.productId = '" + Productid + "' " +
@@ -483,8 +483,6 @@ public class DBHandlerForUser {
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));
-			
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
@@ -498,7 +496,7 @@ public class DBHandlerForUser {
 			obj.setSellerID(rs.getString("sellerId"));
 			obj.setSellerFName(rs.getString("firstName"));
 			obj.setSellerLName(rs.getString("lastName"));
-			obj.setDiscount(discount);
+			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			ProductInfo.add(obj);
 		}
 		db.closeConnection(con);
@@ -520,8 +518,8 @@ public class DBHandlerForUser {
 				{	
 					for(int k=0; k<countprice; k++)
 					{
-						query += "Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, s.availableQuantity, " +
-								" s.minimumQuantity " +
+						query += "Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, " +
+								" s.availableQuantity, s.minimumQuantity" +
 								" from ProductInfo as p, Category as c , Stock as s " +
 								" where p.categoryId = c.categoryId " +
 								" and  p.productId = s.productId " +
@@ -573,7 +571,7 @@ public class DBHandlerForUser {
 			{
 				for(int j=0; j<categoryid.size(); j++)
 				{
-					query += "Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, " +
+					query += "Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, " +
 							" s.availableQuantity, s.minimumQuantity " +
 							" from ProductInfo as p, Category as c, Stock as s " +
 							" where p.categoryId = c.categoryId " +
@@ -596,7 +594,7 @@ public class DBHandlerForUser {
 			{
 				for(int j=0; j<categoryid.size(); j++)
 				{
-					query += "Select distinct(p.productId), p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, " +
+					query += "Select distinct(p.productId), p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, " +
 							" s.availableQuantity, s.minimumQuantity " +
 							" from ProductInfo as p, Stock as s " +
 							" where p.categoryId = '" + categoryid.get(j) + "' " +
@@ -643,8 +641,6 @@ public class DBHandlerForUser {
 		rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
-			//System.out.println("product is : " +rs.getString("productName") );
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
@@ -657,7 +653,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
-			obj.setDiscount(discount);
+			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			ProductInfo.add(obj);
 		}
 		db.closeConnection(con);
@@ -784,7 +780,7 @@ public class DBHandlerForUser {
 		for(int i=0; i<category.size(); i++)
 		{
 			String categoryid = category.get(i);
-			query += "select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, s.availableQuantity, s.minimumQuantity " +
+			query += "select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, s.availableQuantity, s.minimumQuantity " +
 					" from ProductInfo as p , Category as c, Stock as s " +
 					" where p.categoryId = c.categoryId " +
 					" and  p.productId = s.productId " +
@@ -796,8 +792,7 @@ public class DBHandlerForUser {
 		ResultSet rs=db.executeQuery(query, con);
 			
 		while(rs.next())
-		{
-			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
+		{	
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
@@ -810,7 +805,7 @@ public class DBHandlerForUser {
 			obj.setWarranty(rs.getInt("warranty"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
-			obj.setDiscount(discount);
+			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			ProductInfo.add(obj);
 		}
 	
@@ -864,7 +859,7 @@ public class DBHandlerForUser {
 	{
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-		String query="Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, s.availableQuantity, s.minimumQuantity " +
+		String query="Select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty, p.offerValidity, s.availableQuantity, s.minimumQuantity " +
 				" from ProductInfo as p, Keywords as k, Stock as s" +
 				" where p.productId = k.productId " +
 				" and  p.productId = s.productId " +
@@ -872,8 +867,7 @@ public class DBHandlerForUser {
 		ResultSet rs=db.executeQuery(query, con);
 		
 		while(rs.next())
-		{
-			int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));	
+		{	
 			ProductInfo obj = new ProductInfo();
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
@@ -884,9 +878,9 @@ public class DBHandlerForUser {
 			obj.setDescription(rs.getString("description"));
 			obj.setBrand(rs.getString("brand"));
 			obj.setWarranty(rs.getInt("warranty"));
+			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
-			obj.setDiscount(discount);
 			ProductInfo.add(obj);
 		}
 		db.closeConnection(con);

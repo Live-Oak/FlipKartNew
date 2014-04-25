@@ -1,6 +1,9 @@
 package edu.iiitb.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -161,16 +164,22 @@ public class getProductList  extends ActionSupport
 				}
 			}
 			
-			/*for(int i=0; i<categoryList.size(); i++)
-				System.out.println("value in action "+categoryList.get(i));*/	
-			
 			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilter(brandnames,pricelist,categoryList,count,countprice);
-			/*for(int i=0; i<productinfofilter.size(); i++)
+			for(int i=0; i<productinfofilter.size(); i++)
 			{
-				System.out.println("name returned in action "+productinfofilter.get(i).getProductName());
-				System.out.println("price returned in action "+productinfofilter.get(i).getPrice());
-				System.out.println("brand returned in action "+productinfofilter.get(i).getBrand());
-			}*/
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = new Date();
+				long diff = (productinfofilter.get(i).getOfferValidity().getTime() - date.getTime());
+				int diffDays =(int) diff / (24 * 60 * 60 * 1000);
+				if (diffDays > 0)
+					productinfofilter.get(i).setValid(diffDays);
+				else
+					productinfofilter.get(i).setValid(0);
+				
+				int discount = 100 - (((productinfofilter.get(i).getPrice()-productinfofilter.get(i).getOffer())*100)/productinfofilter.get(i).getPrice());
+				productinfofilter.get(i).setDiscount(discount);
+			}
+			// calculating offer valid and discount
 		}
 		catch(Exception e)
 		{

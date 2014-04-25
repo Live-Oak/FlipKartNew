@@ -104,7 +104,7 @@ function name()
 				    		{
 				    			if(stock.availableQuantity >= stock.minimumQuantity)
 				    			{
-				    				if(stock.offer==0)
+				    				if(stock.valid==0)
 				    				{
 				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
 				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
@@ -133,7 +133,7 @@ function name()
 					    	temp += '<font size="4" color="black">'+stock.productName+'</font><br></a></div>';
 					    	temp += '<hr><div style="height:50px">';
 					    	
-					    	if(stock.offer == 0)
+					    	if(stock.valid == 0)
 				    		{
 				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+'</font><br>';
 				    		}
@@ -473,7 +473,7 @@ function name()
 							</s:if>
 							<s:if test="%{availableQuantity != 0}">
 								<s:if test="%{availableQuantity >= minimumQuantity}">
-									<s:if test="%{offer==0}">
+									<s:if test="%{valid==0}">
 										<a
 											href="getProductDetail?productID=<s:property value="productID"/>">
 											<img src="<s:property value="image"/>"
@@ -483,7 +483,7 @@ function name()
 										<br>
 										</a>
 									</s:if>
-									<s:if test="%{offer>0}">
+									<s:if test="%{valid>0}">
 										<a
 											href="getProductDetail?productID=<s:property value="productID"/>">
 											<img src="<s:property value="image"/>"
@@ -512,12 +512,12 @@ function name()
 							</div>
 							<hr>
 							<div style="height:50px">
-							<s:if test="%{offer==0}">
+							<s:if test="%{valid==0}">
 								<font size="5px" color="#76553B"> Rs. <s:property
 										value="price" /><br><br>
 								</font>
 							</s:if>
-							<s:if test="%{offer>0}">
+							<s:if test="%{valid>0}">
 								<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
 								<font size="5px" color="#76553B"> Rs. ${price-offer} </font>
 							</s:if>

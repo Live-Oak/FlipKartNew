@@ -7,6 +7,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class SearchAction extends ActionSupport{
 
@@ -138,6 +141,21 @@ public class SearchAction extends ActionSupport{
 			// Function to get me all sub category id
 			productinfo = dbHandlerForUser.getproductlistoncategory(categoryList); 
 			// To get the List of all the product and their details
+			for(int i=0; i<productinfo.size(); i++)
+			{
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = new Date();
+				long diff = (productinfo.get(i).getOfferValidity().getTime() - date.getTime());
+				int diffDays =(int) diff / (24 * 60 * 60 * 1000);
+				if (diffDays > 0)
+					productinfo.get(i).setValid(diffDays);
+				else
+					productinfo.get(i).setValid(0);
+				
+				int discount = 100 - (((productinfo.get(i).getPrice()-productinfo.get(i).getOffer())*100)/productinfo.get(i).getPrice());
+				productinfo.get(i).setDiscount(discount);
+			}
+			// calculating offer valid and discount
 			linktoitem = dbHandlerForUser.getlinktothecategory(categoryname);
 			// To get the links for the side results
 			companyList = dbHandlerForUser.getCompanylistoncategory(categoryList);

@@ -1,6 +1,7 @@
 package edu.iiitb.model;
 
 import java.io.*;
+import java.sql.Timestamp;
 
 
 
@@ -16,8 +17,21 @@ public class ProductInfo {
 	String myFileFileName,myFileContentType,sellerID;
 	int minimumQuantity;
 	int availableQuantity;
+	private Timestamp  offerValidity;
+	private int valid;
 	
-
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	public Timestamp getOfferValidity() {
+		return offerValidity;
+	}
+	public void setOfferValidity(Timestamp offerValidity) {
+		this.offerValidity = offerValidity;
+	}
 	public int getDiscount() {
 		return discount;
 	}

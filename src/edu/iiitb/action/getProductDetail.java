@@ -1,6 +1,9 @@
 package edu.iiitb.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -38,7 +41,6 @@ public class getProductDetail  extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			//System.out.println("Productid in action : " +productID);
 			productinfo = dbHandlerForUser.getproductinfo(productID);
 			String[] temp = productinfo.get(0).getDescription().split(",");
 			description = new ArrayList<String>();
@@ -46,6 +48,21 @@ public class getProductDetail  extends ActionSupport
 			while(temp.length > i){
 				description.add(temp[i]);
 				i++;
+			}
+			
+			for(i=0; i<productinfo.size(); i++)
+			{
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = new Date();
+				long diff = (productinfo.get(i).getOfferValidity().getTime() - date.getTime());
+				int diffDays =(int) diff / (24 * 60 * 60 * 1000);
+				if (diffDays > 0)
+					productinfo.get(i).setValid(diffDays);
+				else
+					productinfo.get(i).setValid(0);
+				
+				int discount = 100 - (((productinfo.get(i).getPrice()-productinfo.get(i).getOffer())*100)/productinfo.get(i).getPrice());
+				productinfo.get(i).setDiscount(discount);
 			}
 		}
 		catch(Exception e)

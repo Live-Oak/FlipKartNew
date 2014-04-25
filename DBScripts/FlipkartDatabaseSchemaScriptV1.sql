@@ -39,6 +39,7 @@ CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
   `description` VARCHAR(200) NOT NULL ,
   `brand` VARCHAR(100) NOT NULL ,
   `warranty` INT NOT NULL ,
+  `offerValidity` DATE NULL ,
   PRIMARY KEY (`productId`) , 
   INDEX `fk_Keywords_categoryId` (`categoryId` ASC) ,
   CONSTRAINT `fk_Keywords_caterogyId`
