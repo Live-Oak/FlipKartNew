@@ -60,7 +60,7 @@ public class DBHandlerForUser {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
 		String[] splitedDate=user.getDate().split("T");
-		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`,`gender`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
 		
 		prep.setString(1, user.getFirstName());
@@ -76,6 +76,7 @@ public class DBHandlerForUser {
 		prep.setString(11, user.getEmail());
 		prep.setString(12, user.getPhonenumber());
 		prep.setString(13, date );
+		prep.setString(14,user.getGender());
 		prep.execute();
 		
 		con.close();
