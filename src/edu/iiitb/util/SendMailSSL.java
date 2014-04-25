@@ -46,7 +46,8 @@ public class SendMailSSL {
 			System.out.println("User Registration Done");
  
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			System.out.println("Unable to send mail due to connectivity");
+			//throw new RuntimeException(e);
 		}
 	}
 	public static void sendPassword(String to , String password) {
