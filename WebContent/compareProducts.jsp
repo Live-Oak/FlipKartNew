@@ -44,8 +44,7 @@
 	      	    	  myparent = $(event.target).parent();
 	      	    	  var obj = $(this);
 	      	    	  nameofproduct=$(this).val();
-	      	    	  
-	      	    	    
+	      	    	  alert(nameofproduct);  
 	      	    		$.ajax({
 	      	    		    type: 'POST',	    
 	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
@@ -129,7 +128,7 @@
 														</font>
 													</strong>	
 												<hr>
-													<s:if test="%{availableQuantity < minimumQuantity}">
+													<s:if test="%{availableQuantity <= minimumQuantity}">
 																<font size="2px" color="#BB0000">
 																		Out of Stock<br>
 																</font>

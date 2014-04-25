@@ -40,6 +40,7 @@ public class CompareProductAjax
 	public String getProductDetail() throws SQLException
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		System.out.println("new product="+productname);
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
 		if(productInfoAdded.get(0).getOffer()!=0)
 		{

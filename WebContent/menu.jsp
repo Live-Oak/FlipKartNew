@@ -57,7 +57,6 @@ function validate()
      return false;
    }
 }
-
 </script>
     
 <script type="text/javascript">
@@ -117,8 +116,13 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#create_account").click(function()
 			{
-    	
+		var phn = $("#phone");
+		if ( !((phn.val().length == 10) && (phn.val() >= 7000000000) && (phn.val() <= 9999999999)) )
+		{
+			$("#phoneRequired").html("Phone number should be 10 digit starting from 7,8 or 9");
+		}
 		var status=$("#notify").html();
+		
 		if($("#firstName").val()=="")
 			{
 				$("#firstNameRequired").html("please fill this field");
@@ -130,7 +134,11 @@ $(document).ready(function(){
 		else if($("#DOB").val()=="")
 		{
 			$("#DOBRequired").html("please fill this field");
-		}	
+		}
+		else if($("#gender").val()=="Gender")
+			{
+			$("#genderRequired").html("please enter a valid gender value");				
+			}
 		else if($("#password").val()=="")
 		{
 			$("#passwordRequired").html("please fill this field");
@@ -159,6 +167,11 @@ $(document).ready(function(){
 		{
 			$("#pincodeRequired").html("please fill this field");
 		}
+		else if($("#pincode").val().length!=6)
+		{
+			$("#pincodeRequired").html("Pincode should be of 6 digits");
+		}
+
 		else if($("#phone").val()=="")
 		{
 			$("#phoneRequired").html("please fill this field");
@@ -374,7 +387,6 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 	$("#search").keyup(function(){
-		debugger;
 		var keywordToCheck=$("#search").val();
 		$.ajax({
 			
@@ -669,8 +681,14 @@ $(document).ready(function(){
 			<label id="lastNameRequired"></label><br>
 			<input type="text" id="DOB" name="date" id="date" class="textbox" placeholder="Enter Date of Birth"  required>
 			<label id="DOBRequired"></label><br><br>
+			<select name="gender" class="dropdown" id="gender" >
+				<option value="Gender">Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+			<label id="genderRequired"></label><br><br>
 			<input type="password" class="textbox" name="password" id="password" placeholder="Enter Password" required>
-			<label id="passwordRequired"></label><br>
+			<label id="passwordRequired"></label><br>	
 			<input type="password" class="textbox" name="reenter_password" id="reenter_password" placeholder="Re-Enter Password" required>
 		    <label id="reenter_passwordRequired"></label><br><br>    
 			<textarea rows="2" cols="18" name="address1" id="address1" class="textbox" placeholder="Enter Address 1" required></textarea>
@@ -685,6 +703,7 @@ $(document).ready(function(){
 			<label id="pincodeRequired"></label>    
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
+			    
         			var specialKeys = new Array();
         			specialKeys.push(8); //Backspace
         			function IsNumeric(e) 
@@ -705,6 +724,7 @@ $(document).ready(function(){
 			<br><br>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
+        			
         			specialKeys.push(8); //Backspace
         			function IsNumber(e) 
 				{
@@ -713,6 +733,7 @@ $(document).ready(function(){
             			document.getElementById("error_phone").style.display = ret ? "none" : "inline";
             			return ret;
         			}
+        			
 			    </script>
 			<button type="button" id="create_account">SIGN UP NOW!</button>
 			<button type="reset" id="create_account">RESET!</button><br>
