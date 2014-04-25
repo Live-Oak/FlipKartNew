@@ -45,9 +45,15 @@ public class DBHandlerForCart {
 		while(rs.next())
 		{
 			int price = 0;
+			long diff = 0;
+			int diffDays = -1;
 			Date date = new Date();
-			long diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
-			int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+
+			if(rs.getTimestamp("offerValidity") != null){
+				diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
+				diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+			}
+			
 			
 			if(diffDays < 0)
 			{
@@ -74,9 +80,14 @@ public class DBHandlerForCart {
 			while(rs.next())
 			{
 				int price = 0;
+				long diff = 0;
+				int diffDays = -1;
 				Date date = new Date();
-				long diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
-				int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+
+				if(rs.getTimestamp("offerValidity") != null){
+					diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
+					diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+				}
 				
 				if(diffDays < 0)
 				{
