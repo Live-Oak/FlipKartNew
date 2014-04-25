@@ -76,7 +76,7 @@ public class bankLoginAction
 				if(creditCardNumber != null)
 				{	
 					valid = "1";
-					String balance=  db.verifyBalanceDetails(creditCardNumber, grandTotal);
+					String balance=  db.verifyBalanceDetails(creditCardNumber);
 					if( ( Float.parseFloat(balance) - Float.parseFloat(grandTotal)) < 0)
 						valid="2";
 					details = new getUserBankDetails();

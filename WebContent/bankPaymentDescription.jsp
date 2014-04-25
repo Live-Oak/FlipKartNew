@@ -10,8 +10,15 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+function noBack()
+{
+window.history.forward(1);
+}
+</script>
+
 </head>
-<body>
+<body onload="noBack()">
 <br/><br/>
 <div style=" width:600px; height:auto ; margin : auto; ">
 	<h3> Welcome to <%= request.getParameter("bankName") %> Bank Online Banking</h3><br><br>

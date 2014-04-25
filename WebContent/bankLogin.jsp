@@ -12,14 +12,14 @@
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
+
 <script>
 $(document).ready(
 		function() {
 			$("#login").click(
 					function() {
 						/* Ajax Call for place order Starts Here*/
-						var bank =  $("#bankName").val();		
+						var bank =  $("#bankName").val();						
 						$.ajax({							
 							type : 'POST',
 							url : 'bankLoginAction?bankLoginId='+ $("#bankLoginId").val()+'&bankPassword='+ $("#bankPassword").val() 
@@ -32,6 +32,7 @@ $(document).ready(
 								{
 									$("#validDetails").html("");
 									window.location = "./bankPaymentDescription.jsp?customerName="+data.details.customerName+"&accountNumber="+data.details.accountNumber+"&balance="+data.details.balance+'&bankName='+ $("#bankName").val();									
+									
 								}	
 								else if (valid == "2") 
 								{
@@ -48,7 +49,7 @@ $(document).ready(
 					});
 		});
 </script>
-
+</head>
 <body>
 <br><br><br><br>
  	<div style=" width:600px; height:auto ; margin : auto; ">
