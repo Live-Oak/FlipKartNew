@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 
@@ -39,11 +40,24 @@ public class DBHandlerForCart {
 	{
 		Connection con = db.createConnection();
 		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
-		String query = "select p.productId,p.productName,p.image,p.price,p.offer,c.quantity from Cart c inner join ProductInfo p where c.userId = "+uid+" and c.productId = p.productID;";
+		String query = "select p.productId,p.productName,p.image,p.price,p.offer,p.offerValidity,c.quantity from Cart c inner join ProductInfo p where c.userId = "+uid+" and c.productId = p.productID;";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price") - rs.getInt("offer"),rs.getInt("quantity")));
+			int price = 0;
+			Date date = new Date();
+			long diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
+			int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+			
+			if(diffDays < 0)
+			{
+				price = rs.getInt("price");
+			}
+			else{
+				price = rs.getInt("price") - rs.getInt("offer");
+			}
+			
+			products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),price,rs.getInt("quantity")));
 		}
 		db.closeConnection(con);
 		return products;
@@ -55,11 +69,23 @@ public class DBHandlerForCart {
 		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
 		for(CartProduct p : cartProducts)
 		{
-			String query = "select productId,productName,image,price,offer from  ProductInfo where productID = "+p.getProductId()+";";
+			String query = "select productId,productName,image,price,offer,offerValidity from  ProductInfo where productID = "+p.getProductId()+";";
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
-				products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price")-rs.getInt("offer"),p.getQuantity()));
+				int price = 0;
+				Date date = new Date();
+				long diff = (rs.getTimestamp("offerValidity").getTime() - date.getTime());
+				int diffDays =(int) Math.ceil(diff / (24.0 * 60.0 * 60.0 * 1000.0));
+				
+				if(diffDays < 0)
+				{
+					price = rs.getInt("price");
+				}
+				else{
+					price = rs.getInt("price") - rs.getInt("offer");
+				}
+				products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),price,p.getQuantity()));
 			}
 		}
 		
