@@ -1155,7 +1155,7 @@ public class DBHandlerForUser {
 		
 		String query = 	" SELECT  P.image as image, P.productName as productName,P.productId  as productId, C.quantity as quantity, " + 
 		        		"	CASE	" + 
-		                "		WHEN P.offerValidity >= CURDATE() THEN (P.price -P.offer) " + 
+		                "		WHEN P.offerValidity >= CURDATE() THEN (P.price -IFNULL(P.offer, 0 ) ) " + 
 		                "		ELSE P.price " + 
 		                "	END as price " +
 		                " FROM FlipKartDatabase.UserCredantials AS U " + 
