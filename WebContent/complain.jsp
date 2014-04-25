@@ -48,57 +48,6 @@ li.padding {color: #848484;
    }
 </style>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$("p").click(function()
-			{
-		var userId= $("#userEmail").val();
-		if(userId=="")
-			{
-			$("#notifyUser").html("Enter the correct Email-id");
-			}
-		else
-			{
-		$.ajax({
-		    type: 'POST',	    
-		    url:'useravailable?email='+$("#userEmail").val(),
-		    success: function(data){
-		    	
-		    	$("#notifyUser").html(data.message);
-		     }});
-			}
-	});
-});
-
-
-</script>
-
-
-
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#change_emailid").click(function()
-			{
-    	
-		var status=$("#notifyUser").html();
-		if(status=="Enjoy Flipkart User Experience")
-		{
-			
-			$("#form_change_email").submit();
-		}
-		else
-		{
-			$("#notifyUser").html("Please check Email id availabilty");
-		}
-			
-	});
-	
-});
-
-</script>
-
 
 
 </head>
@@ -119,29 +68,39 @@ $(document).ready(function(){
 		<li class="padding2"><a class="padding3" href="Personal-info">Personal Information</a></li>
 		<li class="padding2"><a class="padding3" href="ChangePassword">Change Password</a></li>
 		<li class="padding2"><a class="padding3" href="Addresses">Addresses</a></li>
-		<li style="font-weight: bold; padding: 4px 0 4px 6px" class="padding2">Update Email</li>	
+		<li class="padding2">Update Email</li>	
 		<li class="padding2"><a class="padding3" href="DeactivateAccount">Deactivate Account</a></li>
 		
 		
 		</ul>
 		</div>
 		<div class="col-md-6">
-			<h3> Update Email</h3>
+			<h3> File Complaint ... . .</h3>
 			<br>
-			<p style="font-weight: bold;">Enter the new Email ID that you wish to associate with your Flipkart account.</p>
-			<form id="form_change_email" action="UpdateNewEmail" method="post">
+			<p style="font-weight: bold;"></p>
+			<form action="fileComplaint" method="post">
 			<table style="width:400px">
-			<tr> <td style="text-align:left">Email Address </td> 
-			<td> <label id="emailid"><% User u = (User) session.getValue("user");
-					out.print(u.getEmail());%></label> 
-			</td> </tr>
-			<tr> <td style="text-align:left">New Email ID </td> 
-			<td> <input type="text" id="userEmail" name="newEmail" class="textbox"  required="true" placeholder="enter email"></td> </tr>
-			<tr> <td> </td> <td><p id="checking">Check for availability</p></td>
-			<tr><td> </td><td><label id="notifyUser"> </label> </td> </tr>
+			<tr> <td style="text-align:left">Order-ID </td> 
+			<td> 
+				<select id="dropDown" name="orderId">
+					<option> --Select-- </option>
+				<s:iterator value="orderId">
+					 <option>  <s:property /> </option> 
+				 </s:iterator>
+			 </select>	
 			
-			<tr> <td></td>
-			<td><input type="button" id="change_emailid" class="btn btn-primary" value="SAVE CHANGES" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			</td> </tr>
+			<tr> <td style="text-align:left">Status</td> 
+			<td> 
+				<select id="dropDown" name="orderStatus">
+					<option> --Select-- </option>
+					<option>Received</option>
+					<option>NotReceived</option>
+			 </select>
+			</td> 
+			</tr>
+			<tr>
+			<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="submit" id="change_emailid" class="btn btn-primary" value="SAVE CHANGES" /> 	
 		    </td></tr>
 		    </table>
 		    </form>

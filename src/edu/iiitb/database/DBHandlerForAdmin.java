@@ -643,6 +643,28 @@ public class DBHandlerForAdmin {
 		}
 		con.close();
 	}
+
+	public void fetchAllDeliveredOrderID(ArrayList<Integer> orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O Inner Join FlipKartDatabase.Payment P on O.orderId = P.orderId where O.status = 'DELIVERED'";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+		con.close();
+	}
+
+	public void addUserComplaint(String orderId, String orderStatus) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = " Update FlipKartDatabase.Order "
+				+  " Set confirmStatus = '" + orderStatus +"' "
+				+  " Where orderId = " + orderId + "";
+	
+	Statement st=(Statement) con.createStatement();
+	st.executeUpdate(query);
+	con.close();
+	}
 	
 	
 }

@@ -148,10 +148,6 @@ public class MyOrdersAction extends ActionSupport implements SessionAware {
 			
 			message="available";
 			
-			System.out.println("final notification");
-			System.out.println(Orders.get(0).getDays_ago());
-			System.out.println(Orders.get(0).getOredrNo());
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -117,4 +117,19 @@ public class FetchOrderIds extends ActionSupport {
 		return "success";
 	}
 	
+	public String deliveredOrderId()
+	{
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		orderId = new ArrayList<Integer>();
+		try {
+			dbHandler.fetchAllDeliveredOrderID(orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception at deliveredOrderId() of FetchOrderIds.java");
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+	
 }

@@ -105,6 +105,11 @@
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
    		</definition>
    		
+   		<definition name="ComplainPage" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: ComplainPage"/>
+   			<put-attribute name="body"   value="/complain.jsp"/>
+   		</definition>
+   		
    		<definition name="PlaceOrder" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
    			<put-attribute name="menu"   value="/placeOrderHeader.jsp"/>

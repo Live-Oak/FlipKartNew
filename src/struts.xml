@@ -236,6 +236,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
+			
+			<action name="complaint" class="edu.iiitb.action.FetchOrderIds" method="deliveredOrderId">
+				<result name="success" type="tiles">ComplainPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="fileComplaint" class="edu.iiitb.action.ComplaintRegister">
+				<result name="success" type="redirectAction">
+					<param name="actionName">complaint</param>
+					<param name="namespace">/</param>
+				</result>
+				<result name="error">/error.jsp</result>
+			</action>
 
 			<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo"
 				method="productFetch">
