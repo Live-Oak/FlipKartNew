@@ -5,7 +5,7 @@ public class SignupModel {
 		private String pincode;
 		
 		String firstName,lastName,role,address1,address2,city,country,email;
-		
+		private String gender;
 		String date,password;
 		String phonenumber;
 
@@ -140,6 +140,12 @@ public class SignupModel {
 		}
 		public void setPincode(String pincode) {
 			this.pincode = pincode;
+		}
+		public String getGender() {
+			return gender;
+		}
+		public void setGender(String gender) {
+			this.gender = gender;
 		}
 
 		

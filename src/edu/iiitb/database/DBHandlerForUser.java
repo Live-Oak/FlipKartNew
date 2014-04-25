@@ -957,7 +957,7 @@ public class DBHandlerForUser {
 	
 	public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
 	{
-		
+		System.out.println("produc name received here: "+productname);
 		Connection con = db.createConnection();
 		ArrayList<ProductInfo> productInfoAdded = new ArrayList<ProductInfo>();	
 		String query="select p.productId, p.productName, p.price, p.image, p.offer, p.categoryId, p.description, p.brand, p.warranty,p.offerValidity, " +
@@ -985,7 +985,7 @@ public class DBHandlerForUser {
 			obj.setOfferValidity(rs.getTimestamp("offerValidity"));
 			productInfoAdded.add(obj);
 		}
-		
+		System.out.println("product name from database: "+obj.getProductName());
 		db.closeConnection(con);
 		return productInfoAdded;		
 	}
