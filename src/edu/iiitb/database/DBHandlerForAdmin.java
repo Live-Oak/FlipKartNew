@@ -477,8 +477,15 @@ public class DBHandlerForAdmin {
 			model.setProductImagePath(rs.getString(8));
 			if(stockType.equalsIgnoreCase("in"))
 				model.setStatusImage("asset/Images/safe2.jpg");
-			else
+			else if(stockType.equalsIgnoreCase("out"))
 				model.setStatusImage("asset/Images/danger.jpg");
+			else
+			{
+				if(model.getAvailableQty() >= model.getMinimumQty())
+					model.setStatusImage("asset/Images/safe2.jpg");
+				else
+					model.setStatusImage("asset/Images/danger.jpg");
+			}
 			stock.add(model);
 		}
 	}
