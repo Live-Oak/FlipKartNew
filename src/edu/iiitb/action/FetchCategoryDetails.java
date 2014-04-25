@@ -106,5 +106,24 @@ public class FetchCategoryDetails {
 			return "error";
 		}
 	}
+	
+	public String categoryIdForAddProduct()
+	{
+		categoryId = new ArrayList<String>();
+		sellerId = new ArrayList<String>();
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		try
+		{
+			dbHandler.fetchCategoryIdForAddProduct(categoryId);
+			dbHandler.fetchSellerIdWithRole(sellerId);
+			return "success";
+		} catch(SQLException e)
+		{
+			System.out.println("Exception at fetchCategoryIdForAddProduct() of FetchCategoryID.java ");
+			e.printStackTrace();
+			return "error";
+		}
+		
+	}
 
 }

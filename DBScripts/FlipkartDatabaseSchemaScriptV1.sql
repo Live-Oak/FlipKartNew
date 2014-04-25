@@ -25,11 +25,12 @@ CREATE  TABLE `FlipKartDatabase`.`Category` (
   `categoryId` VARCHAR(50) NOT NULL ,
   `categoryName` VARCHAR(100) NOT NULL ,
   `image` VARCHAR(500) NOT NULL,
+  `isMenu` INT NOT NULL default 0,
   PRIMARY KEY (`categoryId`) );
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
-  `productId` INT NOT NULL ,
+  `productId` INT NOT NULL AUTO_INCREMENT ,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
   `image` VARCHAR(500) NOT NULL ,

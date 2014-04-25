@@ -353,7 +353,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="login">/index.jsp</result>
 			</action>
 
-			<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails">
+			<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails" method="categoryIdForAddProduct">
 				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">AddProductPage</result>
 				<result name="error">/error.jsp</result>
@@ -367,7 +367,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 			<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
 				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="input" type="tiles">AddProductPage</result>
 				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>

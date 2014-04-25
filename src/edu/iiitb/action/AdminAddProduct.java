@@ -63,25 +63,6 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 		this.categoryId = categoryId;
 	}
 
-	public void validate()
-	{
-		categoryId = new ArrayList<String>();
-		try
-		{
-			if(dbHandler.chkForProductIDAlreadyExists(prod.getProductID()))
-			{
-				dbHandler.fetchCategoryID(categoryId);
-				servletRequest.setAttribute("errorMessage", "PRODUCT ID already EXISTS !!!");
-		
-			}
-				
-			
-		}catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
 	public String execute() 
 	{
 		Config.loadProperties();
@@ -99,6 +80,7 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 		try {
 			
 			dbHandler.registerProduct(prod);
+			prod.setProductID(dbHandler.fetchLastInsertedProductId());
 			dbHandler.updateKeywordForProduct(prod.getProductID() , prod.getKeywords().split(","));
 			
 		} catch (SQLException e) {

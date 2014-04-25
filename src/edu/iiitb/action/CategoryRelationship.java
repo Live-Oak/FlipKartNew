@@ -42,7 +42,8 @@ public class CategoryRelationship extends ActionSupport{
 	 * @param id2 the id2 to set
 	 */
 	public void setId2(String id2) {
-		this.id2 = id2;
+		String[] subCatAry = id2.split(" ");
+		this.id2 = subCatAry[0];
 	}
 	
 	public String execute()
