@@ -249,6 +249,16 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				</result>
 				<result name="error">/error.jsp</result>
 			</action>
+			
+			<action name="userSideOkOrder" class="edu.iiitb.action.FetchOrderIds" method="userConfirmedOrder">
+				<result name="success" type="tiles">OrderFeedbackUser</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="userSideUnOkOrder" class="edu.iiitb.action.FetchOrderIds" method="userUnConfirmedOrder">
+				<result name="success" type="tiles">OrderFeedbackUser</result>
+				<result name="error">/error.jsp</result>
+			</action>
 
 			<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo"
 				method="productFetch">

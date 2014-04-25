@@ -665,6 +665,28 @@ public class DBHandlerForAdmin {
 	st.executeUpdate(query);
 	con.close();
 	}
+
+	public void fetchuserConfirmedOrderID(ArrayList<Integer> orderId) throws SQLException{
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O where O.confirmStatus = 'Received' " ;
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+		con.close();
+	}
+
+	public void fetchuserUnConfirmedOrderID(ArrayList<Integer> orderId) throws SQLException{
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O where O.confirmStatus = 'NotReceived' " ;
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+		con.close();
+	}
 	
 	
 }

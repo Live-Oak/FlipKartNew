@@ -55,6 +55,11 @@
    			<put-attribute name="body" value="/feedback.jsp"></put-attribute>
    		</definition>
    		
+   		<definition name="OrderFeedbackUser" extends="Administrator">
+   			<put-attribute name="title" value="UserOrder Feedback"/>
+   			<put-attribute name="body" value="/UserOrderFeedback.jsp"></put-attribute>
+   		</definition>
+   		
    		<definition name="UserData" extends="Administrator">
    			<put-attribute name="title" value="Users Info"/>
    			<put-attribute name="body" value="/users.jsp"></put-attribute>

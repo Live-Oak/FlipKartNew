@@ -43,9 +43,9 @@
 		
 <!-- The second layer with menu and dropdown -->
 <div class="navbar navbar-inverse">
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 		
-		<div class="col-md-9">
+		<div class="col-md-10">
 			<div class="container">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -95,6 +95,13 @@
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 								<li><a href="adminFetchPurchaseOrderId?status=view">View Orders</a></li>
 								<li><a href="adminFetchPurchaseOrderId?status=confirm">Confirm Orders</a></li>
+							</ul>
+						</li> 
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Confirmation<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="userSideOkOrder">View ConfirmedOrder</a></li>
+								<li><a href="userSideUnOkOrder">UnConfirmedOrder</a></li>
 							</ul>
 						</li> 
 						
