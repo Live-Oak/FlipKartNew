@@ -55,6 +55,11 @@
    			<put-attribute name="body" value="/feedback.jsp"></put-attribute>
    		</definition>
    		
+   		<definition name="OrderFeedbackUser" extends="Administrator">
+   			<put-attribute name="title" value="UserOrder Feedback"/>
+   			<put-attribute name="body" value="/UserOrderFeedback.jsp"></put-attribute>
+   		</definition>
+   		
    		<definition name="UserData" extends="Administrator">
    			<put-attribute name="title" value="Users Info"/>
    			<put-attribute name="body" value="/users.jsp"></put-attribute>
@@ -103,6 +108,11 @@
    			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
    			<put-attribute name="menu"   value="/menu.jsp"/>
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
+   		</definition>
+   		
+   		<definition name="ComplainPage" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: ComplainPage"/>
+   			<put-attribute name="body"   value="/complain.jsp"/>
    		</definition>
    		
    		<definition name="PlaceOrder" extends="start">

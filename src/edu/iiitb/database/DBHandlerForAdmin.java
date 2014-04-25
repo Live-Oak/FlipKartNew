@@ -477,8 +477,15 @@ public class DBHandlerForAdmin {
 			model.setProductImagePath(rs.getString(8));
 			if(stockType.equalsIgnoreCase("in"))
 				model.setStatusImage("asset/Images/safe2.jpg");
-			else
+			else if(stockType.equalsIgnoreCase("out"))
 				model.setStatusImage("asset/Images/danger.jpg");
+			else
+			{
+				if(model.getAvailableQty() >= model.getMinimumQty())
+					model.setStatusImage("asset/Images/safe2.jpg");
+				else
+					model.setStatusImage("asset/Images/danger.jpg");
+			}
 			stock.add(model);
 		}
 	}
@@ -633,6 +640,50 @@ public class DBHandlerForAdmin {
 			model.setCategory(rs.getString("category"));
 			model.setMessage(rs.getString("message"));
 			feedback.add(model);
+		}
+		con.close();
+	}
+
+	public void fetchAllDeliveredOrderID(ArrayList<Integer> orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O Inner Join FlipKartDatabase.Payment P on O.orderId = P.orderId where O.status = 'DELIVERED'";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+		con.close();
+	}
+
+	public void addUserComplaint(String orderId, String orderStatus) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = " Update FlipKartDatabase.Order "
+				+  " Set confirmStatus = '" + orderStatus +"' "
+				+  " Where orderId = " + orderId + "";
+	
+	Statement st=(Statement) con.createStatement();
+	st.executeUpdate(query);
+	con.close();
+	}
+
+	public void fetchuserConfirmedOrderID(ArrayList<Integer> orderId) throws SQLException{
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O where O.confirmStatus = 'Received' " ;
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+		con.close();
+	}
+
+	public void fetchuserUnConfirmedOrderID(ArrayList<Integer> orderId) throws SQLException{
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O where O.confirmStatus = 'NotReceived' " ;
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
 		}
 		con.close();
 	}

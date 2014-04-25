@@ -99,6 +99,7 @@ CREATE  TABLE `FlipKartDatabase`.`Order` (
   `status` VARCHAR(100) NOT NULL ,
   `orderDate` DATE NOT NULL ,
   `deliveryDate` DATE NOT NULL ,
+  `confirmStatus` VARCHAR(100),
   PRIMARY KEY (`orderId`));
 
 

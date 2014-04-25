@@ -53,16 +53,11 @@ public class FetchStockInfo {
 		ArrayList<String> productId = new ArrayList<String>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
+			if(stockType == null)
+				stockType = "all";
 			dbHandler.fetchProductID(productId);
 			for(int i=0;i<productId.size();i++)
 				dbHandler.fetchStockInfoForProduct(stockInfo, Integer.parseInt(productId.get(i)) , stockType);
-		/*	for(int i=0;i<stockInfo.size();i++)
-			{
-				if(stockInfo.get(i).getAvailableQty() < stockInfo.get(i).getMinimumQty())
-					stockInfo.get(i).setStatusImage("asset/Images/danger.jpg");
-				else
-					stockInfo.get(i).setStatusImage("asset/Images/safe2.jpg");
-			}*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Exception at execute() of FetchStockInfo.java ... ");

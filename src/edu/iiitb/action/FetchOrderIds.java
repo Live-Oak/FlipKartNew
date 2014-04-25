@@ -117,4 +117,49 @@ public class FetchOrderIds extends ActionSupport {
 		return "success";
 	}
 	
+	public String deliveredOrderId()
+	{
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		orderId = new ArrayList<Integer>();
+		try {
+			dbHandler.fetchAllDeliveredOrderID(orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception at deliveredOrderId() of FetchOrderIds.java");
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+	
+	public String userConfirmedOrder()
+	{
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		orderId = new ArrayList<Integer>();
+		try {
+			dbHandler.fetchuserConfirmedOrderID(orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception at userConfirmedOrder() of FetchOrderIds.java");
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+	
+	public String userUnConfirmedOrder()
+	{
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		orderId = new ArrayList<Integer>();
+		try {
+			dbHandler.fetchuserUnConfirmedOrderID(orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception at userUnConfirmedOrder() of FetchOrderIds.java");
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+	
 }
