@@ -182,13 +182,24 @@ public class DBHandlerForAdmin {
 	public void fetchSubCategoryId(ArrayList<String> subCategoryId,
 			String categoryId) throws SQLException {
 		// TODO Auto-generated method stub
-		String query = "select categoryId from Category";
+		
+		String query = "select * from CategoryRelation where categoryId = '"+categoryId+"'";
 		ResultSet rs=db.executeQuery(query, con);
-		while(rs.next())
+		// This extra 02 Condition is there to avoid adding sub-category inside Fashion category
+		if(rs.next() && !categoryId.equals("02"))
 		{
-			if(!rs.getString("categoryId").equals(categoryId))
-				subCategoryId.add(rs.getString("categoryId"));
+			con.close();
+			Connection con1 = db.createConnection();
+			String query1 = "select Concat(C.categoryId ,' ', C.categoryName) from Category C where C.categoryId Not In (Select Distinct(subCategoryId) from CategoryRelation) and C.isMenu = 0 ";
+			ResultSet rs1=db.executeQuery(query1, con1);
+			while(rs1.next())
+			{
+				subCategoryId.add(rs1.getString(1));
+			}
+			con1.close();
 		}
+		else
+			con.close();
 	}
 
 	public void insetCategoryRelationship(String id, String id2) throws SQLException {
@@ -230,23 +241,24 @@ public class DBHandlerForAdmin {
 	{
 		
 		String[] splitedDate=prod.getLastOfferDate().split("T");
-		String query = "Insert into ProductInfo(`productId`,`productName`,`price`,`image`,`offer`" +
+		String query = "Insert into ProductInfo(`productName`,`price`,`image`,`offer`" +
 				",`categoryId`,`keywords`,`description`,`brand`,`warranty`,`offerValidity`) " +
-				" values(?,?,?,?,?,?,?,?,?,?,?)";
+				" values(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
-		stmnt.setInt(1, prod.getProductID());
-		stmnt.setString(2, prod.getProductName());
-		stmnt.setFloat(3, prod.getPrice());
-		stmnt.setString(4, prod.getImage());
-		stmnt.setInt(5, prod.getOffer());
-		stmnt.setString(6,prod.getCategoryID());
-		stmnt.setString(7,prod.getKeywords());
-		stmnt.setString(8,prod.getDescription());
-		stmnt.setString(9,prod.getBrand());
-		stmnt.setInt(10,prod.getWarranty());
-		stmnt.setString(11, splitedDate[0]);
+		stmnt.setString(1, prod.getProductName());
+		stmnt.setFloat(2, prod.getPrice());
+		stmnt.setString(3, prod.getImage());
+		stmnt.setInt(4, prod.getOffer());
+		stmnt.setString(5,prod.getCategoryID());
+		stmnt.setString(6,prod.getKeywords());
+		stmnt.setString(7,prod.getDescription());
+		stmnt.setString(8,prod.getBrand());
+		stmnt.setInt(9,prod.getWarranty());
+		stmnt.setString(10, splitedDate[0]);
 		stmnt.execute();	
 		// Update Stock table
+		prod.setProductID(fetchLastInsertedProductId());
+		System.out.println("productId "+prod.getProductID());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
 		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
@@ -434,13 +446,15 @@ public class DBHandlerForAdmin {
 	
 	public void fetchSellerIdWithRole(ArrayList<String> ID) throws SQLException
 	{
+		Connection con1 = db.createConnection();
 		String query = "select u.firstName , u.lastName , s.sellerId from UserCredantials as u , Seller as s WHERE  u.userId = s.userId";
-		ResultSet rs=db.executeQuery(query, con);
+		ResultSet rs=db.executeQuery(query, con1);
 		while(rs.next())
 		{
 				String idName = Integer.toString(rs.getInt(3))+"_"+rs.getString(1)+" "+rs.getString(2);
 				ID.add(idName);
 		}
+		con1.close();
 	}
 	
 	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId , String stockType) throws SQLException
@@ -686,6 +700,28 @@ public class DBHandlerForAdmin {
 			orderId.add(rs.getInt(1));
 		}
 		con.close();
+	}
+
+	public void fetchCategoryIdForAddProduct(ArrayList<String> categoryId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select Concat(categoryId,'_',categoryName) from Category where isMenu = 0 " ;
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			categoryId.add(rs.getString(1));
+		}
+		con.close();
+	}
+
+	public int fetchLastInsertedProductId() throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select max(productId) from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next())
+		{
+			return rs.getInt(1);
+		}
+		return 0;
 	}
 	
 	

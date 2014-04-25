@@ -19,7 +19,6 @@
 <i><h3 align="center"> Please Fill The Below Details:-</h3> </i>
 	<div align="center">
 	<form action="insertProduct" method="post" enctype="multipart/form-data">
-		<label>Product ID</label><s:textfield cssErrorStyle="color:red;" name ="productID" required="true" placeholder="Product ID"></s:textfield><br>
 		<label>Product Name</label><s:textfield name ="productName" required="true" placeholder="Product Name"></s:textfield><br>
 		<label>Product Price - Rs.</label><s:textfield name ="price" required="true" placeholder="only numerical value"></s:textfield><br>
 		<label>Any Offers on the product</label><s:textfield name ="offer" required="true" placeholder="only numerical value"></s:textfield><br>
@@ -45,7 +44,7 @@
 		<label>Keywords</label ><s:textfield name ="keywords" required="true" placeholder="keywords"></s:textfield><br>
 		<label>Description about the product</label><s:textfield name ="description" required="true" placeholder="Describe the Item/Product"></s:textfield><br>
 		<label>Brand Name</label><s:textfield name ="brand" required="true" placeholder="Brand"></s:textfield><br>
-		<label>Warranty/Gurantee(in terms of years or months)</label><s:textfield name ="warranty" required="true" placeholder="Any Warranty/Gurantee"></s:textfield><br>
+		<label>Warranty/Gurantee(in terms of years)</label><s:textfield name ="warranty" required="true" placeholder="Any Warranty/Gurantee"></s:textfield><br>
 		
 		<input type="submit" value="Submit"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 			<input type="reset" name="Reset"/>
