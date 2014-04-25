@@ -119,7 +119,7 @@ $(document).ready(function(){
 		var phn = $("#phone");
 		if ( !((phn.val().length == 10) && (phn.val() >= 7000000000) && (phn.val() <= 9999999999)) )
 		{
-			$("#phoneRequired").html("Enter a valid phone number");
+			$("#phoneRequired").html("Phone number should be 10 digit starting from 7,8 or 9");
 		}
 		var status=$("#notify").html();
 		
@@ -167,6 +167,11 @@ $(document).ready(function(){
 		{
 			$("#pincodeRequired").html("please fill this field");
 		}
+		else if($("#pincode").val().length!=6)
+		{
+			$("#pincodeRequired").html("Pincode should be of 6 digits");
+		}
+
 		else if($("#phone").val()=="")
 		{
 			$("#phoneRequired").html("please fill this field");
@@ -382,7 +387,6 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 	$("#search").keyup(function(){
-		debugger;
 		var keywordToCheck=$("#search").val();
 		$.ajax({
 			
