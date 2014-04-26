@@ -10,15 +10,20 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script>
-function noBack()
-{
-window.history.forward(1);
-}
-</script>
+
+<SCRIPT type="text/javascript">
+$(document).ready(function() 
+		{ 
+	    fhistory.pushState({ page: 1 }, "title 1", "#nbb");
+	    window.onhashchange = function (event) {
+	        window.location.hash = "nbb";
+
+	    };
+	});
+</SCRIPT>
 
 </head>
-<body onload="noBack()">
+<BODY">
 <br/><br/>
 <div style=" width:600px; height:auto ; margin : auto; ">
 	<h3> Welcome to <%= request.getParameter("bankName") %> Bank Online Banking</h3><br><br>

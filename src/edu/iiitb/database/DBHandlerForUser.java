@@ -1189,7 +1189,11 @@ public class DBHandlerForUser {
 		
 		for(CartProduct p : cartDetails)
 		{		
-			String query = " SELECT P.image as image, P.productId as productId, P.productName as productName, (P.price - P.offer) as price " +
+			String query = " SELECT P.image as image, P.productId as productId, P.productName as productName, " +
+					 	   " 		CASE " +
+					 	   "				WHEN P.offerValidity >= CURDATE() THEN (P.price -IFNULL(P.offer, 0 ) ) " +
+					       "				ELSE P.price " + 
+					       "		END as price " + 
 					       " FROM FlipKartDatabase.ProductInfo    as P " +
 					       " WHERE P.productId = "+p.getProductId()+";";
 			ResultSet rs=db.executeQuery(query, con);
