@@ -1387,7 +1387,7 @@ public class DBHandlerForUser {
 		return user;
 	}
 
-	public String verifyBalanceDetails(String accountNumber, String grandTotal) throws SQLException 
+	public String verifyBalanceDetails(String accountNumber) throws SQLException 
 	{
 		DBConnectivity db=new DBConnectivity();
 		Connection con=db.createConnection();		

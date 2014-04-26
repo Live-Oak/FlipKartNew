@@ -70,7 +70,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var email = $("#emailInput");
-		if (email.val().length > 0) {
+		if (email.val().length > 0)
+		{			
+			///$("#nextAddressPage").click();
+			//$( "#nextOrderPage" ).trigger( "click" );	
 			$("#panel3").slideDown();
 			$("#panel2").slideUp();
 			$("#panel1").slideUp();
@@ -137,9 +140,20 @@
 					}
 					if ((email.length > 0)&& ($("#show").prop('checked') == false)) 
 					{
-						$("#panel2").slideDown();
-						$("#panel1").slideUp();
-						$("#editEmailid").show();
+						var validEmail =  /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4})(\]?)$/;
+						if( validEmail.test(email) )
+						{
+							$("#panel2").slideDown();
+							$("#panel1").slideUp();
+							$("#editEmailid").show();
+						}
+						else
+						{
+							
+							$("#emailInput").html("");
+							$("#emailInput").css("border","1px solid #ff0000");		
+							$("#emailInput").focus();
+						}
 					}
 					else
 					{
@@ -211,13 +225,14 @@
 					cardNumber : $("#cardNumber").val(),
 					expireMonth : $("#expireMonth").val(),
 					expireYear : $("#expireYear").val(),
-					cvv : $("#cvv").val()
+					cvv : $("#cvv").val(),
+					grandTotal : $("#grandTotalC").val()
 				},
 				url : 'verifyCreditCardDetails',
 				success : function(data) 
 				{
 					$("#validDetails").html(data.valid);
-					var valid1 = $("#validDetails").html();
+					var valid1 = $("#validDetails").html();					
 					if (valid1 == 1) 
 					{
 						$("#validDetails").html(' ');
@@ -263,9 +278,9 @@
 			/* Ajax call for place order ends here */
 			$("#panel4").slideDown();
 			$("#panel3").slideUp();
-			$("#editOrder").show();
-			$("#editEmailid").show();
-			$("#editAddress").show();
+			$("#editOrder").hide();
+			$("#editEmailid").hide();
+			$("#editAddress").hide();
 		});
 	});
 </script>
@@ -276,7 +291,7 @@
 		$("#bankLogin").click(function() 
 		{
 			var bankSelected = $('input[name=bank]:checked').val();
-			window.location = "bankLogin.jsp?bankName=" + bankSelected;
+			window.open("bankLogin.jsp?bankName=" + bankSelected);
 		});
 	});
 </script>
@@ -294,7 +309,8 @@
 					cardNumber : $("#cardNumberD").val(),
 					expireMonth : $("#expireMonthD").val(),
 					expireYear : $("#expireYearD").val(),
-					cvv : $("#cvvD").val()
+					cvv : $("#cvvD").val(),
+					grandTotal : $("#grandTotalD").val()
 				},
 				url : 'verifyCreditCardDetails',
 				success : function(data) 
@@ -324,6 +340,7 @@
 					} 														
 					else if(valid1==2)
 					{																																	$("#validDetailsD").html("Invalid Card Details");
+						$("#validDetailsD").html("Insufficient Card Balance");
 						$("#validDetailsD").css("color","#ff0000");
 					}					
 					else
@@ -727,6 +744,7 @@
 						<center>
 							<button id="makePaymentCreditCard" align="middle" class="mysubmit1">MAKE PAYMENT</button>
 						</center>
+						<input type="hidden" id = "grandTotalC"  value="<%=session.getAttribute("grandTotal")%>" />
 					</div><br/>
 					<div>
 						<center> 
@@ -787,6 +805,7 @@
 						<center>
 							<button id="makePaymentDebitCard" align="middle" class="mysubmit1">MAKE PAYMENT</button>
 						</center>
+						<input type="hidden" id = "grandTotalD"  value="<%=session.getAttribute("grandTotal")%>" />
 					</div><br/>
 					<div>
 						<center> 
