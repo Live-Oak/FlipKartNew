@@ -8,8 +8,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/">
 
 		<interceptors>
-			<interceptor name="authenticationInterceptor"
-				class="edu.iiitb.Interceptor.LoginAuthentication" />
+			<interceptor name="authenticationInterceptor" class="edu.iiitb.Interceptor.LoginAuthentication" />
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="authenticationInterceptor" />
 				<interceptor-ref name="defaultStack" />

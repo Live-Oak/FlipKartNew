@@ -217,10 +217,14 @@ public class DBHandlerForMyOrders {
 	{
 		int pId  = 0;
 		int qty = 0;
-		String query1;
+		String accountNumber;
+		float amount;
+		String query1, query3;
 		String query = "SELECT productId , quantity from FlipKartDatabase.OrderDescription where orderID = "+orderId ;
+		String query2 = "SELECT amount , payeeAccountNumber from FlipKartDatabase.Payment where orderId = "+orderId ;
 		Connection con = db.createConnection();
 		ResultSet rs=db.executeQuery(query, con);
+		ResultSet rs2=db.executeQuery(query2, con);
 		while(rs.next())
 		{
 			pId = rs.getInt("productId");
@@ -229,6 +233,20 @@ public class DBHandlerForMyOrders {
 			Statement stmt = (Statement) con.createStatement();
 			stmt.executeUpdate(query1);
 		}
+		
+		
+		
+		    while(rs2.next())
+		    {
+			accountNumber = rs2.getString("payeeAccountNumber");
+			amount = rs2.getFloat("amount");
+			
+			
+			
+			query3 = "Update FlipKartDatabase.BankDetails Set balance = balance + " + amount + " where accountNumber = " + accountNumber ;
+			Statement stmt = (Statement) con.createStatement();
+			stmt.executeUpdate(query3);
+		    }
 		//System.out.println("PID : " + pId + "quantity : " + qty);
 		con.close();
 		

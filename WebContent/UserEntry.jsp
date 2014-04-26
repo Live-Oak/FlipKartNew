@@ -49,7 +49,7 @@ $(document).ready(function(){
 
  
 	<div>
-	<form action="enterUserDeatils" method="post">
+	<form id="user_form" action="enterUserDeatils" method="post">
 		<div class="col-md-4"></div>
 		<div class="col-md-2">
 	<h4>		<br><br>

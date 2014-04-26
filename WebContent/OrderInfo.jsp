@@ -41,8 +41,7 @@
 			<td> <strong> <s:property value="GOD.orderNo"/> </strong>
 			     <span style="font-size:13px; color:#848484;">(<s:property value="GOD.quantity"/> Item)</span> </td> </tr>
 		
-			<tr> <td style="text-align:left;"> seller: </td>
-			<td> WS Retail </td> </tr>
+			
 			
 			<tr> <td style="text-align:left;"> Order Date: </td>
 			<td> <s:property value="GOD.order_date"/> </td></tr>

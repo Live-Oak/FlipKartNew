@@ -70,7 +70,7 @@ li.padding {color: #848484;
 		<li class="padding2"><a class="padding3" href="UpdateEmail">Update Email</a></li>
 		<li class="padding2"><a class="padding3" href="DeactivateAccount">Deactivate Account</a></li>
 		<li class="padding2"><a class="padding3" href="Notifications">Notifications</a></li>
-	
+		
 		</ul>
 		</div>
 		<div class="col-md-6">
