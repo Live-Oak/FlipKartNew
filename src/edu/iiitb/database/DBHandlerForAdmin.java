@@ -183,14 +183,30 @@ public class DBHandlerForAdmin {
 			String categoryId) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		String query = "select * from CategoryRelation where categoryId = '"+categoryId+"'";
+		String query = "	Select T.Id " +
+					   " 	From " +
+					   "			( " +
+					   " 			      	Select subCategoryId as Id " +
+					   "		        	From FlipKartDatabase.CategoryRelation " +         
+					   "					Where categoryId IN ( " +
+					   "                                    		SELECT C.categoryId " +
+                       "             								FROM FlipKartDatabase.Category as C "  +
+                       "             								WHERE isMenu = 1 and categoryId <> 2 " +
+                       "								         ) " +
+                       "					UNION  " +
+                       "        			SELECT C.categoryId as ID " +
+                       "					FROM FlipKartDatabase.Category as C " +
+                       "					WHERE isMenu = 1 and categoryId <> 2 " +
+                       "				) as T " +
+                       "	Where T.Id = " + categoryId;
 		ResultSet rs=db.executeQuery(query, con);
 		// This extra 02 Condition is there to avoid adding sub-category inside Fashion category
-		if(rs.next() && !categoryId.equals("02"))
+		if(rs.next())
 		{
+			
 			con.close();
 			Connection con1 = db.createConnection();
-			String query1 = "select Concat(C.categoryId ,' ', C.categoryName) from Category C where C.categoryId Not In (Select Distinct(subCategoryId) from CategoryRelation) and C.isMenu = 0 ";
+			String query1 = "select Concat(C.categoryId ,' ', C.categoryName) from Category C where C.categoryId Not In (Select Distinct(subCategoryId) from CategoryRelation union Select Distinct(categoryId) from CategoryRelation) and C.isMenu = 0 ;";
 			ResultSet rs1=db.executeQuery(query1, con1);
 			while(rs1.next())
 			{
