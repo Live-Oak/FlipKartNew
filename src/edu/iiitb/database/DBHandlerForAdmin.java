@@ -758,8 +758,15 @@ public class DBHandlerForAdmin {
 		ResultSet rs=db.executeQuery(query, con);
 		if(rs.next())
 		{
+			try
+			{
 			String[] timestamp = rs.getTimestamp(11).toString().split(" ");
 			product.setLastOfferDate(timestamp[0]);
+			}
+			catch(Exception e)
+			{
+				product.setLastOfferDate("0000-00-00");
+			}
 			product.setOffer(rs.getInt(5));
 			product.setKeywords(rs.getString(7));
 			product.setPrice(rs.getInt(3));
