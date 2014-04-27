@@ -359,6 +359,22 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="login">/index.jsp</result>
 			</action>
 			
+			<action name="productInfo" class="edu.iiitb.action.FetchProductId" >
+				<result name="success" type="tiles">UpdateProductPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="productDetails" class="edu.iiitb.action.ProductUpdateAdmin" >
+				<result name="success" type="json"/>
+			</action>
+			
+			<action name="updateProduct" class="edu.iiitb.action.AdminUpdateProductMain" >
+				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			
+			
 			<action name="reviewandrating" class="edu.iiitb.action.FetchCategoryDetails">
 			<result name="success" type="tiles">RatingPage</result>
 			<result name="error">/error.jsp</result>

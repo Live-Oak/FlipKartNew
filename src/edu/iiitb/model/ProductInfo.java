@@ -12,15 +12,30 @@ public class ProductInfo {
 	int productID,offer,warranty,price;
 	String productName,categoryID,keywords,description,brand,lastOfferDate;
 	int discount;
-	String sellerFName, sellerLName;
+	String sellerFName, sellerLName , productIDUpdate;
 	String image;
 	File myFile;
 	String myFileFileName,myFileContentType,sellerID;
 	int minimumQuantity;
 	int availableQuantity;
+	Date offerDate;
 	private Timestamp  offerValidity;
 	private int valid;
 	
+	
+	
+	public String getProductIDUpdate() {
+		return productIDUpdate;
+	}
+	public void setProductIDUpdate(String productIDUpdate) {
+		this.productIDUpdate = productIDUpdate;
+	}
+	public Date getOfferDate() {
+		return offerDate;
+	}
+	public void setOfferDate(Date offerDate) {
+		this.offerDate = offerDate;
+	}
 	public int getValid() {
 		return valid;
 	}

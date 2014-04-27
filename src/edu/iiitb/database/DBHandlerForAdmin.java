@@ -286,7 +286,6 @@ public class DBHandlerForAdmin {
 		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
 		stmnt1.setString(6, date);
 		stmnt1.execute();
-		System.out.println("Executed");
 	}
 	
 	public void deleteProduct(int productId) throws SQLException
@@ -321,6 +320,18 @@ public class DBHandlerForAdmin {
 			productId.add(rs.getString("productId"));
 		}
 		
+	}
+	
+	public void fetchProductIDWithName(ArrayList<String> productId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query = "select Concat(productId,'_',productName) from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			productId.add(rs.getString(1));
+		}
+		con.close();
 	}
 
 	public void fetchCategoryName(ArrayList<String> categoryName) throws SQLException {
@@ -738,6 +749,39 @@ public class DBHandlerForAdmin {
 			return rs.getInt(1);
 		}
 		return 0;
+	}
+
+	public void fetchProductDetailsForUpdate(String productID,
+			ProductInfo product) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from ProductInfo where productId = '"+productID+"'";
+		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next())
+		{
+			String[] timestamp = rs.getTimestamp(11).toString().split(" ");
+			product.setLastOfferDate(timestamp[0]);
+			product.setOffer(rs.getInt(5));
+			product.setKeywords(rs.getString(7));
+			product.setPrice(rs.getInt(3));
+		}
+		
+	}
+
+	public void updateProductInfo(ProductInfo info) throws SQLException{
+		// TODO Auto-generated method stub
+		int productId = Integer.parseInt(info.getProductIDUpdate().split("_")[0]);
+		String query = "delete from Keywords where productId = "+productId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		updateKeywordForProduct(productId, info.getKeywords().split(","));
+		String query1 = " Update FlipKartDatabase.ProductInfo "
+				+  " Set price = " + info.getPrice() + ","
+				+  " offer = "+info.getOffer()+","
+				+  " keywords = '"+info.getKeywords()+"' ,"
+				+  " offerValidity = '"+info.getLastOfferDate()+"' "
+				+  " Where productId = " + productId + "";
+		st.executeUpdate(query1);
+		con.close();
 	}
 	
 	

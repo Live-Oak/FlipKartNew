@@ -72,8 +72,15 @@
 							</ul>
 						</li> 
 						
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Product Mgnt<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+								<li><a href="addProduct">Add Product</a></li>
+								<li><a href="productInfo">Update Product</a></li>
+							</ul>
+						</li> 
 						
-						<li><a href="addProduct">Add Product</a></li>
+						
+						
 						<li><a href="advertizement">Add Advertizement</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">View DB <span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">

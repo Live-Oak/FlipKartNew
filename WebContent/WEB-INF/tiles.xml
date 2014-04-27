@@ -202,6 +202,11 @@
    			<put-attribute name="body"   value="/Admin-ProductEntry.jsp"/>
    		</definition>
    		
+   		<definition name="UpdateProductPage" extends="Administrator">
+   			<put-attribute name="title" value="Update Product"/>
+   			<put-attribute name="body"   value="/productUpdate.jsp"/>
+   		</definition>
+   		
    		<definition name="InserAdvertizementPage" extends="Administrator">
    			<put-attribute name="title" value="addAdvertizement"/>
    			<put-attribute name="body"   value="/AddAdvertisement.jsp"/>
