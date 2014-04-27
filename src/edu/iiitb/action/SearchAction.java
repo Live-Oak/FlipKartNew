@@ -18,6 +18,16 @@ public class SearchAction extends ActionSupport{
 	ArrayList<String> companyList;
 	ArrayList<Linklists> linktoitem;
 	ArrayList<String> categoryList, categoryListtemp;
+	String parentcatname;
+	
+
+	public String getParentcatname() {
+		return parentcatname;
+	}
+
+	public void setParentcatname(String parentcatname) {
+		this.parentcatname = parentcatname;
+	}
 
 	public String getCategoryid() {
 		return categoryid;
@@ -81,32 +91,26 @@ public class SearchAction extends ActionSupport{
 			categoryList.add(categoryid);
 			// add it to the main list
 			
-			categoryListtemp = dbHandlerForUser.getCategoryList(categoryid);
-			// get the sub category list for the first time
-			
-			for(int i=0; i<categoryListtemp.size(); i++)
-			{
-				//System.out.println("value in category list is : " + categoryList.get(i));
-				categoryList.add(categoryListtemp.get(i));
-			}
-			// add it to the main list
-			
-			
-			if(categoryname.equalsIgnoreCase("Men") || categoryname.equalsIgnoreCase("Women"))
+			if(parentcatname.equalsIgnoreCase("Men") || parentcatname.equalsIgnoreCase("Women"))
 			{
 				int count = categoryList.size();
-				//System.out.println("Count is " +count);
-				for(int i=1; i<count; i++)
+				for(int i=0; i<count; i++)
 				{
-					categoryListtemp = dbHandlerForUser.getCategoryListwithcategory(categoryList.get(i), categoryname);
+					categoryListtemp = dbHandlerForUser.getCategoryListwithcategory(categoryList.get(i), parentcatname);
 					if(categoryListtemp.size() > 0)
-						categoryList.add(categoryListtemp.get(0));
+					{
+						for(int j=0; j<categoryListtemp.size(); j++)
+						{
+							// add it to the main list
+							categoryList.add(categoryListtemp.get(j));
+						}
+					}
 				}
 				// getting value for the level where we have to decide the path
 				// adding it to the main side again
 				
 				// get the sub-sub category list if present
-				for(int i=count-1; i<categoryList.size(); i++)
+				for(int i=count; i<categoryList.size(); i++)
 				{
 					//System.out.println("It is here");
 					categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i));
@@ -122,6 +126,16 @@ public class SearchAction extends ActionSupport{
 			}
 			else
 			{
+				
+				categoryListtemp = dbHandlerForUser.getCategoryList(categoryid);
+				// get the sub category list for the first time
+				
+				for(int i=0; i<categoryListtemp.size(); i++)
+				{
+					//System.out.println("value in category list is : " + categoryList.get(i));
+					categoryList.add(categoryListtemp.get(i));
+				}
+				// add it to the main list
 				// get the sub-sub category list if present
 				for(int i=0; i<categoryList.size()-1; i++)
 				{

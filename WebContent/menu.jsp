@@ -222,9 +222,9 @@ $(document).ready(function(){
 			    url:'getCatagories',
 			    success: function(data){
 			    	$.each(data.categoryModel[0], function(count, stock) {
-			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=default">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 			    		$.each(data.subcategoryModel[index], function(count, stock1) {
-							    temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+							    temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 						 });
 			    		index = index + 1;
 						 $("#electronics").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
@@ -238,9 +238,9 @@ $(document).ready(function(){
 			    	
 					$.each(data.categoryModel[1], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=Men">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
-					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 					    });
 			    	index = index + 1;
 					 $("#men").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
@@ -255,10 +255,10 @@ $(document).ready(function(){
 
 					$.each(data.categoryModel[2], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=Women">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 
 			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
-				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 				    });
 			    	 index = index + 1;
 
@@ -274,10 +274,10 @@ $(document).ready(function(){
 
 					$.each(data.categoryModel[3], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=default">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 
 	    			 $.each(data.subcategoryModel[index], function(count, stock1) {
-				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+				    	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 				    });
 	    			 index = index + 1;
 
@@ -293,10 +293,10 @@ $(document).ready(function(){
 
 					$.each(data.categoryModel[4], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=default">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 
 			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
-					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 					 });
 			    	 index = index + 1;
 					 $("#books").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
@@ -311,10 +311,10 @@ $(document).ready(function(){
 
 					$.each(data.categoryModel[5], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=default">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 
 			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
-					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					  	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 					 });
 			    	 index = index + 1;
 					 $("#home").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
@@ -329,10 +329,10 @@ $(document).ready(function(){
 
 					$.each(data.categoryModel[6], function(count, stock) {
 			    		
-			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a><ul class="dropdown-menu">';
+			    	temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'&parentcatname=default">'+stock.categoryName+'</a><ul class="dropdown-menu">';
 
 			    	 $.each(data.subcategoryModel[index], function(count, stock1) {
-					   	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+					   	temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'&parentcatname=default">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
 					 });
 			    	 index = index + 1;
 					 $("#more").append(temp + '</ul></li><li class="divider" role="presentation"></li>');   	 
