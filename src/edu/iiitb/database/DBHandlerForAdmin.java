@@ -274,18 +274,18 @@ public class DBHandlerForAdmin {
 		stmnt.execute();	
 		// Update Stock table
 		prod.setProductID(fetchLastInsertedProductId());
-		System.out.println("productId "+prod.getProductID());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
 		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
 		PreparedStatement stmnt1 = con.prepareStatement(query1);
-		stmnt1.setInt(1, prod.getProductID());
-		stmnt1.setInt(2, 5);
-		stmnt1.setInt(3, prod.getMinimumQuantity());
-		stmnt1.setInt(4, 1000);
-		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
-		stmnt1.setString(6, date);
-		stmnt1.execute();
+			stmnt1.setInt(1, prod.getProductID());
+			// For the first time availableQuantity is set as 5
+			stmnt1.setInt(2, 5);
+			stmnt1.setInt(3, prod.getMinimumQuantity());
+			stmnt1.setInt(4, 1000);
+			stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
+			stmnt1.setString(6, date);
+			stmnt1.execute();
 	}
 	
 	public void deleteProduct(int productId) throws SQLException
@@ -453,7 +453,6 @@ public class DBHandlerForAdmin {
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
-				System.out.println("Paras");
 				ID.add(Integer.toString(rs.getInt(1)));
 			}
 			
@@ -765,7 +764,7 @@ public class DBHandlerForAdmin {
 			}
 			catch(Exception e)
 			{
-				product.setLastOfferDate("0000-00-00");
+				product.setLastOfferDate("2014-01-01");
 			}
 			product.setOffer(rs.getInt(5));
 			product.setKeywords(rs.getString(7));

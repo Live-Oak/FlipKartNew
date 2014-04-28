@@ -598,6 +598,9 @@
 						</tr>
 					</table>
 				</div>
+		<!--  For Applying Promo code		<input type="text" width="30px"/> 
+											<input type="button" />
+		-->
 			</div>
 			<input type="submit" id="nextOrderPage" value="SAVE ADDRESS & CONTINUE" align="middle" class="mysubmit2">
 		</div>
