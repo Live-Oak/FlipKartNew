@@ -97,6 +97,7 @@ ServletResponseAware, ServletRequestAware
 			{						
 				grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
 			}
+			
 		}	
 		else
 		{			

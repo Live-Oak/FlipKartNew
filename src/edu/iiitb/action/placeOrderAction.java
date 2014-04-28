@@ -160,7 +160,9 @@ ServletResponseAware, ServletRequestAware
 			addressDetails.setEmail(user.getEmail());	
 			addressDetails = db.getUserAddressDetail(addressDetails.getEmail());
 			DBHandlerForUser db2 = new DBHandlerForUser();					
-			cartDetailsList = db2.getCartTableDetail(user.getEmail());			
+			cartDetailsList = db2.getCartTableDetail(user.getEmail());	
+			System.out.println("Come");
+		//	TestOffer.updateGrandTotal(cartDetailsList);
 		}	
 		else
 		{		

@@ -119,7 +119,6 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 	{
 		DBHandlerForUser db = new DBHandlerForUser();			
 		bankName = db.verifyCardDetails(cardNumber, expireMonth, expireYear, cvv);		
-		System.out.println("BANK ::" + bankName);
 		session.put("bankName", bankName);
 	
 		if ( bankName != null)
@@ -131,7 +130,6 @@ public class cardPayment  extends ActionSupport implements SessionAware , Servle
 			if( ( Float.parseFloat(balance) - Float.parseFloat(grandTotal)) < 0)
 			{
 				valid = "2";	
-				System.out.println("Maa ki ankh::");
 			}
 		}
 		return "success";

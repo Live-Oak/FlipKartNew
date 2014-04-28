@@ -80,6 +80,7 @@ public class SearchAction extends ActionSupport{
 	public String execute()
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		boolean flag;
 		try
 		{
 			categoryList = new ArrayList<String>();
@@ -91,7 +92,12 @@ public class SearchAction extends ActionSupport{
 			categoryList.add(categoryid);
 			// add it to the main list
 			
-			if(parentcatname.equalsIgnoreCase("Men") || parentcatname.equalsIgnoreCase("Women"))
+			if(parentcatname == null)
+				flag=false;
+			else
+				flag=true;
+			
+			if((flag) && (parentcatname.equalsIgnoreCase("Men") || parentcatname.equalsIgnoreCase("Women")))
 			{
 				int count = categoryList.size();
 				for(int i=0; i<count; i++)
